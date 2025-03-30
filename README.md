@@ -9,3 +9,6 @@ The Monster Hunter Generations Ultimate Modding Wiki
 #### Contributors
 * Handburger
 * Fexty
+
+##### Special Thanks
+*  Schguki, Potobc, Aradi, GReinoso96, SilverJolteon, Pings, Awesomeosity, Kiranico
