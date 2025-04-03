@@ -10,6 +10,7 @@ The Monster Hunter Generations Ultimate Modding Wiki
 * Handburger
 * Fexty
 * Poto
+* Silvris
 
 ##### Special Thanks
 *  Schguki, Potobc, Aradi, GReinoso96, SilverJolteon, Pings, Awesomeosity, Kiranico
