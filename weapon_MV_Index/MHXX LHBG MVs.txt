@@ -1,0 +1,104 @@
+MHXX Bowgun Ammo Motion Values
+
+Ammo
+Name                     MV                        Crit Distance (Y/N)
+Pierce lv1               9x3                       Y
+Pierce lv2               7x4                       Y     
+Pierce lv3               7x5                       Y  
+
+!Element S lv1           7+(45Ele)                 N
+!Element S lv2           7+(58Ele)                 N
+P. Element S lv1         [2+(20Ele)]x3             N
+P. Element S lv2         [3+(23Ele)]x5             N
+Status lv1               10+25Status               N
+Status lv2               15+50Status               N
+
+Normal lv1               6                         Y
+Normal lv2               12                        Y
+Normal lv3               10 + Ricochet             Y
+Pellet lv1               5x3                       N      
+Pellet lv2               5x4                       N      
+Pellet lv3               5x5                       N
+Dragon lv1               (1+40Dra)x5               N
+Dragon lv2               (1+48Dra)x5               N
+Dazzling S               35                        Y   
+Force lv1                15                        Y
+Force lv2                18                        Y
+Heavy lv1                9                         Y
+Heavy lv2                12                        Y
+Stone S                  10                        Y
+Sting S                  14                        Y
+Sharpnel S               1 + 8x3                   N*
+Slicing lv1              1 + 8x3                   N*
+Slicing lv2              1 + 8x5                   N*
+Crag lv1                 3+25Fixed+30Fire+25KO     N
+Crag lv2                 3+30Fixed+45Fire+30KO     N
+Crag lv3                 3+40Fixed+60Fire+40KO     N
+Triblast S               3+(25Fixed+30Fire+25KO)x3 N
+Cannon lv1               5+30Fixed+10KO            N
+Cannon lv2               7+40Fixed+15KO            N
+Clust lv1                6+(25Fixed+2Fire)x3       N
+Clust lv2                6+(25Fixed+2Fire)x4       N
+Clust lv3                6+(25Fixed+2Fire)x5       N
+Wyvern S                 (25+35Fire)x2             N
+Exhaust lv1              15+35Exhaust+15KO         N
+Exhaust lv2              20+70Exhaust+20KO         N
+Brave LBG S              10                        Y
+Brave LBG D              6x3                       Y
+Alchemy S                10                        Y
+
+!(major 4 elements excluding dragon)
+Status = Poison, Para, Sleep, and Blast
+N* = technically there is crit distance but it's such a small range for the first hit that it doesn't matter
+
+Demon Shots:
+Demon S = Atk+10, Sharpnessx1.1, bowgun critical distance modifier becomes 1.7x
+Demon Aff = Atk+10, Sharpnessx1.1, +10% Aff, bowgun critical distance modifier becomes 1.7x
+
+Modifiers:
+Critical Distance: 1.5 (raw only)
+LBG Weapon Class mod: 1.3 (raw only)
+HBG Weapon Class mod: 1.48 (raw only)
+Normal/Pierce Up: 1.1 (raw only)
+Pellet Up: 1.2
+TrueShot Up: 1.2 (all)
+Power Reload: 1.05 (all) 
+Brave Reload for HBG: 1.05 (all)
+Felyne Sharpshooter: 1.1 (Normal S)
+Felyne Temper: 1.05 (all)
+Gunpowder Infusion: 1.1 (all)
+All Elemental Shots: 0.95
+
+Rapid Fire Modifiers:
+Normal S: 0.8
+Pierce S: 0.7
+All Elemental Shots: 0.6
+Slicing S: 0.9
+
+LBG Hunter Arts:
+Bullet Geyser I (300 [560 SP]) = 20 neutral damage + 10 fire
+Bullet Geyser II (500 [800 SP]) = 3 × (13 neutral damage + 10 fire)
+Bullet Geyser III (650 [980 SP]) = 6 × (10 neutral damage + 10 fire)
+Full House I (250 [500 SP]) = 0 (slowly reloads all ammo expect ammo that can be rapid fired)
+Full House II (310 [572 SP]) = 0 (quickly reloads all ammo except ammo that can be rapid fired)
+Full House III (380 [656 SP]) = 0 (quickly reloads all ammo)
+Rapid Fire Rain I (300 [560 SP]) = 6x15
+Rapid Fire Rain II (500 [800 SP]) = 6x18
+Rapid Fire Rain III (650 [980 SP]) = 6x21
+Charged Shot I (300 [560 SP]) = 20 per shot (5 available)
+Charged Shot II (500 [800 SP]) = 40 per shot (10 available)
+Charged Shot III (750 [1100 SP]) = 60 per shot (10 available)
+
+HBG Hunter Arts:
+Super Nova I (420 [704 SP]) = {40 + 40 x (TrueRaw x 0.0075) [Center]} + {36 + 36 x (TrueRaw x 0.0075) [Edge]} True Damage
+Super Nova II (500 [800 SP]) = {40 + 40 x (TrueRaw x 0.015) [Center]} + {15 + 15 x (TrueRaw x 0.015) [Edge]} True Damage
+Super Nova III (830 [1196 SP]) = {45 + 45 x (TrueRaw x 0.02) [Center]} + {5 + 5 x (TrueRaw x 0.02) [Edge]} True Damage
+Guns Blazing I (500 [800 SP]) = Boosts movement and reload speed and reduces recoil for 40 seconds
+Guns Blazing II (750 [1100 SP]) = Boosts movement and reload speed and reduces recoil for 60 seconds
+Guns Blazing III (1000 [1400 SP]) = Boosts movement and reload speed and reduces recoil for 90 seconds
+Gunpowder Infusion I (170 [404 SP]) = Boosts the power of the next 10 bullets by 10%
+Gunpowder Infusion II (250 [500 SP]) = Boosts the power of the next 17 bullets by 10%
+Gunpowder Infusion III (330 [596 SP]) = Boosts the power of the next 22 bullets by 10%
+Slicing Shell I (830 [1196 SP]) = 90 (Part Break x 1.1)
+Slicing Shell II (1000 [1400 SP]) = 120 (Part Break x 1.15)
+Slicing Shell III (1170 [1604 SP]) = 170 (Part Break x 1.2)

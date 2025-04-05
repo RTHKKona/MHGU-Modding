@@ -1,0 +1,71 @@
+MHXX Great Sword Motion Values
+
+Center of Blade Modifier: 1.05
+
+Guild:
+Draw Slash (X1) = 48
+Side Slash (A1) = 32
+Up Swing (X+A) = 44
+Kick (Special attack) = 2 neutral damage
+Slap (X after roll, kick or lv. 3 charge) = 18 (22 KO)
+Charge lv. 1 = 65 (has a hidden sharpness modifier of 1.1 and element modifier of 1.1)
+Charge lv. 2 = 80 (has a hidden sharpness modifier of 1.2 and element modifier of 1.2)
+Charge lv. 3 = 100 (has a hidden sharpness modifier of 1.3 and element modifier of 1.5)
+Overcharge = 80 (has a hidden sharpness modifier of 1.2 and element modifier of 1.2)
+Strong Charge lv. 0 = 52 (has element modifier of 1.5)
+Strong Charge lv. 1 = 72 (has a hidden sharpness modifier of 1.1 and element modifier of 1.65)
+Strong Charge lv. 2 = 90 (has a hidden sharpness modifier of 1.2 and element modifier of 1.8)
+Strong Charge lv. 3 = 120 (has a hidden sharpness modifier of 1.3 and element modifier of 2.25)
+Finisher Side Slash lv. 0 = 48
+Finisher Side Slash lv. 1 = 52 (has a hidden sharpness modifier of 1.1 and element modifier of 1.65)
+Finisher Side Slash lv. 2 = 60 (has a hidden sharpness modifier of 1.2 and element modifier of 1.8)
+Finisher Side Slash lv. 3 = 80 (has a hidden sharpness modifier of 1.3 and element modifier of 2.25)
+Jump Slash = 48
+
+Aerial style:
+Aerial Slash = 48
+Aerial Charge lv. 1 = 57 (has a hidden sharpness modifier of 1.1)
+Aerial Charge lv. 2 = 66 (has a hidden sharpness modifier of 1.2)
+Aerial Charge lv. 3 = 75 (has a hidden sharpness modifier of 1.3)
+Strong Side Slash = 60 (has a hidden sharpness modifier of 1.2)
+
+Adept Style:
+Dashing Up Swing (X after adept dodge) = 26
+Dashing Up Charge lv. 1 = 39 (has a hidden sharpness modifier of 1.1 and element modifier of 1.1)
+Dashing Up Charge lv. 2 = 52 (has a hidden sharpness modifier of 1.2 and element modifier of 1.2)
+Dashing Up Charge lv. 3 = 78 (has a hidden sharpness modifier of 1.3 and element modifier of 2.25)
+Quick Strong Charge same MVs as Guild
+
+Brave Style:
+Draw Strong Charge lv. 0 (X while running or X+A while not holding R) = 52 (has element modifier of 1.5)
+Draw Strong Charge lv. 1 = 65(62 unofficially) (has a hidden sharpness modifier of 1.1 and element modifier of 1.65)
+Draw Strong Charge lv. 2 = 81(85 unofficially) (has a hidden sharpness modifier of 1.2 and element modifier of 1.8)
+Draw Strong Charge lv. 3 = 112 (has a hidden sharpness modifier of 1.3 and element modifier of 2.25)
+Forward Strong Charge lv. 0 (Charge with X then press A at appropriate lv) = 52 (has element modifier of 1.5)
+Forward Strong Charge lv. 1 = 65 (has a hidden sharpness modifier of 1.1 and element modifier of 1.65)
+Forward Strong Charge lv. 2 = 81 (has a hidden sharpness modifier of 1.2 and element modifier of 1.8)
+Forward Strong Charge lv. 3 = 115 (has a hidden sharpness modifier of 1.3 and element modifier of 2.25)
+
+Hunter Arts:
+Ground Slash I (630 [956 SP]) = 50 + 20 + 20
+Ground Slash II (670 [1007 SP]) = 50 + 21 + 21 + 21
+Ground Slash III (830 [1196 SP]) = 50 + 22 + 22 + 22 + 22
+Lion`s Maw I (290 [548 SP]) = 48 side slash and powers up next hit by +10%
+Lion`s Maw II (350 [620 SP]) = 52 side slash and powers up next hit by +20%
+Lion`s Maw III (500 [800 SP]) = 66 side slash and powers up next hit by +33%
+Trump Card/Chance Special Effect on Lion's Maw: additional 1.15x boost
+Brimstone Slash I (1250 [1700 SP]): Damage is increased by up to 1.5 times based on damage taken while charging
+- Charge lv. 0 = 130
+- Charge lv. 1 = 150 (has a hidden sharpness multiplier of 1.1)
+Brimstone Slash II (1500 [2000 SP]): Damage is increased by up to 1.5 times based on damage taken while charging
+- Charge lv. 0 = 130
+- Charge lv. 1 = 150 (has a hidden sharpness multiplier of 1.1)
+- Charge lv. 2 = 175 (has a hidden sharpness multiplier of 1.2)
+Brimstone Slash III (1670 [2204 SP]): Damage is increased by up to 1.5 times based on damage taken while charging
+- Charge lv. 0 = 130
+- Charge lv. 1 = 150 (has a hidden sharpness multiplier of 1.1)
+- Charge lv. 2 = 175 (has a hidden sharpness multiplier of 1.2)
+- Charge lv. 3 = 190 (has a hidden sharpness multiplier of 1.3)
+Moon Breaker I (420 [704 SP]) = 60
+Moon Breaker II (500 [800 SP]) = 12 + 70
+Moon Breaker III (830 [1196 SP]) = 10 + 12 + 80

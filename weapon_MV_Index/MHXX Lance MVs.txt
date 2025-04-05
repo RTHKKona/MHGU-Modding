@@ -1,0 +1,53 @@
+MHXX Lance Motion Values
+
+Guild:
+Draw attack = 27
+Horizontal Thrust 1 (X1) = 20
+Horizontal Thrust 2 (X2) = 20
+Horizontal Thrust 3 (X3) = 3×15
+High Thrust 1 (A1) = 22
+High Thrust 2 (A2) = 22
+High Thrust 3 (A3) = 3×15
+Sweep (X+A) = 20
+Counter Thrust (R+A) = 22 (will turn into the horizontal thrust with 20 MV if hit)
+Charged counter thrust (R+hold A) = 50 (will turn into the horizontal thrust with 20 MV if hit)
+Charge (R+X+A) = 16 per hit
+Charge finisher (X during the Charge) = 50
+Turn around Charge finisher (back + X during the Charge) = 50
+Shield Bash (X after Guard Advance) = 14 (blunt damage, deals 27 KO)
+Guard Stab (X while guarding) = 20
+Jump attack = 30
+
+Striker:
+Horizontal Thrust 3 (X3) = 25
+High Thrust 3 (A3) = 27
+Charge finisher (X during Charge) = 70 (67 from unofficial testing)
+
+Aerial:
+Aerial Triple strike (X after a vault) = 15×3
+
+Adept:
+Adept counter (X after an adept guard) = 45+38 (41+36 unofficially)
+
+Brave:
+Brave Swipes (Y>X) = 30+20
+Shield Bash Guard Point = 20 (27 KO)
+
+Hunter Arts:
+Shield Assault: distance traveled improves with each level
+Shield Assault I (250 [500 SP]) = 10 + 10×n + 30 (natural stop) or 50 (X finisher) (27+2×n + 27 or 0 KO, 27+3×n + 27 or 0 exhaust)
+Shield Assault II (330 [596 SP]) = 10 + 10×n + 30 (natural stop) or 50 (X finisher) (27+2×n + 27 or 0 KO, 27+3×n + 27 or 0 exhaust)
+Shield Assault III (420 [704 SP]) = 10 + 10×n + 30 (natural stop) or 50 (X finisher) (27+2×n + 27 or 0 KO, 27+3×n + 27 or 0 exhaust)
+Corkscrew Jab I (1080 [1496 SP]) = 45×3 = 135 total
+Corkscrew Jab II (1170 [1604 SP]) = 32×5 = 160 total
+Corkscrew Jab III (1250 [1700 SP]) = 27×7 = 189 total
+Enraged Guard blocks a move and depending on its power gives:
+- red aura = 10% attack boost
+- orange aura = 20% attack boost
+- yellow aura = 30% attack boost
+Enraged Guard I (670 [1004 SP]) = 0 (lasts 60 seconds)
+Enraged Guard II (750 [1100 SP]) = 0 (lasts 120 seconds)
+Enraged Guard III (830 [1196 SP]) = 0 (lasts 180 seconds)
+Healing Guard I (670 [1004 SP]) = Heal a bit for blocking for 30 seconds 
+Healing Guard II (750 [1100 SP]) = Heal a bit for blocking for 60 seconds
+Healing Guard III (830 [1196 SP]) = Heal slightly more than a bit for blocking for 90 seconds

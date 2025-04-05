@@ -1,0 +1,128 @@
+MHXX Charge Blade Motion Values
+
+Red/Blue Shield:
+- Boosts Axe attacks by 1.15x. Striker gets 1.2x instead.
+- Boosts guarding capabilities similar to guard +1
+- Blocking moves with Red Shield trigger mini phial explosions
+- Phial damage increase by 1.35x
+- Increases KO for impact phials by 1.35x
+- No sharpness consumption when blocking
+- Access to SAED (ultra) but not worth using over AED (super). You can cancel SAED (ultra) into AED (super) by pressing back + X.
+- Blue Shield is very similar to Guild Red Shield except no mini phial explosions when blocking and guarding capability increase only applies to guard points 
+
+Guild: (Note: AED stands for Amped Elemental Discharge and SAED is Super Amped Elemental Discharge)
+
+Sword Mode:
+Draw Slash/Dash Slash (X+A) = 18
+Forward Slash (X1) = 14
+Upward Slash (X2) = 15
+Round Slash (X3) = 30 (Has a Guard Point at the end. It is also used during the axe -> sword morph.)
+Shield Bash = 8 + 12
+Charged Slash (hold A) = 30 + 20
+Mistimed Charged Slash (hold A) = 16
+Jump Attack = 22
+
+Axe Mode:
+Sword > Axe morph slam = 42 (has a Guard Point at the start)
+Slam (Forward X) = 42
+Up Swing (X1) = 33
+Overhead Chop (X2) = 40
+Side Chop (X after a roll) = 18
+Burst 1 (A1) = 20 + 1 phial
+Burst 2 (A2) = 20 + 45 + 2 phials (15 + 35 if phials are empty)
+AED [aka Super] (A3) = 75 + 3 phials (42 if phials are empty)
+SAED [aka Ultra] (A3 with Red Shield) = 25 + 90 + up to 5 phials (20 + 60 if phials are empty)
+Jump Attack (X in the air) = 42
+
+Striker:
+Draw Slash/Dash Slash has a Guard Point
+
+Aerial:
+
+Sword Mode:
+Aerial Charge Slash (X after a vault) = 35
+
+Axe Mode:
+Aerial Chop (X after a vault) = 42
+Aerial AED (A after a vault) = 90 + 3 phials (42 if phials are empty)
+Aerial SAED (X+A after a vault with Red Shield) = 100 + up to 5 phials (60 if phials are empty)
+
+Adept:
+
+Sword Mode:
+Charged Slash has a Guard Point at the start
+Adept Charge Dual Slash (A after an adept guard) = 30 + 20
+Adept phial transfer to shield (X after an adept guard) = 30
+
+Axe Mode:
+Adept Slam (X after an adept evade) = 42
+Adept Burst 2 Dual swing (A after an adept evade) = 20 + 45 + 2 phials
+
+Brave:
+
+Axe Mode:
+Brave Burst 2 (Y>A) = 15 + 35 + 2 phials [Double checked by Aradi147]
+2nd Burst 2 (A2) = 15 + 70 + 2 phials (15 + 35 if phials are empty) [Double checked by ZebraQuake]
+Brave AED (Y>X+A>back+X cancel) = 70 + 3 phials (42 if phials are empty) [Normal AED is still 75]
+Brave SAED (Y>X+A) = 25 + 80 + up to 5 phials (20 + 55 if phials are empty) [Same as normal SAED]
+
+Hunter Arts:
+Energy Blade I (750 [1100 SP]):
+- 0 phials = 10
+- 1-3 phials = 80
+- 4-6 phials = 130
+- 7-9 phials = 160
+- 10 phials = 200
+Energy Blade II (830 [1196 SP]):
+- 0 phials = 20
+- 1-3 phials = 100
+- 4-6 phials = 150
+- 7-9 phials = 180
+- 10 phials = 220
+Energy Blade III (920 [1304 SP]):
+- 0 phials = 30
+- 1-3 phials = 130
+- 4-6 phials = 180
+- 7-9 phials = 200
+- 10 phials = 250
+Limit Breaker I (1080 [1496 SP]) = 0 (Can load 7 phials for 180 seconds)
+Limit Breaker II (1170 [1604 SP]) = 0 (Can load 9 phials for 180 seconds)
+Limit Breaker III (1250 [1700 SP]) = 0 (Can load 10 phials for 150 seconds)
+Healing Phial I (580 [740 SP]) = 0 (Restores health to user equal to phials transferred into shield × 8)
+Healing Phial II (630 [896 SP]) = 0 (Restores health to user and allies equal to phials transferred into shield × 8)
+Healing Phial III (710 [956 SP]) = 0 (Restores health to user and allies equal to phials transferred into shield × 10)
+Chainsaw I (400 [680 SP]) = 20 x 4 = 80 total
+Chainsaw II (520 [824 SP] = 20 x 5 = 100 total
+Chainsaw III (640 [968 SP] = 20 x 6 = 120 total
+
+Phial Damage:
+Impact = [[raw x phial modifier] x Artillery] x shield boost
+Elemental = [[element x shield boost] x phial modifier] x hitzone
+
+Phial Modifier:
+Attack	        Impact	Elemental	
+AED	        0.1	3	
+SAED	        0.25	5.4	
+Guard	        0.03	1.5
+Everything else	0.05	3
+
+Moves with Charged Shield: (How much phials worth of damage these moves do)
+Shield thrust: 0.5
+Charged Rising Slash: 0.5
+SAED: 1 + 0.5 x N [N = # of phials]
+
+Artillery:
+
+Artillery Novice: 1.3
+Artillery Expert: 1.35
+Felyne Bombardier: 1.15
+Maximum modifier: 1.4
+
+Impact KO:
+Parentheses are the approximate value after the 1.35x from shield boost.
+
+Burst 1: 30 (40)
+Burst 2: 30 (40) x 2
+AED: 25 x 3 (33 x 3)
+SAED: (36 + 18 x # of phials)
+Shield Thrust / guard / Charged Rising Slash: (15)

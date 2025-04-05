@@ -1,0 +1,51 @@
+MHXX Insect Glaive Motion Values:
+
+Extract Buffs:
+Red extract = +0% (only increases number of hits)
+Red + White = +15% attack 
+Red + White + Orange = +20% attack
+
+Guild:
+Draw attack/Jump slam (Forward A) = 25
+Forward thrust (Forward X) = 12 (15 + 9 with red extract)
+Rising slashes (X1) = 23 + 17 (25 + 13 +15 with red extract)
+Side slashes (X2) = 21 (13 + 23 with red extract)
+Spinning slashes (X3) = 15 + 21 (13 + 11 + 25 with red extract)
+Left side sweep (A1) = 23 (15 + 27 with red extract)
+Linking hit between A1 and X1 = 25
+Slam/Right side sweep (A2) = 27 (21 + 35 with red extract)
+Backflip (Back A) = 17 (13 + 13 with red extract)
+Marker slash (R mid-combo) = 10
+Marker shot (R) = 0
+Kinsect shot (R+X) = 22 (16 KO on blunt types) [Uses Kinsect's Attack Stat]
+Charged Kinsect shot = 60 (40 KO on blunt types, element × 1.5) [Uses Kinsect's Attack Stat]
+Jump Attack (X in the air) = 21 (17 + 7 with red extract)
+
+Aerial:
+Aerial attack = 17 + 7 (17 × n with red extract where n = up to 4 hits)
+
+Adept:
+Adept counter attack = 30
+
+Brave:
+Kinsect Auto Attacks (Kinsect auto attacks for Slam Side Sweep, Jump Slam, and Jump Attack) = 50 [Uses Kinsect's Attack Stat]
+
+Hunter Arts:
+Extract Hunter I (700 [1040 SP]) = 70 (extracts last 30 seconds)
+Extract Hunter II (900 [1280 SP]) = 70 (extracts last 60 seconds)
+Extract Hunter III (1000 [1400 SP]) = 70 (extracts last 90 seconds)
+Swarm = 5 per hit
+- red extract = changes to 6 per hit
+- white extract = hit rate × 1.2 
+- orange extract = stagger/break damage × 1.2
+- I (1000 [1400 SP]): slow hit rate, 90 seconds
+- II (1080 [1496 SP]): medium hit rate, 90 seconds
+- III (1250 [1700 SP]): fast hit rate, 60 seconds
+Bug Blow I (580 [896 SP]) = 10 + 10 + 80 (deals extra damage with Swarm active: I = +90, II = +120, III = +150)
+Bug Blow II (670 [1004 SP]) = 10 + 105 (deals extra damage with Swarm active: I = +90, II = +120, III = +150)
+Bug Blow III (750 [1100 SP]) = 10 + 120 (deals extra damage with Swarm active: I = +90, II = +120, III = +150)
+Kinsect Boost = 20 per hit (Uses Kinsect's Attack Stat)
+- Spinning Attacks boosted by 1.1x
+- I (1080 [1496 SP]) = 120 seconds
+- II (1170 [1604 SP]) = 150 seconds
+- III (1250 [1700 SP]) = 180 seconds

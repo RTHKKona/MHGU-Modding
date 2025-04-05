@@ -1,0 +1,78 @@
+MHXX Dual Blades Motion Values:
+
+Element Modifiers:
+If you see Y+Y (which means both blades are hitting at the same time), then both of those hits has a element modifier of 0.7
+For example for the regular draw attack (7+7, 7+7), the total element damage = (element)(0.7+0.7+0.7+0.7) or (element)(2.8)
+
+Guild:
+Draw attack = 7+7, 7+7 = 28 total [total element = (element)(2.8)]
+Up Slash (X after roll) = 18
+Dual Slash 1 (X1) = 8, 12 = 20 total
+Dual Slash 2 (X2) = 7, 10 = 17 total
+Circle Slash (X3) = 10, 13+13 = 36 total [total element = (element)(2.4)]
+Right Dual Slash (A1) = 7, 10 = 17 total
+Right Jumping Spin Slash (A2) = 16, 6, 8 = 30 total
+Left Dual Slash (Left + A1) = 9, 12 = 21 total
+Left Jumping Spin Slash (A2) = 16, 6, 8 = 30 total
+Jump Attack (X in the air) = 10, 13 = 23 total
+
+Archdemon mode: Activates by exiting Demon Mode using R when the Demon gauge fills up
+Draw attack/Spinning attack (X+A) = 7, 7, 7, 7, 10+10 = 48 total [total element = (element)(5.4)]
+Up Slash (X after roll) = 18
+Dual Slash (X1) = 8, 12 = 20 total
+Dual Slash (X2) = 7, 10 = 17 total
+Circle Slash (X3) = 10, 12+12 = 34 total [total element = (element)(2.4)]
+Archdemon Dance (X+A after X1, X2, X3, A1 or A2) = 8, 8, 8, 8, 6, 20+20 = 78 total [total element = (element)(6.4)]
+Right Dual Slash (A1) = 7, 10 = 17 total
+Right Double Jumping Spin Slashes (A2) = 16, 6, 8; 18, 6, 10 = 30 + 34 total
+Left Dual Slash (Left + A1) = 9, 12 = 21 total
+Left Double Jumping Spin Slashes (A2) = 16, 6, 8; 18, 6, 10 = 30 + 34 total
+Jump Double Slash (X in the air) = 10, 13 = 23 total
+Jump Spin Slashes (Demon dash off cliff) = 12, 15, 15, 12 = 54 total
+Jump finisher (X after Jump Spin Slashes) = 16+16, 10+10, 7+7 = 66 total [total element = (element)(4.2)]
+
+Demon mode: Activate by pressing R
+Spinning attack (Special attack) = 8, 8, 8, 8, 11+11 = 54 total [total element = (element)(5.4)]
+Circle Slash (X1) = 11, 13+13 = 37 total [total element = (element)(2.4)]
+Demon Combo (X2) = 4, 9, 4, 9, 12+12 = 50 total [total element = (element)(5.4)]
+Double Jumping Spin Slashes (A1) = 18, 6, 9; 20, 6, 11 = 33 + 37 total
+Demon Dance (X+A) = 33, (4, 4) x 4, 6, 20+20 = 111 total [total element = (element)(11.4)]
+Jump Double Slash (X in the air) = 11, 14 = 25 total
+Jump Spin Slashes (Dash off cliff) = 13, 17, 17, 13 = 60 total
+Jump finisher (X after Jump Spin Slashes) = 18+18, 11+11, 8+8 = 74 total [total element = (element)(4.2)]
+
+Aerial:
+Rising Aerial Slashes (archdemon mode) = 12, 15, 15, 12 = 54 total
+Rising Aerial Slahes (demon mode) = 13, 17, 17, 13 = 60 total
+Descending Aerial Slashes (archdemon mode) = 16+16, 10+10, 7+7 = 66 total [total element = (element)(4.2)]
+Descending Aerial Slashes (demon mode) = 18+18, 11+11, 8+8 = 74 total [total element = (element)(4.2)]
+
+Adept:
+Archdemon Spinning Attack (X+A) = 5, 5, 5, 5, 10+10 = 40 total [total element = (element)(5.4)]
+Demon Spinning Attack (X+A) = 5, 5, 5, 5, 11+11 = 42 total [total element = (element)(5.4)]
+Adept Evade (archdemon mode) = 20, 14, 7, 7 = 48 total
+Adept Evade (demon mode) = 23, 16, 8, 8 = 55 total
+
+Brave: (Most of the moveset is similar to archdemon)
+Spinning Attack (X+A) = 5, 5, 5, 5, 10+10 = 40 total [total element = (element)(5.4)]
+Demon Combo (X2) = 4, 8, 4, 8, 12+12 = 48 total [total element = (element)(5.4)]
+Successful Guard Point Sprint (R or R+X+A when sheathed in Brave mode):
+- 10+10, 7+7 = 34 total [total element = (element)(2.8)]
+- Restores 6 sharpness (which is about 9 DB hits without razor sharp)
+Brave Demon Dance (X+A mid combo in Brave mode) = 19+19, 4x(4, 4), 6, 20+20 = 116 total [total element = (element)(11.8)]
+- Unofficially = 17+17, 4x(4, 4), 6, 18+18 = 108 total
+
+Hunter Arts:
+Blood Wind I (670 [1004 SP]) = (13, 13, 13, 13) × 3, 30 + 30 = 216 total [total element = (element)(13.4)]
+Blood Wind II (750 [1100 SP]) = (13, 13, 13, 13) × 4, 30 + 30 = 268 total [total element = (element)(17.4)]
+Blood Wind III (830 [1196 SP]) = (13, 13, 13, 13) × 5, 30 + 30 = 320 total [total element = (element)(21.4)]
+Aerial Slam I (420 [704 SP]) = 12, 15, 15, 12, 18 + 18, 80 = 170 total [total element = (element)(6.4)]
+Aerial Slam II (500 [800 SP]) = 12, 15, 15, 12, 18 + 18, 110 = 200 total [total element = (element)(6.4)]
+Aerial Slam III (580 [896 SP]) = 12, 15, 15, 12, 18 + 18, 150 = 240 total [total element = (element)(6.4)]
+Wolf`s Maw I (1250 [1700 SP]) = doubles hit count for 60 seconds [second hit deals 20% damage (both raw and element)]
+Wolf`s Maw II (1500 [2000 SP]) = doubles hit count for 90 seconds [second hit deals 25% damage (both raw and element)]
+Wolf`s Maw III (1670 [2204 SP]) = doubles hit count for 120 seconds [second hit deals 30% damage (both raw and element)]
+Spiral Rend only works on hitzones of >40 (basically weakspots)
+Spiral Rend I (510 [812 SP]) = 4, 30+30 = 64 total [total element = (element)(2.4)]
+Spiral Rend II (590 [908 SP]) = 4, (10+10) x 2, 35+35 = 114 total [total element = (element)(5.2)]
+Spiral Rend III (700 [1040 SP]) = 4, (10+10) x 3, 40+40 = 144 total [total element = (element)(6.6)]

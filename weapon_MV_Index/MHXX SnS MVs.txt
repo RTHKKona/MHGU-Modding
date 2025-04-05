@@ -1,0 +1,68 @@
+MHXX Sword and Shield Motion Values:
+
+Sword Oils: last 120 seconds (180 seconds with the Item Use Up skill)
+Affinity Oil = +30% affinity
+Stamina Oil = 8 KO and 10 Exhaust per hit
+Mind`s Eye Oil = Prevents bouncing
+Destroyer Oil = Damage to monster parts × 1.2 (only break and stagger limits are affected, actual damage does not increase)
+
+Sharpness modifier = 1.06 for all sword attacks
+
+Guild:
+Draw Slash/Rush Slash (X+A) = 18 (gives 3 seconds of Super armor)
+Up slash (R+X) = 14
+Down Slash (X1) = 14
+Side Slash (X2) = 13
+Shield Combo (X3) = 10 + 20
+Strong Side slash (A1) = 21
+Strong Up slash (A2) = 19
+Round Slash (A3) = 24
+Shield attack (->A1) = 8 (deals 15 exhaust and 10 KO)
+Shield Bash (->A2) = 16 (deals 25 exhaust and 15 KO)
+Charged Slash (back+hold A) = 20+34 (first hit deals 25 exhaust and 15 KO)
+Uncharged Slash = 18(17 unofficially)
+Guard Slash (R+A) = 14
+Jump attack (X in the air) = 20
+Rising jump attack (X+A on a slope) = 18
+
+Aerial:
+Aerial rising slash (automatic after a vault) = 25
+Aerial downward slash (X in the air) = 20
+
+Adept:
+Adept counter (X after adept dodge) = 21 + 19 (deals mounting status)
+Adept rush in counter (X+A after adept dodge) = 18 + 20 (deals mounting status)
+Adept attack from back step adept dodge (back + A after a move) = 42
+
+Brave:
+Brave "Charge" Attack (X after Y) = 10 + 9 + 9
+Flip Attack (X+A) = 14
+- Run In Slash (Nothing after Flip Attack) = 16
+- Double Slash (A after Run In Slash) = 14 + 18
+- "Charge" Attack (X+A after Run In Slash) = 20 + 20 + 14 (20 + 10 + 10 unofficially)
+
+Hunter Arts:
+Sword Dance I (830 [1196 SP]) = 25 + 14 + 15 + 15 + 40 = 109 total
+Sword Dance II (920 [1304 SP]) = 25 + 14 + 15 + 15 + 14 + 15 + 40 = 138 total
+Sword Dance III (1250 [1700 SP]) = 25 + 14 + 15 + 15 + 14 + 15 + 20 + 7 + 45 = 170 total
+Round Force I (250 [500 SP]) = 30
+Round Force II (250 [500 SP]) = 20 + 30
+Round Force III (290 [548 SP]) = 20 + 20 + 30
+Shoryugeki I (670 [1004 SP]) = 10 + 60 = 70 total (0 + 70 exhaust, 0 + 75 KO)
+Shoryugeki II (750 [1100 SP])= 10 + 35 + 60 = 105 total (0 + 50 + 40 exhaust, 0 + 100 + 50 KO)
+Shoryugeki III (830 [1196 SP])= 10 + 35 + 60 + 30 = 135 total (0 + 50 + 40 + 40 exhaust, 0 + 100 + 50 + 50 KO)
+Chaos Oil Attack = 30
+Chaos Oil I (920 [1304 SP]) = 135 seconds
+- +15% Affinity, 1.1x Part Break, 4 KO and 5 Exhaust per hit, and Mind's Eye
+- Stacked Affinity Oil = +30% Affinity
+- Stacked Part Breaker Oil = 1.2x Part Break
+- Stacked Exhaust Oil = 8 KO and 10 Exhaust per hit
+- Stacked Mind's Eye = Recovers 100 Sharpness
+Chaos Oil II (1000 [1400 SP]) = 180 seconds
+- Same Effects as Chaos Oil I
+Chaos Oil III (1000 [1400 SP]) = 120 seconds
+- +30% Affinity, 1.15x Part Break, 7 KO and 8 Exhaust per hit, and Mind's Eye
+- Stacked Affinity Oil = +60% Affinity
+- Stacked Part Breaker Oil = 1.3x Part Break
+- Stacked Exhaust Oil = 12 KO and 14 Exhaust per hit
+- Stacked Mind's Eye = Recovers 120 Sharpness

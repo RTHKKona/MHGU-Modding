@@ -1,0 +1,53 @@
+MHXX Hunting Horn Motion Values
+
+Songs:
+Attack Boost (S) = +10% attack
+Attack Boost (S) ecore = +15% attack
+Attack Boost (L) = +15% attack
+Attack Boost (L) encore = +20% attack
+Elem. Attack Boost = +8% element
+Elem. Attack Boost encore = +10% element
+
+Guild:
+Draw attack = 33 (30 unofficially) (20 KO, 20 exhaust)
+Forward Slam (X2 or Forward X) = 30 (27 following a different attack) (20 KO, 15 exhaust)
+Left Swing (X1) = 30 (20 KO, 15 exhaust)
+Right Swing (A1) = 30 (27 following a different attack) (20 KO, 15 exhaust)
+Right Dual Swing (A2) = 12+15 (6+8 KO, 6+8 exhaust)
+Super Slam (Forward X+A) = 15+45 (5+15 KO, 5+45 exhaust)
+Backward Strike (X+A) = 45 (25 KO, 20 exhaust)
+Hilt Stab (Special Attack) = 10 cutting
+Recital Right Side Swing (R while idle) = 35 (22 KO, 22 exhaust)
+Recital Kick Up Horn (R after Forward X) = 20 (15 KO, 22 exhaust)
+Recital Backward Swing (R after X+A) = 30 (22 KO, 25 exhaust)
+Encore (R2 while idle) = 30 (22 KO, 25 Exhaust)
+2 Note Encore Backwards (Backwards R2) = 40+30 (25+25 KO, 22+22 exhaust)
+3 Note Encore Backwards (Backwards R2) = 33+39+30 (22+22+25 KO, 27+22+22 exhaust)
+3 Note Encore Left (R2 while holding left) = 33+35 (22+22 KO, 27+22 exhaust)
+3 Note Encore Right (R2 while holding right) = 33+35 (22+22 KO, 27+22 exhaust)
+Jump attack (X in the air) = 36 (20 KO, 20 exhaust)
+
+Aerial:
+Aerial Double Swing (X, A or X+A after a vault) = 12+22 (10+10 KO, 10+10 exhaust)
+
+Adept:
+Adept combo (X, A or X+A after an adept evade) = 15+20+30 (15+15+20 KO, 5+5+5 exhaust)
+
+Brave:
+Evade Recital (B>R) = 30+10 (15+15 KO, 15+15 exhaust)
+Evade Encore (B>R>R) = 45+15 (25+15 KO, 25+15 exhaust)
+
+Hunter Arts:
+Euphony I (670 [1004 SP]) = 0 (plays all melodies for 4 seconds)
+Euphony II (670 [1004 SP]) = 0 (plays all melodies for 5.5 seconds)
+Euphony III (670 [1004 SP]) = 0 (plays all melodies for 7 seconds)
+Sonic Smash I (830 [1196 SP]) = 5+5 + [30 * (1 + TrueRaw x .016) True Damage] (5+20+10 KO, 5+5+10 exhaust)
+Sonic Smash II (1000 [1400 SP]) = 5+5 + [35 * (1 + TrueRaw x .016) True Damage] (10+20+10 KO, 10+10+10 exhaust)
+Sonic Smash III (1170 [1604 SP]) = 5+5+5+5 + [38 * (1 + TrueRaw x .016) True Damage] ([3x15]+20+10 KO, [4x15]+10 exhaust)
+Harmonize I (420 [704 SP]) = 0 (all notes become double notes for 60 seconds)
+Harmonize II (580 [896 SP]) = 0 (all notes become double notes for 90 seconds)
+Harmonize III (670 [1004 SP]) = 0 (all notes become double notes for 120 seconds)
+Amped Recital = 0 (recitals can be performed after invincible dodge)
+- I (420 [704 SP]) = 90 seconds
+- II (500 [800 SP]) = 120 seconds
+- III (580 [896 SP]) = 150 seconds

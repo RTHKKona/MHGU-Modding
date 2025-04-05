@@ -1,0 +1,109 @@
+MHXX Gunlance Motion Values:
+
+Heat Gauge: (for regular attacks)
+- yellow = 1.00x
+- orange = 1.15x
+- red = 1.20x
+
+Guild:
+Draw attack/Running Up Swing (Forward X) = 28
+- Post-Shell Up Swing = 27 Unofficially
+Forward thrust (X1 and X2) = 21
+Up Swing (X+A) = 25
+Guard Thrust (R+X or X after X+A) = 16
+Slam (X3) = 36
+Jump Thrust (X in the air when sheathed) = 22
+Jump Slam (Forward X off a ledge) = 36
+Jump Slam reload (Forward X off a ledge when shells are not full) = 39 (40 unofficially) + reloads 1 shell
+
+Striker:
+Forward Thrust 3 (X3) = 24
+
+Aerial:
+Aerial Slam (X after a vault) = 36
+Aerial Reload Slam (X after a valut when shells are not full) = 39 + reloads 1 shell
+
+Adept: (based on unofficial testing)
+Reload Up Swing (after Adept guard) = 36 (Reloads all shells)
+Reload Up Swing with full clip = 40
+Strong Slam (X after Adept guard) = 50
+
+Brave:
+Quick reload
+- 1 shell outside brave mode
+- In Brave Mode
+  - Wide reloads 2
+  - Long reloads 3
+  - Normal reloads 4
+Brave Reload Up Swing (Y > X) = 36 (reloads same amount as quick reload)
+Brave Reload Up Swing with full clip = 40
+Slam = 36
+
+Shelling is back to 4U strength
+Shelling        Power   Fire
+Normal Lv1	    10	    4
+Normal Lv2	    14	    5
+Normal Lv3	    18	    6
+Normal Lv4	    21	    7
+Normal Lv5	    24	    8
+
+Long Lv1	    15	    9
+Long Lv2	    21	    11
+Long Lv3	    28	    14
+Long Lv4	    32	    16
+Long Lv5	    36	    18
+
+Wide Lv1	    20	    6
+Wide Lv2	    30	    8
+Wide Lv3	    40	    10
+Wide Lv4	    44	    11
+Wide Lv5	    48	    12
+
+Wyvernfire Lv1	    25      10
+Wyvernfire Lv2	    30      11
+Wyvernfire Lv3	    35	    12
+Wyvernfire Lv4	    40      13
+Wyvernfire Lv5	    45      14
+
+Wyvernfire has 4 hits (stats are per hit)
+
+Shelling Factors:
+Sharpness cost
+- Normal = 2
+- Long = 2
+- Wide = 3 (1 with Razor Sharp)
+Charged shot boost
+- Normal = 1.20
+- Long = 1.20
+- Wide = 1.45
+Full Burst modifier
+- Normal = 1.15
+- Long = 1.00
+- Wide = 0.90
+Clip Size
+- Normal = 5
+- Long = 3
+- Wide = 2
+
+Brave Shelling (Info double checked by Aradi): 
+- Rapid Shelling Modifiers = 1/1.2/1.5/2/2.6 {1 for 1st shell to 2.6 for 5th and 6th (6th if you using normal with load up)}
+- Brave Full Burst Modifier (Stacks with Full Burst Modifier) = 0.8/0.9/1/1.4/1.5/1.6 {0.8 for 1 shell to 1.6 for 6 shells}
+
+Hunter Arts:
+Dragon Blast I (830 [1196 SP]) = {48 x (1+(Raw x 0.007))} + 3 x {10 x (1+(Raw x 0.002))} true damage
+Dragon Blast II (1000 [1400 SP]) = {49 x (1+(Raw x 0.007))} + 6 x {10 x (1+(Raw x 0.002))} true damage
+Dragon Blast III (1250 [1700 SP]) = {49 x (1+(Raw x 0.007))} + 9 x {10 x (1+(Raw x 0.002))} true damage
+Blast Dash: Higher lv = more distance possible
+Blast Dash I (250 [500 SP]) = 24 + 50
+Blast Dash II (290 [548 SP]) = 24 + 50
+Blast Dash III (330 [596 SP]) = 24 + 50, does mounting damage
+Dragon Breath: relocks heat gauge at red, shell neutral damage +10, shell fire damage +10
+Dragon Breath I (1080 [1496 SP]) = lasts 60 seconds
+Dragon Breath II (1170 [1604 SP]) = lasts 120 seconds
+Dragon Breath III (1250 [1700 SP]) = lasts 180 seconds
+AA Flares: Guard Point Full Reload > Upwards Full Burst > Upwards Wyvern's Fire (if available) > Guard Point Full Reload
+- Never overheats heat gauge
+- 3x part break for airborne monsters
+- I (400 [680 SP]): 80 second Wyvernfire Cooldown
+- II (460 [752 SP]): 60 second Wyvernfire Cooldown, 1.05x damage
+- III (520 [824 SP]): 30 second Wyvernfire Cooldown, 1.1x damage

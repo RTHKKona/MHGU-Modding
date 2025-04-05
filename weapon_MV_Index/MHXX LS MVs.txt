@@ -1,0 +1,59 @@
+MHXX Long Sword Motion Values:
+
+Spirit Aura Boosts
+- No aura = 1.00
+- White aura = 1.05 (lasts 5 minutes)
+- Yellow aura = 1.10 (lasts 3 minutes)
+- Red aura = 1.20 (lasts 1 minute)
+- Blue aura (brave only) = 1.18 (lasts brave gauge duration after maxed)
+
+Full Spirit gauge boost (when flashing) = 1.13
+Close to Hilt boost = 1.05
+
+Guild:
+Draw slash/Step Slash = 26
+Overhead Slash (X1) = 26
+Thrust (A1) = 14
+Rising Slash (X after A1) = 18
+Fade Slash (X+A) = 24
+Charge-in hit after Fade Slash (R after X+A) = 30 (18 with empty spirit gauge)
+Draw Spirit Slash (R+X+A) = 28
+Spirit Slash 1 (R) = 28 (16 with empty spirit gauge)
+Spirit Slash 2 (R2) = 32
+Spirit Slash 3 (R3) = 12 + 14 + 34
+Spirit Finisher (R4) = 42 (levels up your aura)
+Draw into Spirit 1 (R+X+A) = 30 (18 with empty spirit gauge)
+Jump attack (X in the air) = 26
+Jumping Spirit attack 1 (R in the air with no aura) = 30 (16 with empty spirit gauge)
+Jumping Spirit attack 2 (R in the air with white aura or higher) = 12 + 36 (8 + 20 with empty spirit gauge)
+
+Aerial:
+Aerial attack (X in the air) = 10 + 25
+Aerial Spirit Slash 1 (R in the air with no aura) = 30 (16 with empty spirit gauge)
+Aerial Spirit Slash 3 (R in the air with white aura or higher) = 12 + 14 + 34 (6 + 6 + 15 with empty spirit gauge)
+
+Adept:
+Adept slash (X after adept evade) = 25
+Adept Spirit Finisher (R after Adept slash) = 30 + 80 (levels up your aura)
+
+Brave:
+Spirit 1 Counter (R) = 51
+Spirit 1 (R) = 28
+Spirit 2 (R2) = 30
+Spirit 3 (R3) = 30
+Brave Spirit Finisher (R4) = 35 + 60
+
+Hunter Arts:
+Sakura Slash I (670 [1004 SP]) = 10 + 10 + 40 + 40 = 100 total (levels up aura)
+Sakura Slash II (750 [1100 SP]) = 10 + 10 + 40 + 20 + 40 + 20 = 140 total (levels up aura)
+Sakura Slash III (830 [1196 SP]) = 10 + 10 + 40 + 15 + 15 + 40 + 15 + 15 = 160 total (levels up aura)
+Unhinged Spirit I (420 [704 SP]) = 42 (lasts 30 seconds)
+Unhinged Spirit II (500 [800 SP]) = 42 (lasts 60 seconds)
+Unhinged Spirit III (580 [896 SP]) = 42 (lasts 90 seconds)
+Critical Juncture I (1080 [1496 SP]) = 100
+Critical Juncture II (1170 [1604 SP]) = 140
+Critical Juncture III (1250 [1700 SP]) = 180
+Sacrificial Blade (Short Boost but life starts draining leaving red health. Can recover red health with attacks)
+- I (670 [1004 SP]) = 1.1x boost for 75 sec.
+- II (750 [1100 SP]) = 1.2x boost for 60 sec.
+- III (830 [1196 SP]) = 1.3x boost for 45 sec.

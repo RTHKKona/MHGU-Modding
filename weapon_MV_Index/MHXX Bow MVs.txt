@@ -1,0 +1,65 @@
+MHXX Bow Motion Values
+
+Charge Level	Raw	Elemental	Poison  Paralysis/Sleep
+Charge Level 1	0.4x	0.7x	        0.5x	0.5x
+Charge Level 2	1.0x	0.85x	        1.0x	1.0x
+Charge Level 3	1.5x	1.0x	        1.5x	1.3x
+Charge Level 4	1.7x	1.125x	        1.5x	1.3x
+
+Shot LV     Pierce	     Rapid	   Spread          Heavy
+1	    3 hits x 5 (15)  12(12)	   4-5-4 (13)	   11 (11)
+2	    4 hits x 4 (16)  12-4 (16)	   5-6-5 (16)	   14 (14)
+3	    5 hits x 4 (20)  12-4-3 (19)   4-5-5-5-4 (23)  17 (17)
+4	    5 hits x 4 (20)  12-4-3-2 (21) 4-5-6-5-4 (24)  19 (19)
+5	    5 hits x 4 (20)  12-4-3-3 (22) 5-5-6-5-5 (26)  20 (20)
+
+Arc Shot Type	Arrow	Pellet	        Arrow Status Pellet Status  KO Status
+Wide	        6	5 hits x 7	4            5 hits x 4     5 hits x 3
+Focus	        6	5 hits x 7	4            5 hits x 4	    5 hits x 4
+Blast	        6	35	        13	     13	            0(arrow) / 20(explosion)
+
+Critical Distance = 1.5x raw
+Rapid Bow Bug = -10% (according to Phemeto) or -15% on power shots (based on Levobertus#9513 tests)
+Rapid Bow Bug Explanation by Phemeto: https://www.reddit.com/r/MonsterHunter/comments/66n4qp/mhxx_bow_bugs_and_brave_ps2/
+Rapid Bow Bug Tests by Levobertus: https://docs.google.com/spreadsheets/d/1X-j3Zv93TEO9Nwvjja7Xl6PuOm44eZHxLlhkagNzKms/edit?usp=sharing
+
+Coatings:
+Power Coating Lv1 = 1.35x raw
+Power Coating Lv2 = 1.50x raw
+C.Range Coating = gives the critical distance modifier (1.50) when too close and gives white sharpness to the melee attack
+Elem Coating Lv1 = 1.35x element
+Elem Coating Lv2 = 1.50x element
+
+Modifiers:
+Rapid/Pierce/Heavy Up = 1.1x raw
+Spread Up = 1.3x raw
+Felyne Temper = 1.05x (all)
+True/Power Shot Up = 1.2x
+Brave 2nd Power Shot = 1.3x
+
+Hunter Arts:
+Triple Volley I (500 [800 SP]) = 7×3 + 7×3 + 17×5 = 127 total
+Triple Volley II (600 [920 SP]) = 10×3 + 10×3 + 20×5 = 160 total
+Triple Volley III (700 [1040 SP]) = 14×3 + 14×3 + 23×5 = 199 total
+Haste Rain I (830 [1196]) = 0 (Increases movement and charge speed for 30 seconds)
+Haste Rain II (1000 [1400 SP]) = 0 (Increases movement and charge speed for 60 seconds)
+Haste Rain III (1080 [1496 SP]) = 0 (Increases movement and charge speed for 90 seconds)
+Blade Wire I (420 [704 SP]) = lasts 30 seconds, deals cutting damage
+- Charge Lv1 = 9 × 3 hits
+- Charge Lv2 = 11 × 3 hits
+- Charge Lv3 = 13 × 3 hits
+- Charge Lv4 = 15 × 3 hits
+Blade Wire II (500 [800 SP]) = lasts 60 seconds, deals cutting damage
+- Charge Lv1 = 9 × 3 hits
+- Charge Lv2 = 11 × 3 hits
+- Charge Lv3 = 13 × 3 hits
+- Charge Lv4 = 15 × 3 hits
+Blade Wire III (670 [1004 SP]) = lasts 90 seconds, deals cutting damage
+- Charge Lv1 = 9 × 3 hits
+- Charge Lv2 = 11 × 3 hits
+- Charge Lv3 = 13 × 3 hits
+- Charge Lv4 = 15 × 3 hits
+Evasive Maneuvers: Absolute Evade-esque move that sets up a charge shot of 30 that's gauranteed crit distance and also deals cutting damage.
+- I (250 [500 SP]): No additional bonus
+- II (330 [596 SP]): More invincibility + 20% affinity for that shot
+- III (420 [704 SP]): More invincibility + 35% affinity for that shot

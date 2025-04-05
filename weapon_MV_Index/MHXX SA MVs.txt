@@ -1,0 +1,88 @@
+MHXX Switch Axe Motion Values
+
+Phial Effects:
+- Power Phial = 1.20 attack modifier
+- Element Phial = 1.25 element modifier
+- Exhaust Phial = sword mode has a chance to deal exhaust damage with every hit
+- Poison Phial = sword mode has a chance to deal poison status with every hit
+- Para Phial = sword mode has a chance to deal para status with every hit
+- Dragon Phial = sword mode deals dragon elemental damage with every hit
+
+Guild:
+
+Axe mode:
+Draw attack/Side Slash = 23
+Overhead Slash (X1) = 48 (50 unofficially)
+Forward Thrust (Forward X) = 19
+Up Swing (X+A) = 32
+Hack `n` Slash (A, A, A... after X+A) = 22 per hit
+Hack `n` Slash finisher (R during H`n`S) = 25+30+40
+Sword to Axe morph Side Slash (A, R) = 19
+Jump Attack = 40
+Sword to Axe morph Jump attack = 40
+
+Sword Mode:
+Down Slash (X1) = 32 (costs 4 Phial gauge)
+Up Slash (X2) = 25 (costs 4 Phial gauge)
+Side Slash (A1) = 28 (costs 4 Phial gauge)
+Dual Slash (A2) = 28+36 (costs 4 Phial gauge)
+Elemental Discharge thrust (X+A) = 28 (costs 11 Phial gauge)
+Elemental Discharge hits = 13 per hit (max 7 hits, costs 3×2 Phial gauge)
+Elemental Discharge finisher = 80 (costs 20 Phial gauge)
+Elemental Discharge early finisher (back+X) = 50 (costs 20 Phial gauge)
+Axe to Sword morph Down Slash (Forward X, R) = 32 (costs 4 Phial gauge)
+Jump Attack (X in the air) = 30 (costs 4 Phial gauge)
+Axe to Sword morph Jump Attack = 30 (costs 4 Phial gauge)
+
+Aerial:
+
+Axe Mode:
+Aerial Axe Slash (X after a vault) = 40
+
+Sword Mode:
+Rising aerial slash (automatic after valut) = 35 (costs 4 Phial gauge)
+Descending aerial Slash (X after a vault) = 30 (costs 4 Phial gauge)
+Aerial Elemental Discharge (X+A after a vault) = 40+13×7+80 (costs 11+3×2+20 Phial gauge)
+
+Adept:
+
+Axe Mode:
+Triple Round Slash (X after adept evade) = 25+30+40
+
+Sword Mode:
+Dual Up Slash (X after adept evade) = 25+25 (costs 4 Phial gauge)
+
+Brave: Sword Double Elemental Discharge Finisher = 40+60
+
+Alchemy: Reload (R+X+A) = 25
+
+Hunter Arts:
+Trance Slash I (670 [1004 SP]) = (13+15+20)+20+25+30+15×4+[80] = 263 
+- with Demon Riot = (13+15+20)+20+25+30+15×4+[70+20] = 273
+- with Tempest Axe = (16+10+10+10+34)+20+25+30+15×4+[80] = 295
+- with Both = (16+10+10+10+34)+20+25+30+15×4+[70+20]= 305
+Trance Slash II (750 [1100 SP]) = (15+17+22)+24+29+35+25×4+[90] = 332
+- with Demon Riot = (15+17+22)+24+29+35+25×4+[80+30] = 352
+- with Tempest Axe = (16+10+10+10+34)+24+29+35+25×4+[90] = 358
+- with Both = (16+10+10+10+34)+24+29+35+25×4+[80+30] = 378
+Trance Slash III (830 [1196 SP]) = (18+20+25)+28+33+40+30×4+[100] = 384
+- with Demon Riot = (18+20+25)+28+33+40+30×4+[90+40] = 414
+- with Tempest Axe = (16+10+10+10+34)+28+33+40+30×4+[100] = 401
+- with Both = (16+10+10+10+34)+28+33+40+30×4+[90+40] = 431
+Demon Riot I (1080 [1496 SP]) = 0 (1.05 boost to Phial effects, Phial decreases over time at a fast rate)
+Demon Riot II (1170 [1604 SP]) = 0 (1.10 boost to Phial effects, Phial decreases over time at a moderate rate)
+Demon Riot III (1250 [1700 SP]) = 0 (1.20 boost to Phial effects, Phial decreases slowly over time)
+Energy Charge I (500 [800 SP]) = 25 (reloads 75% of your Phial)
+Energy Charge II (650 [980 SP]) = 25 (reloads 100% of your Phial and increases affinity by 10% for 120 seconds)
+Energy Charge III (850 [1220 SP]) = 25 (reloads 100% of your Phial and increases affinity by 30% for 120 seconds)
+Tempest Axe = 22+22
+- Slight increase in axe movement speed
+- Draw attack is slightly faster
+- Axe Thrust is 25% faster
+- Axe Chops use half as much stamina
+    - 2nd chop is 10% faster
+    - 3rd chop and beyond are 25% faster
+- New X finisher (after chops) = 15+55
+Tempest Axe I (420 [704 SP]) = 120 seconds
+Tempest Axe II (500 [800 SP]) = 150 seconds
+Tempest Axe III (580 [896 SP]) = 180 seconds

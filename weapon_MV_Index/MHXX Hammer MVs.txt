@@ -1,0 +1,67 @@
+MHXX Hammer Motion Values:
+
+Guild:
+
+Draw attack/Up swing = 20 (15 KO, 10 exhaust)
+Strong Pound (X1) = 42(40 unofficially) (15 KO, 15 exhaust)
+Weak Pound (X2) = 20 (15 KO, 15 exhaust)
+Golf Swing (X3) = 90 (50 KO, 10 exhaust)
+Slap (A1) = 15 (22 KO, 5 exhaust)
+Charge lv. 1 Side Swing (R) = 24(25 unofficially) (15 KO, 15 exhaust)
+Charge lv. 1 follow up (X after R) = 20 (15 KO, 10 exhaust)
+Charge lv. 2 Uppercut (hold R) = 40 (40 KO, 10 exhaust)
+Charge lv. 3 Super Pound (release R while stationary) = 15+76 (5+27 KO, 5+40 exhaust)
+Charge lv. 3 Spinning Bludgeon (move and release R) = 20 + 10×n (5 + 5×n KO, 5 + 5×n exhaust, n = up to 4)
+Spinning Bludgeon Hook (press X when n = 1 or 2) = 60 (40 KO, 10 exhaust)
+Spinning Bludgeon Golf Swing (press X when n = 3 or 4) = 90 (50 KO, 10 exhaust)
+Spinning Bludgeon natural finisher (do not press X) = 40 (20 KO, 22 exhaust)
+Jump Attack (X in the air) = 42 (15 KO, 10 exhaust)
+Jump Charge lv. 1 = 65 (40 KO, 10 exhaust)
+Jump Charge lv. 2 = 70 (40 KO, 10 exhaust)
+Jump Charge lv. 3 = 80 (40 KO, 10 exhaust)
+
+Striker:
+Third Pound (X3) = 60 (20 KO, 40 exhaust according to the Famitsu Guide)
+Charge lv. 3 Super Pound = 19+86 (5+27 KO, 5+40 exhaust)
+
+Aerial:
+Aerial Slam (X after vault) = 42 (15 KO, 10 exhaust)
+Aerial Double Slam (A after vault) = 35 + 50 (15 + 55 KO, 10 + 20 exhaust)
+Aerial Charge lv. 1 (R after vault) = 65 (40 KO, 10 exhaust)
+Aerial Charge lv. 2 (R after vault) = 70 (40 KO, 10 exhaust)
+Aerial Charge lv. 3 (R after vault) = 80 (40 KO, 10 exhaust)
+
+Adept:
+Strong Charge lv. 1 (R after adept evade) = 50 (45 KO, 10 exhaust)
+Strong Charge lv. 2 = 60 (55 KO, 15 exhaust)
+Strong Charge lv. 3 (release R while stationary) = 20 + 90 (10 + 27 KO, 10 + 55 exhaust)
+Strong Charge lv. 3 (release R while moving) = 20 + 80 (10 + 27 KO, 10 + 45 exhaust)
+Strong Charge lv. 1 Jump attack = 75 (45 KO, 10 exhaust)
+Strong Charge lv. 2 Jump attack = 80 (45 KO, 10 exhaust)
+Strong Charge lv 3 Jump attack = 90 (45 KO, 10 exhaust)
+
+Brave:
+Brave Slap (Y>A) = 15 (22 KO, 5 exhaust)
+Brave Golfswing (Y>X) = 70 (40 KO, 10 exhaust)
+Charge lv. 1 (R) = 24 (15 KO, 15 exhaust)
+Full Charge lv. 1 (R) = 40 (40 KO, 10 exhaust)
+Charge lv. 2 (R2) = 45 (35 KO, 10 exhaust)
+Full Charge lv. 2 (R2) = 60 (45 KO, 15 exhaust)
+Charge lv. 3 (R3) = 15+85 (10+50 KO, 5+25 exhaust)
+Full Charge lv. 3 (R3) = 20+105 (10+60 KO, 5+30 exhaust)
+
+Hunter Arts:
+Spinning Meteor I (1080 [1496 SP]) = 20 + 20 + 15 + 110 = 165 total (15 + 15 + 10 + 30 KO, 15 + 15 + 10 + 15 exhaust)
+Spinning Meteor II (1170 [1604 SP]) = 20 + 20 + 20 + 15 + 125 = 200 total (3×15 + 10 + 30 KO, 3×15 + 10 + 15 exhaust)
+Spinning Meteor III (1250 [1700 SP]) = 20 + 20 + 20 + 20 + 15 + 165 = 260 total (4×15 + 10 + 40 KO, 4×15 + 10 + 15 exhaust)
+Provoke I (670 [1004 SP]) = 45 (15 KO + 15 exhaust + monster targets you for 30 sec.)
+Provoke II (750 [1100 SP]) = 45 + [1.2 x defense] (15 KO + 15 exhaust + monster targets you for 60 sec.)
+Provoke III (830 [1196 SP]) = 45 + [Atk Up M] (15 KO + 15 exhaust + monster targets you for 60 sec.)
+Typhoon Trigger I (250 [500 SP]) = (1-7) × 5 + 20 + 50 when you press X ([1-7] × 2 + 40 + 60 KO, ([1-7] × 2 + 10 + 20 exhaust)
+Typhoon Trigger II (330 [596 SP]) = (1-7) × 5 + 20 + (50 or 60 when you press X) ([1-7] × 2 + 40 + [60 or 100] KO, ((1-7) × 2 + 10 + (20 or 25) exhaust)
+Typhoon Trigger III (420 [704 SP]) = (1-7) × 5 + 20 + (50, 60 or 80 when you press X) ([1-7] × 2 + 40 + [60, 100 or 120]) KO, ([1-7] × 2 + 10 + [60 or 100 or 120] exhaust)
+Pulsing Impact I (670 [1004 SP]) = 80 seconds of Impact Phials
+Pulsing Impact II (750 [1100 SP]) = 100 seconds of Impact Phials
+Pulsing Impact III (830 [1196 SP]) = 120 seconds of Impact Phials
+- Impact Phial Shockwave = 6 (12 KO, 4 Exhaust)
+- Lv of Charge = # of Impact Phial Shockwaves

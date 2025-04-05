@@ -1,0 +1,109 @@
+MHXX Prowler Motion Values
+
+KO and exhaust values in () for blunt prowler weapons.
+Charged attack values represented by []
+
+Draw Attack = 12 (4 KO, 4 exhaust)
+Right Side Slash (X1) = 12 (4 KO, 4 exhaust) 
+Left Side Slash (X2) = 14 (4 KO, 4 exhaust)
+Jumping Overhead Slash (X3) = 16 (6 KO, 6 exhaust)
+Jumping Up Slash (X4) = 18 (12 KO, 8 exhaust for blunt)
+Jumping Spinning Slash (X5) = 5 per hit (5xn KO, 5xn exhaust) n = number of hits
+- Elemental modifier (1 for 1st hit, 0.35x for remaining hits)
+- max 10 hits 
+Forward Lunge (X after A) = 24 (10 KO, 10 exhaust) 
+Boomerang throw (A1) = 9[10] (3 KO, 3 exhaust for blunt)
+Boomerang 2 (A2) = 7[8] (3 KO, 3 exhaust for blunt)
+Boomerang 3 (A3) = 6+11[6+12] (3+3 KO, 3+3 exhaust)
+Boomerang melee spin combo (A3) = 24 Melee + 4 Ranged (5+3 KO, 5+3 exhaust)
+Jump Attack (X in the air) = 20 (10 KO, 8 exhaust for blunt) 
+
+Big Boomerangs:
+- Boomerang throw (A1) = 12[13] (3 KO, 3 exhaust for blunt)
+- Boomerang 2 (A2) = 10[11] (3 KO, 3 exhaust for blunt)
+- Boomerang 3 (A3) = 9+17[9+19] (3+3 KO, 3+3 exhaust)
+- Boomerang melee spin combo (A3) = 24 Melee + 6 Ranged (5+3 KO, 5+3 exhaust)
+
+Piercing Boomerangs:
+- Boomerang throw (A1) = 9 + 2xn[10 + 2xn] (3 + 3xn KO, 3 + 3xn exhaust) (n = number of hits up to 3)
+- Boomerang 2 (A2) = 7 + 2xn[8 + 2xn] (3 + 3xn KO, 3 + 3xn exhaust) (n = number of hits up to 3)
+- Boomerang 3 (A3) = 6xn + 11 + 3xn[6xn + 12 + 3xn] (3xn + 3 + 3xn KO, 3xn + 3 + 3xn exhaust) (n = number of hits up to 3)
+- Boomerang melee spin combo (A3) = 24 Melee + 4xn Ranged (5 + 3xn KO, 5 + 3xn exhaust) (n = number of hits up to 4)
+
+Big Boomerangs + Piercing Boomerangs:
+- Boomerang throw (A1) = 12 + 3xn[13 + 3xn] (3 + 3xn KO, 3 + 3xn exhaust) (n = number of hits up to 3)
+- Boomerang 2 (A2) = 10 + 3xn[11 + 3xn] (3 + 3xn KO, 3 + 3xn exhaust) (n = number of hits up to 3)
+- Boomerang 3 (A3) = 9xn + 17 + 4xn[9xn + 19 + 4xn] (3xn + 3 + 3xn KO, 3xn + 3 + 3xn exhaust) (n = number of hits up to 3)
+- Boomerang melee spin combo (A3) = 24 Melee + 6xn Ranged (5 + 3xn KO, 5 + 3xn exhaust) (n = number of hits up to 4)
+
+Piercing Boomerang Elemental damage modifiers:
+- 1st hit = 150% element
+- 2nd hit = 50% element
+- 3rd hit = 50% element
+- 4th hit = 50% element
+
+Felyne Hurler food skill: = +10% Boomerang damage
+
+Felyne Fury mode:
++30% affinity
+Rock Steady skill (knockback and tripping protection + Earplugs + Wind Res (Lo))
+Support gauge fills faster
+Furr-ious Flurry (X+A, X, X, X... X+A)
+- 1st hit = 7 (3 KO, 5 exhaust)
+- Consecutive hits  = 8 (5 KO, 5 exhaust)
+- Final = 6x3 (5x3 KO, 4x3 exhaust)
+- Final Cancel = 5x3 (5 KO, 10 exhaust)
+- 1st hit = 100% element
+- Consecutive hits = 0.35% element
+Beast Furris Wheel (X+A) = 4xn (5xn KO, 3xn exhaust)
+
+Beast:
+Forward Claws (X1) = 10x2 (4x2 KO, 4x2 exhaust)
+Triple Hook (X2) = 8x3 (4x3 KO, 4x3 exhaust)
+Backflip (X3) = 12x2 (6x2 KO + 6x2 exhaust)
+Finisher (X4) = 10xn (4xn KO, 4xn exhaust) (n = number of hits up to 4)
+Frontflip (A1) = 12x2 (6x2 KO + 6x2 exhaust)
+Forward Thrust (A2) = 5+5+7+7 [6+6+9+9] (4xn KO, 4xn exhaust) (n = number of hits up to 4)
+Super Finisher (A3) = 4xn (5xn KO, 3xn exhaust)
+Ledge Attack (X after jumping from ledge) = 4xn (5xn KO, 3xn exhaust)
+
+Beast Mode Element Modifiers:
+1st hit = 100% element
+Consecutive hits = 0.35% element
+
+Bombs 
+Each type of cat has a moodifier for bomb damage, bomb cat has the highest at 1.2x
+Bombay Boost = 1.35x and +15% to blast status
+Damage Formula for bombs: [125 + (Attack/2)]x[Cat Modifier (1.2x for bomb cats)]x[Bombay Boost]xMV = Bomb Damage (ignores hitzones and sharpness)
+- Attack is whichever is highest between melee and ranged
+- Ai Cats have an extra modifier (0.4x for most bombs) and have their own MVs on the bombs (denoted by {} )
+- Mini Bombay = 4 {3} MV
+- Barrel Bombay = 12 {6} MV
+- Big Barrel Bombay = 24 {25} MV
+- Mega Barrel Bombay = 52 {50} MV
+- Giga Barrel Bombay = 80 {75} MV
+- Bounce Bombay = 16 {10} MV
+- Flash Bombay = 29 {25} MV
+- Explosive Transpurrter = 16 {15} MV
+- Explosive Roll = 4 {3} MV
+- Anti Monster Mine = 48 {30} MV
+- Anti Monster Mine+ = 52 {60} MV
+- Bomb Cat Evade = 16 MV
+- Rath of Meow Acorn = 6.4 MV
+- Rath of Meow Flames = 7xn MV (n = number of hits)
+- Rath of Meow Iron Ball = 10 MV
+
+Support Actions
+Felyne Comet = 20x3 Melee
+Claw Dance = 12x5 + 5x8 + 2x8 + 40 Melee (0 Element)
+Chestnut Cannon = 40 Ranged (90 KO, 10 Exhaust) (0 Element)
+Shock Tripper 20 + 12xn (uses highest stat between Melee/Ranged) (0 Element)
+Plunderang = 24 Ranged (3 steals)
+Pilfer = 30 Melee (0 Element) (3 steals)
+Mega Boomerang (Cutting) = 8x7 (windup) + 25xn Ranged (0 Element) (n = number of hits up to 10)
+Mega Boomerang (Blunt) = 8x7 (windup) + 22xn Ranged (0 Element) (n = number of hits up to 10)
+Sumo Stomp = 25 Melee (0 Element)
+Burrowing Blow = 15x3
+Stunt Cannon = 35 (uses highest stat between Melee/Ranged)
+Iron Transpurrter (Roll) = 15 Melee (10 KO per hit)
+Iron Transpurrter (Launch) = 20 Melee (10 KO per hit)
