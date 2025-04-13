@@ -11,6 +11,7 @@ The Monster Hunter Generations Ultimate Modding Wiki
 * Fexty
 * Poto
 * Silvris
+* WeeScottishMan
 
 ##### Special Thanks
 *  Schguki, Potobc, Aradi, GReinoso96, SilverJolteon, Pings, Awesomeosity, Kiranico
