@@ -1,0 +1,20 @@
+//------------------------------------------------
+//--- 010 Editor v15.0.2 Binary Template
+//
+//      File: 
+//   Authors: Handburger
+//   Version: 1
+//   Purpose: 
+//  Category: 
+// File Mask: 1AC7B52D or .bdd
+//  ID Bytes: 42 44 44 00
+//   History: 
+//------------------------------------------------
+
+typedef struct{
+    char magic[4];
+    int unknown[2];
+    uint padding;
+} header;
+
+header Header;

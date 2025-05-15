@@ -1,0 +1,207 @@
+//------------------------------------------------
+//--- 010 Editor v15.0.2 Binary Template
+//
+//      File: DTTune
+//   Authors: Handburger
+//   Version: 1.1 (Fixed typedef error)
+//   Purpose: Editing .dtt/.48E8AC29 files for MHGU
+//            Targets Base HP, Stagger, and the 13-float Enrage Multiplier block.
+//            Based on offsets/structures used by Titanbreak_HPEditor.py & Titanbreak_EnrageEditor.py.
+//  Category: Monster Editing
+// File Mask: *.48E8AC29; *.dtt
+//  ID Bytes: 44 54 54 00 // "DTT" Magic
+//
+//  Uses information from Kiranico, Apai, DBouken, and reverse engineering via Python scripts.
+//------------------------------------------------
+
+// Use Little Endian
+LittleEndian();
+
+// --- Constants derived from Python Scripts ---
+local const int HP_OFFSET = 0x38; // 56 decimal
+local const int ENRAGE_FLOAT_COUNT = 13; // 
+local const int ENRAGE_BLOCK_SIZE = ENRAGE_FLOAT_COUNT * 4; // 52 bytes
+local const int APPROX_ENRAGE_SCAN_START = 0xD0; // 
+
+// --- File Structure Start ---
+uint magic<bgcolor=0xEEEEEE, comment="Should always be 0x00545444 ('DTT')">;
+if (magic != 0x00545444) {
+    Warning("File does not start with 'DTT' magic bytes. Template may not apply correctly.");
+}
+uint fileVersion;
+uint unknown_index[12]<bgcolor=0x383838, comment="Unknown purpose, possibly flags or identifiers. Occupies bytes 0x04 to 0x37.">;
+
+// ========== Base HP ==========
+// Confirmed offset by Titanbreak_HPEditor.py
+Assert(FTell() == HP_OFFSET, "HP field not at expected offset 0x38!");
+uint BaseHP<fgcolor=0x000000, bgcolor=0xFFFFFF, comment="Monster's base HP value (uint32). Located at offset 0x38.">;
+
+// ========== Stagger Data (Preserved from original template - Offsets relative to HP) ==========
+
+// FIXED: Removed (string partName) parameter
+typedef struct {
+    ushort value<comment="Stagger Threshold">;
+    char unknown_stagger_data[6]<hidden=true>;
+    ubyte kinsectColor<bgcolor=0x111111, comment="Kinsect Extract Color (0=Red, 1=White, 2=Orange, 3=Green)">;
+    char padding_stagger[1]<hidden=true>;
+    // Total size: 2 + 6 + 1 + 1 = 10 bytes
+} StaggerPart;
+
+// FIXED: Removed (string partName) parameter
+typedef struct {
+    ushort staggerValue<bgcolor=0x009688, comment="Tail Stagger Threshold">;
+    char unknown_tail_data1[6]<hidden=true>;
+    ushort kinsectColor<comment="Kinsect Extract Color (0=Red, 1=White, 2=Orange, 3=Green, 4=?)">; // Often 2 bytes here?
+    ubyte isChoppable<bgcolor=0x607D8B, comment="Tail Severable Flag (0=No, 1=Yes)">;
+    char unknown_tail_data2[1]<hidden=true>;
+    // Total size: 2 + 6 + 2 + 1 + 1 = 12 bytes
+} TailStaggerPart;
+
+struct {
+    StaggerPart head<bgcolor=0xE67E22, name="Head Stagger">;             // Offset 0x3C (+0)
+    StaggerPart neckTorso<bgcolor=0xF39C12, name="Neck/Torso Stagger">;   // Offset 0x46 (+10)
+    StaggerPart wingL<bgcolor=0xFFA000, name="Left Wing Stagger">;       // Offset 0x50 (+20)
+    StaggerPart wingR<bgcolor=0xFFC107, name="Right Wing Stagger">;      // Offset 0x5A (+30)
+    StaggerPart foreLegs<bgcolor=0xCDDC39, name="Forelegs Stagger">;     // Offset 0x64 (+40)
+    StaggerPart hindLegL<bgcolor=0x8BC34A, name="Left Hind Leg Stagger">;// Offset 0x6E (+50)
+    StaggerPart hindLegR<bgcolor=0x4CAF50, name="Right Hind Leg Stagger">;// Offset 0x78 (+60)
+    TailStaggerPart tail<bgcolor=0x607D8B, name="Tail Stagger/Sever">;  // Offset 0x82 (+70) -> Ends at 0x8E (+82 bytes total)
+} StaggerData <comment="Stagger values by body part. Total size: 82 bytes. Starts at offset 0x3C.">;
+
+// Current position should be 0x3C (Start of Stagger) + 82 bytes = 0x8E
+
+// ========== Resistances (Preserved from original template) ==========
+// FIXED: Removed (string partName) parameter
+typedef struct {
+    uchar slash<bgcolor=0x2196F3, comment="Slash Resistance %">;
+    uchar impact<bgcolor=0x1976D2, comment="Impact Resistance %">;
+    uchar shot<bgcolor=0x0D47A1, comment="Shot Resistance %">;
+    uchar fire<bgcolor=0xF44336, comment="Fire Resistance %">;
+    uchar water<bgcolor=0x3F51B5, comment="Water Resistance %">;
+    uchar ice<bgcolor=0x00BCD4, comment="Ice Resistance %">;
+    uchar thunder<bgcolor=0xFFC107, comment="Thunder Resistance %">;
+    uchar dragon<bgcolor=0x9C27B0, comment="Dragon Resistance %">;
+    uchar dizzy<bgcolor=0x9E9E9E, comment="Stun Resistance %">;
+    uchar exhaust<bgcolor=0xFF9800, comment="Exhaust Resistance %">;
+    // Total size: 10 bytes
+} PartResistances;
+
+struct {
+    PartResistances headResist<bgcolor=0x282828, name="Head Resistances">;       // Offset 0x8E (+0)
+    PartResistances torsoResist<bgcolor=0x303030, name="Torso Resistances">;     // Offset 0x98 (+10)
+    PartResistances stomachResist<bgcolor=0x343434, name="Stomach Resistances">; // Offset 0xA2 (+20)
+    PartResistances wingResist<bgcolor=0x383838, name="Wing Resistances">;       // Offset 0xAC (+30)
+    PartResistances clawsResist<bgcolor=0x3C3C3C, name="Claws/Arms Resistances">;// Offset 0xB6 (+40)
+    PartResistances hindLegsResist<bgcolor=0x404040, name="Hind Legs Resistances">;// Offset 0xC0 (+50)
+    PartResistances tailResist<bgcolor=0x444444, name="Tail Resistances">;       // Offset 0xCA (+60) -> Ends at 0xD4 (+70 bytes total)
+} Resistances <comment="Damage resistances by body part. Total size: 70 bytes. Starts at offset 0x8E.">;
+
+// Current position should be 0x8E (Start of Resistances) + 70 bytes = 0xD4
+
+// ========== Padding / Unknown Data Before Enrage Block ==========
+// This section bridges the gap between the known Resistance data and the Enrage block found by the Python script.
+// The Enrage script starts scanning around 0xD0, reinforcing that the block is likely in this vicinity.
+// The original template had padding and 'probablySomething', 'suspiciousFloats'. We'll define a block
+// to represent the data between resistances and the identified enrage floats.
+
+local const int enrageBlockStartOffset = 0x17A; // Calculated start offset from *original* template
+local int bytesBeforeEnrage = enrageBlockStartOffset - FTell();
+if (bytesBeforeEnrage < 0) {
+    Warning("Calculated negative size for data before Enrage block. Offsets may be incorrect.");
+    bytesBeforeEnrage = 0;
+} else if (bytesBeforeEnrage > 0) {
+    ubyte unknownDataBeforeEnrage[bytesBeforeEnrage]<bgcolor=0x606060, comment="Unknown data between Resistances and Enrage block. Original template had padding, 'probablySomething', 'suspiciousFloats' here. Total size calculated dynamically.">;
+}
+// Expected position now: 0xD4 + bytesBeforeEnrage = 0x17A (based on original template calculation)
+
+// ========== Enrage Multipliers ==========
+// This 13-float block (52 bytes) was identified and targeted by the Python Enrage Editor script.
+// The script scans starting around 0xD0 and finds this contiguous block.
+Assert(FTell() == enrageBlockStartOffset, "Enrage block not at calculated offset 0x17A! Check preceding structure sizes.");
+
+struct {
+    float SpeedMult<bgcolor=0x55ffff, comment="Enrage Speed Multiplier">;
+    float AttackMult<bgcolor=0xff5500, comment="Enrage Attack Multiplier">;
+    float DefenseMult<bgcolor=0x000099, comment="Enrage Defense Multiplier (affects Player DMG received)">;
+    float HP100Mult<bgcolor=0x4CAF50, comment="HP Modifier when monster HP is 100%">;
+    float HP99_88Mult<bgcolor=0x8BC34A, comment="HP Modifier when monster HP is 99%-88%">;
+    float HP88_77Mult<bgcolor=0xCDDC39, comment="HP Modifier when monster HP is 88%-77%">;
+    float HP77_66Mult<bgcolor=0xFFEB3B, comment="HP Modifier when monster HP is 77%-66%">;
+    float HP66_55Mult<bgcolor=0xFFC107, comment="HP Modifier when monster HP is 66%-55%">;
+    float HP55_44Mult<bgcolor=0xFF9800, comment="HP Modifier when monster HP is 55%-44%">;
+    float HP44_33Mult<bgcolor=0xFF5722, comment="HP Modifier when monster HP is 44%-33%">;
+    float HP33_22Mult<bgcolor=0xF44336, comment="HP Modifier when monster HP is 33%-22%">;
+    float HP22_11Mult<bgcolor=0xD32F2F, comment="HP Modifier when monster HP is 22%-11%">;
+    float HP11_0Mult<bgcolor=0xB71C1C, comment="HP Modifier when monster HP is 11%-0%">;
+    // Total size: 13 * 4 = 52 bytes
+} EnrageMultipliers <comment="Enrage Multiplier Block (13 floats). Found by Titanbreak_EnrageEditor.py, typically starts around offset 0xD0-0x180. Exact start here: 0x17A.">;
+
+// Current position should be 0x17A (Start of Enrage) + 52 bytes = 0x1AE
+
+// ========== Data After Enrage Block (Preserved from original template) ==========
+
+float suspiciousFloatsAfterEnrage[8]<bgcolor=0x707070, comment="Unknown floats immediately following the Enrage block.">;
+// Position: 0x1AE + (8 * 4) = 0x1CE
+
+uint unknownQuestScalingOrOther[56]<bgcolor=0x808080, hidden=true, comment="Further unknown data, possibly quest scaling related.">;
+// Position: 0x1CE + (56 * 4) = 0x1CE + 224 = 0x1CE + 0xE0 = 0x2AE
+
+// --- Abnormal Status Data (Preserved from original template) ---
+// Definitions seem plausible but complex; kept for completeness.
+
+// FIXED: Removed (string statusName) parameter
+typedef struct {
+    ubyte initialThreshold<bgcolor=0x795548, comment="Initial Threshold">;
+    ubyte decayStartTime<comment="Time until threshold starts decaying (seconds?)">; // Renamed from timebetweenReduction
+    ubyte decayAmount<comment="Amount threshold decays by">; // Renamed from reductionAmount
+    ubyte statusDuration<comment="Duration of the status effect (seconds?)">;
+    ubyte unknown_abnormal1[4]<hidden=true>;
+    ushort increasePerProc<bgcolor=0x5D4037, comment="Threshold Increase per activation">; // Renamed from increasedStat
+    ushort maxThreshold<bgcolor=0x4E342E, comment="Maximum Threshold">; // Renamed from maximumStat
+    uchar damagePerTick<comment="Damage per tick (for Poison/Blast)">; // Renamed from damage
+    uchar unknown_abnormal2[3]<hidden=true>;
+    // Total size: 1 + 1 + 1 + 1 + 4 + 2 + 2 + 1 + 3 = 16 bytes
+} AbnormalStatusWithDamage;
+
+// FIXED: Removed (string statusName) parameter
+typedef struct {
+    ubyte initialThreshold<bgcolor=0x795548, comment="Initial Threshold">;
+    ubyte decayStartTime<comment="Time until threshold starts decaying (seconds?)">;
+    ubyte decayAmount<comment="Amount threshold decays by">;
+    ubyte statusDuration<comment="Duration of the status effect (seconds?)">;
+    ubyte unknown_abnormal1[4]<hidden=true>;
+    ushort increasePerProc<bgcolor=0x5D4037, comment="Threshold Increase per activation">;
+    ushort maxThreshold<bgcolor=0x4E342E, comment="Maximum Threshold">;
+    // Note: Original template had 1 byte 'damage' and 3 bytes 'idk1' here for non-damaging statuses,
+    // seems likely these 4 bytes are just padding or other flags for non-damaging statuses.
+    ubyte unknown_abnormal_padding[4]<hidden=true>; // Assuming 4 bytes padding/unknown
+    // Total size: 1 + 1 + 1 + 1 + 4 + 2 + 2 + 4 = 16 bytes
+} AbnormalStatusNoDamage;
+
+
+struct {
+    AbnormalStatusWithDamage Poison<bgcolor=0x4CAF50, name="Poison Status">;         // Offset 0x2AE (+0)
+    AbnormalStatusNoDamage Sleep<bgcolor=0x2196F3, name="Sleep Status">;           // Offset 0x2BE (+16)
+    AbnormalStatusNoDamage Paralysis<bgcolor=0xFFEB3B, name="Paralysis Status">;     // Offset 0x2CE (+32)
+    AbnormalStatusNoDamage Dizzy<bgcolor=0xFF9800, name="Stun/Dizzy Status">;         // Offset 0x2DE (+48)
+    AbnormalStatusNoDamage Exhaust<bgcolor=0xff5500, name="Exhaust Status">;         // Offset 0x2EE (+64)
+    AbnormalStatusNoDamage Jump<bgcolor=0x9C27B0, name="Mount/Jump Attack Status?">; // Offset 0x2FE (+80)
+    // Original template had Mount as Exception here, but size was 16 bytes. Assuming NoDamage struct.
+    AbnormalStatusNoDamage Mount<bgcolor=0x607D8B, name="Wyvern Riding Threshold?">; // Offset 0x30E (+96)
+
+    // Original template had uint kek[2] here (8 bytes).
+    uint unknown_status_padding[2]<hidden=true>;                                    // Offset 0x31E (+112)
+
+    AbnormalStatusWithDamage Blast<bgcolor=0xF44336, name="Blast Status">;         // Offset 0x326 (+120) -> Ends at 0x336 (+136 bytes total)
+} AbnormalStatuses <comment="Abnormal Status Thresholds and Durations. Starts at offset 0x2AE.">;
+
+// Current position: 0x336
+
+// --- Remaining Data ---
+if (FTell() < FileSize()) {
+    local uint remainingBytes = FileSize() - FTell();
+    Printf("Remaining %d bytes (0x%X) after known structures.\n", remainingBytes, remainingBytes);
+    ubyte extraData[remainingBytes]<bgcolor=0xD3D3D3, comment="Any data remaining after the parsed structures.">;
+}
+
+// --- End of File ---

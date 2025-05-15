@@ -1,0 +1,37 @@
+//------------------------------------------------
+//          010 Editor Binary Template
+//
+//      File: em_nando_tbl (Quest Difficulty Stats)
+//   Authors: Handburger, Fexty
+//   Version: 4.0
+//   Purpose: Quest Difficulty Index table, which contains
+//            stat modifiers for monsters based on quest rank/difficulty.
+//  Category: MHGU
+// File Mask: em_nando_tbl.*
+//  ID Bytes: 4E 41 4E 00
+//   History:
+//------------------------------------------------
+
+typedef struct {
+    float   Health  <comment="Health Modifier">;
+    float   Attack  <comment="Attack Modifier">;
+    float   Defense <comment="Defense Modifier">;
+    float   Stagger <comment="Stagger Modifier">;
+    float   Exhaust <comment="Exhaust Modifier">;
+    float   KO      <comment="KO/Stun Modifier">;
+    float   Mount   <comment="Mount Modifier">;
+    float   Unknown <comment="Unknown Modifier/Parameter">;
+} QuestStats <comment="Stat modifiers for a specific quest difficulty index (32 bytes).">;
+
+
+typedef struct {
+    char   magic[4];         // "NAN\\0"
+    ushort unknown1;         // Offset 0x04 - Unknown
+    ushort unknown2;         // Offset 0x06 - Unknown
+    uint   num_difficulty_levels; // Offset 0x08 - Number of QuestDifficultyStats entries (Value: 141)
+    uint   unknown3;         // Offset 0x0C - Padding?
+} Header <comment="File Header (16 bytes)">;
+
+Header header;
+QuestStats difficulty_mult[header.num_difficulty_levels] <comment="Array of stat modifiers per difficulty level.">;
+

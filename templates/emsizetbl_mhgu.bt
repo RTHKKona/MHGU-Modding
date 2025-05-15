@@ -1,0 +1,36 @@
+//------------------------------------------------
+//      010 Editor v15.0.2 Binary Template
+//
+//      File: Enemy Size Scale Data
+//   Authors: Handburger
+//   Version: v0.0.2
+//   Purpose: Editing Scale Data
+//  Category: 
+// File Mask: .5ADC692C / .emsizetbl
+//  ID Bytes: 00 00 80 3F
+//   History: 
+//------------------------------------------------
+typedef struct {
+    uint magic <bgcolor=0xFF0000>; // Red
+    uint padding <bgcolor=0xFF7F00>; // Orange
+} Header;
+
+typedef struct {
+    uint MonsterID <fgcolor=0x111111,bgcolor=0xFFFF00>; // Yellow
+    float BaseSize <bgcolor=0x00FF00>; // Green
+    float smallCrownScale <bgcolor=0x00FFFF>; // Cyan
+    float silverCrownScale <bgcolor=0x0000FF>; // Blue
+    float goldCrownScale <bgcolor=0x8B00FF>; // Violet
+    float smallestScale <bgcolor=0xFF00FF>; // Magenta
+    float largestScale <bgcolor=0xFFAAAA>; // Light Pink
+} MonsterSizeScale;
+
+// Read the header first
+Header header;
+
+// Loop through and read all scale data entries until end of file
+local int i = 0;
+while (FTell() < FileSize()) {
+    MonsterSizeScale Monster;
+    i++;
+}

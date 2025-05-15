@@ -1,0 +1,67 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: 
+//   Authors: Fexty
+//   Version: 1
+//   Purpose: 
+//  Category: 
+// File Mask: *.opus
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+
+typedef struct {
+    uint samples;
+    uint channels;
+    int loopStart;
+    int loopEnd;
+    uint unk1;
+    uint markerNum;
+    uint periodNum;
+    uint opusHeaderOffset;
+    uint unk3;
+    uint format;
+    uint unk4;
+    uint unk5;
+} CapcomOpusHeader<bgcolor=0x3fd39d>;
+
+typedef struct {
+    int type<format=hex>;
+    int size;
+    byte version;
+    byte channelCount;
+    short frameDataSize;
+    int sampleRate;
+    int dataInfoOffset;
+    int frameDataOffsetInfoOffset;
+    int contextInfoOffset;
+    short preskipSampleCount;
+    short padding2;
+} NintendoOpusHeader<bgcolor=0x8d63cd>;
+
+typedef struct {
+    int type<format=hex>;
+    int size;
+    byte totalStreamCount;
+    byte stereoStreamCount;
+    short padding;
+} MultiStreamInfoHeader<bgcolor=0x24d3fd>;
+
+typedef struct {
+    int type<format=hex>;
+    int size;
+} DataInfoHeader<bgcolor=0xdd347c>;
+
+if (ReadUInt() != 0x80000001) {
+    CapcomOpusHeader header; 
+    FSeek(header.opusHeaderOffset);
+}
+
+NintendoOpusHeader opusHeader;
+if (opusHeader.channelCount == 6) {
+    MultiStreamInfoHeader msInfoHeader;
+}
+FSeek(startof(opusHeader) + opusHeader.dataInfoOffset);
+DataInfoHeader dataInfoHeader;

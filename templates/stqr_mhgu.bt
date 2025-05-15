@@ -1,0 +1,108 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: 
+//   Authors: Fexty
+//   Version: 1
+//   Purpose: 
+//  Category: 
+// File Mask: *.stqr
+//  ID Bytes: 53 54 51 52
+//   History: 
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int version;
+    uint numStream;
+    uint numElement;
+    uint numSpeakerSet;
+    uint numSpeaker;
+    uint numDirectionalCurve;
+    uint numDirectionalCurveElement;
+    uint streamInfoOffset;
+    uint elementOffset;
+    uint speakerSetOffset;
+    uint speakerOffset;
+    uint directionalCurveOffset;
+    uint directionalCurveElementOffset;
+} Header;
+
+typedef struct {
+    uint pathOffset;
+    
+    local uint64 pos = FTell();
+    FSeek(pathOffset);
+    string path;
+    FSeek(pos);
+    
+    uint streamLength;
+    uint sampleNum;
+    uint channelNum;
+    uint sampleRate;
+    uint loopStart;
+    uint loopEnd;
+    uint dtiId;
+    uint format;
+} StreamInfo<read=this.path>;
+
+typedef struct {
+    uint16 mReqNo;
+    FSkip(2);
+    uint32 mCategory;
+    uint32 mCommand;
+    uint32 mReadType;
+    ubyte mGlobal;
+    ubyte pad_01;
+    int16 mID_1;
+    int16 mID_2;
+    int16 mID_3;
+    ubyte mPriority;
+    ubyte mPrioMode;
+    FSkip(2);
+    uint32 mLimit;
+    int16 mLink;
+    int16 mPan;
+    float mVol;
+    float mEffectSend;
+    int32 mPitchShift;
+    uint32 mDelayTimer;
+    uint32 mBookingTimer;
+    int32 mVolumeCurveID;
+    int32 mEffectCurveID;
+    int32 mDirectionalCurveID;
+    uint32 mTime;
+    uint32 mKillTime;
+    uint32 mFreeArea00_07;
+    ubyte mFreeArea08;
+    ubyte mFreeArea09;
+    ubyte mFreeArea10;
+    ubyte mFreeArea11;
+    int16 mFreeArea12;
+    int16 mFreeArea13;
+    int16 mFreeArea14;
+    int16 mFreeArea15;
+    int32 mSrcFileNameTableIndex;
+    uint32 mDiskLocation;
+    float mLFESend;
+    uint32 mCenterVolume;
+    int32 mLFECurveID;
+    int16 mEqNo;
+    int16 mEqEffectNo;
+    int16 mEffectNo;
+    FSkip(2);
+    float mInteriorDistance;
+    float mDopplerScaler;
+    int32 mSpeakerSetIndex;
+    FSkip(8);
+} Element<read=Str("Stream: %d, Vol: %f", this.mSrcFileNameTableIndex, this.mVol)>;
+
+
+Header header;
+
+FSeek(header.streamInfoOffset);
+StreamInfo streams[header.numStream]<optimize=false>;
+
+FSeek(header.elementOffset);
+Element elements[header.numElement]<optimize=false>;
