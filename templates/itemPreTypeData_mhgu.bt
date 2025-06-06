@@ -1,0 +1,32 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: itePreTypeData
+//   Authors: Poto
+//   Version: 1.0
+//   Credits:
+//  Entry Size: 8
+// File Mask: .63D62424 / .ffaA
+//  ID Bytes: 66 66 AA 41 
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} ffAHeader;
+
+typedef struct {
+    byte MinimumAmount<bgcolor=0xffffff>;   
+    byte FirstAmountProbability<bgcolor=0xd45f5f>;                
+    byte SecondAmountProbability<bgcolor=0xd62b2b>;              
+    byte ThirdAmountProbability<bgcolor=0xd65e2b>;
+    byte FourthAmountProbability<bgcolor=0xd6942b>;                           
+    byte FifthAmountProbability<bgcolor=0xd6cb2b>;
+    byte SixthAmountProbability<bgcolor=0xabdb25>;
+    byte MaximumAmount<bgcolor=0x65db25>;                               
+} itemData<read=Str("Minimum: %d, Maximum: %d, Probabilities: %d/%d/%d/%d/%d/%d", 
+    this.MinimumAmount, this.MaximumAmount, this.FirstAmountProbability, this.SecondAmountProbability, this.ThirdAmountProbability, this.FourthAmountProbability, this.FifthAmountProbability, this.SixthAmountProbability)>;
+
+ffAHeader header;
+itemData data[header.count]<optimize=false>;

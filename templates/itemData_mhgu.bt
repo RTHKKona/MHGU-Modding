@@ -1,0 +1,51 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: itemData
+//   Authors: Poto
+//   Version: 1.0
+//   Credits: Aradi, GReinoso96. Byte identification. 
+//  Entry Size: 44 
+// File Mask: .7C4883A8 / .ffaA
+//  ID Bytes: 66 66 AA 41 
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} ffAHeader;
+
+typedef struct {
+    int32 ID<bgcolor=0xffffff>;   
+    byte unk1<bgcolor=0xd45f5f>;         // item type? 01: ammo, 03: deco, 04: phials, 05: nectar     
+    byte Rarity<bgcolor=0xd62b2b>;              
+    byte MaxInPouch<bgcolor=0xd65e2b>;
+    int16 SortID<bgcolor=0xd6942b>;                           
+    byte Unk2<bgcolor=0xd6cb2b>;       // shiny drop flag?
+    byte Unk3<bgcolor=0xabdb25>;       // Account item flag? (only applied on knives, EZ, and siege items)
+    byte Unk4<bgcolor=0x65db25>;        // quick eat/drink flag
+    byte ConsumableFlag<bgcolor=0x25db92>;
+    byte Unk5<bgcolor=0x25dbcc>;   // charm/shard/monster item flag
+    byte TradeableFlag<bgcolor=0x25b1db>;
+    byte Unk6<bgcolor=0x1d7ad1>;        // idk but it only applies to Normal Lv1 and the item with the "CE" ID
+    byte IconID<bgcolor=0x0837a3>;
+    byte IconColor<bgcolor=0x573fab>; 
+    byte Unk7<bgcolor=0x8f0ced>;     // 01: carriable items (eggs, cannon ammo, etc) 02: rustshard and ancient shard, both are gotten from that scraping the ground animation so maybe related to that
+    int32 SellPrice<bgcolor=0xb004d6>;                            
+    int32 BuyPrice<bgcolor=0x9e089c>;
+    byte MaterialValue<bgcolor=0xd408a1>;                           
+    int16 MaterialGroup1<bgcolor=0xa30557>;              
+    int16 MaterialGroup2<bgcolor=0xbd0820>;
+    int16 MaterialGroup3<bgcolor=0x964206>;
+    int16 MaterialGroup4<bgcolor=0x917c0f>;
+    int16 MaterialGroup5<bgcolor=0x8cad05>;
+    int16 MaterialGroup6<bgcolor=0x79c20c>;
+    int16 MaterialGroup7<bgcolor=0x0fd190>;
+    int16 MaterialGroup8<bgcolor=0x08a2c4>;                             
+} itemData<read=Str("ID: %d, Pouch Amount: %d, Buy/Sell Price: %d/%d, Rarity:%d", 
+    this.ID, this.MaxInPouch, this.BuyPrice, this.SellPrice,
+    this.Rarity)>;
+
+ffAHeader header;
+itemData data[header.count]<optimize=false>;

@@ -1,0 +1,48 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: fueMusicScData
+//   Authors: Poto, Handburger
+//   Version: 1.0
+//   Credits: 
+//  Entry Size: 5
+// File Mask: .61C203A4 / .stm
+//  ID Bytes: 9A 99 99 3F
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} STMHeader;
+
+// Helper function to get the color label from a note ID
+string GetNoteColorLabel(byte id) {
+    switch (id) {
+        case 1: return "W"; // White
+        case 2: return "P"; // Purple
+        case 3: return "R"; // Red
+        case 4: return "B"; // Blue
+        case 5: return "G"; // Green
+        case 6: return "Y"; // Yellow
+        case 7: return "C"; // Cyan
+        case 8: return "O"; // Orange
+        default: return ""; // Unknown ID
+    }
+}
+
+typedef struct {
+    byte FourthNoteID<bgcolor=0xffffff>;   
+    byte ThirdNoteID<bgcolor=0xd45f5f>;                
+    byte SecondNoteID<bgcolor=0xd62b2b>;             
+    byte FirstNoteID<bgcolor=0xd65e2b>;
+    byte SongID<bgcolor=0xd6942b>;                                                      
+} MusicData<read=Str("Song ID: %d, Notes: %s%s%s%s", 
+    this.SongID,
+    GetNoteColorLabel(this.FirstNoteID), 
+    GetNoteColorLabel(this.SecondNoteID), 
+    GetNoteColorLabel(this.ThirdNoteID),
+    GetNoteColorLabel(this.FourthNoteID))>;
+
+STMHeader header;
+MusicData data[header.count]<optimize=false>;

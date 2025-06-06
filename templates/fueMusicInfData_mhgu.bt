@@ -1,0 +1,33 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: fueMusicInfData
+//   Authors: Poto
+//   Version: 1.0
+//   Credits: Handburger. Totally didn't copy his code from another template so I could the duration in seconds
+//  Entry Size: 12
+// File Mask: .156A8085 / .stm
+//  ID Bytes: 9A 99 99 3F
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} STMHeader;
+
+typedef struct {
+    int32 SongID<bgcolor=0xffffff>;   
+    int16 InitialDuration<bgcolor=0xd45f5f>;         // also max duration       
+    int16 RepeatDuration<bgcolor=0xd62b2b>;          
+    int16 MaestroInitialDuration<bgcolor=0xd65e2b>;    // also max duration for Maestro 
+    int16 MaestroRepeatDuration<bgcolor=0xd6942b>;                                                      
+} MusicData<read=Str("SongID: %d, Duration: %ds/%ds/%ds/%ds", 
+    this.SongID, framesToSeconds(this.InitialDuration), framesToSeconds(this.RepeatDuration), framesToSeconds(this.MaestroInitialDuration), framesToSeconds(this.MaestroRepeatDuration))>;
+
+STMHeader header;
+MusicData data[header.count]<optimize=false>;
+
+float framesToSeconds(int16 frames) {
+    return (float)frames / 60.0f;
+}

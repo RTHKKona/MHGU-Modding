@@ -1,0 +1,34 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: itemPreData
+//   Authors: Poto
+//   Version: 1.0
+//   Credits:
+//  Entry Size: 24 
+// File Mask: .5B8E6BF3 / .ffaA
+//  ID Bytes: 66 66 AA 41 
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} ffAHeader;
+
+typedef struct {
+    int16 CombinationID<bgcolor=0xffffff>;   
+    int32 Item1ID<bgcolor=0xd45f5f>;                
+    int32 Item2ID<bgcolor=0xd62b2b>;              
+    int32 ProductID<bgcolor=0xd65e2b>;
+    byte SuccessProbability<bgcolor=0xd6942b>;                           
+    byte AmountTable<bgcolor=0xd6cb2b>;
+    byte Unused1[3];
+    byte GuranteedComboSkill<bgcolor=0xabdb25>;   // 01 = trap master, 02 = Felyne Dungmaster, 03 = bomb boost, 05 = applies to bait but no skill affects those afaik
+    byte Unused2[3];
+    byte AutoUnlocked<bgcolor=0x65db25>;             // 0 = need to craft it to show product, 1 = automatically shows product           
+} itemData<read=Str("Item 1 ID: %d, Item 2 ID: %d, Product ID:%d", 
+    this.Item1ID, this.Item2ID, this.ProductID)>;
+
+ffAHeader header;
+itemData data[header.count]<optimize=false>;

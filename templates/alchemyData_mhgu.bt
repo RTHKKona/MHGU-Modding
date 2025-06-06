@@ -1,0 +1,34 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: alchemyData
+//   Authors: Poto
+//   Version: 1.0
+//   Credits:
+//  Entry Size: 15
+// File Mask: .43057C7C / .idk
+//  ID Bytes: 00 00 80 3F 
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} IDKHeader;
+
+typedef struct {
+    int16 XItem1ID<bgcolor=0xffffff>;   
+    byte XItem1Amount<bgcolor=0xd45f5f>;                
+    int16 XItem2ID<bgcolor=0xd62b2b>;          // seems like the game chooses between item IDs at random but with a heavy preference towards item 1    
+    byte XItem2Amount<bgcolor=0xd65e2b>;
+    int16 ABlademasterItemID<bgcolor=0xd6942b>;                           
+    byte ABlademasterItemAmount<bgcolor=0xd6cb2b>;
+    int16 ABowItemID<bgcolor=0xabdb25>;
+    byte ABowItemAmount<bgcolor=0x65db25>;    
+    int16 ABowgunItemID<bgcolor=0x25db92>;                          
+    byte ABowgunItemAmount<bgcolor=0x25dbcc>;                               
+} alchemyData<read=Str("X Item ID: %d/%d, A Item ID: %d/%d/%d", 
+    this.XItem1ID, this.XItem2ID, this.ABlademasterItemID, this.ABowItemID, this.ABowgunItemID)>;
+
+IDKHeader header;
+alchemyData data[header.count]<optimize=false>;
