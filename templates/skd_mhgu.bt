@@ -1,0 +1,24 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+struct {
+    int Magic;
+    int EntryCount;
+} Header;
+
+typedef struct {
+    short Id;
+    ubyte Data[16];
+} Skill;
+
+Skill skills[Header.EntryCount];

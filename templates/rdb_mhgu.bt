@@ -1,0 +1,29 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: 
+//   Authors: Fexty
+//   Version: 1
+//   Purpose: 
+//  Category: 
+// File Mask: *.rdb
+//  ID Bytes: 52 44 42 00
+//   History: 
+//------------------------------------------------
+
+
+typedef struct {
+    int DieEraseTime; // despawn time
+    short DefTime; // idk
+    short EscapeTime;
+    short FastTime;
+    short ExTime;
+    ubyte Genus;
+    FSkip(3);
+} RDBEntry;
+
+string magic;
+int version;
+ubyte entryCount;
+RDBEntry entries[entryCount]<optimize=false>;
+

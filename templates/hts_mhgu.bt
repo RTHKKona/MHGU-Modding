@@ -1,0 +1,40 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: 
+//   Authors: Fexty
+//   Version: 1
+//   Purpose: 
+//  Category: 
+// File Mask: *.hts
+//  ID Bytes: 48 54 53 00
+//   History: 
+//------------------------------------------------
+
+typedef struct {
+    uint subEntryCount;
+    uint offset;
+} EntryDescriptor<read=Str("%u | Offset: %u", this.unk0, this.offset)>;
+
+typedef struct {
+    ushort unk0;
+    ushort unk1;
+    uint unk2;
+    uint unk3;
+    float unk4[9];
+} Entry<read=Str("%u | %u | %u", this.unk0, this.unk1, this.unk2)>;
+
+
+char magic[4];
+uint version<format=hex>;
+uint count;
+FSkip(4);
+EntryDescriptor descriptors[count];
+
+local int i;
+for (i = 0; i < count; i++) {
+    FSeek(descriptors[i].offset);
+    struct {
+        Entry subEntries[descriptors[i].subEntryCount]<optimize=false>;
+    } entry<optimize=false>;
+}

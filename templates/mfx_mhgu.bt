@@ -1,0 +1,152 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: 
+//   Authors: Fexty
+//   Version: 1
+//   Purpose: 
+//  Category: 
+// File Mask: *.mfx
+//  ID Bytes: 4D 46 58 50 00 24 00
+//   History: 
+//------------------------------------------------
+
+
+#define MAX_DEPTH 2
+
+local int depth;
+
+struct HEADER {
+    char magic[4];
+    ushort major_version;
+    ushort minor_version;
+    uint shader_version;
+    uint object_num;
+    uint string_pool;
+    uint obj_offsets[object_num];
+};
+
+struct VARIABLE;
+struct VARIABLE {
+    local int64 pos;
+    uint nameOffset;
+    {
+        pos = FTell();
+        FSeek(header.string_pool + nameOffset);
+        string name;
+        FSeek(pos);
+    }
+    
+    uint attr : 19;
+    uint ctype : 3;
+    uint size : 10;
+    union {
+        struct {
+            uint dtype : 4;
+            uint col_num : 4;
+            uint row_num : 4;
+            uint : 8;
+            uint element_num : 12;
+        } a;
+        struct {
+            uint hstruct : 12;
+            uint : 8;
+            uint : 12;
+        } b;
+        struct {
+            uint : 12;
+            uint otype : 4;
+            uint ttype : 4;
+            uint : 12;
+        } c;
+    } typeinfo;
+    
+    uint snameOffset;
+    {
+        pos = FTell();
+        FSeek(header.string_pool + snameOffset);
+        string sname;
+        FSeek(pos);
+    }
+    
+    uint sindex : 8;
+    uint offset : 10;
+    uint svalue : 6;
+    uint annotation_num : 8;
+    uint annotationsOffset;
+    
+    if (annotation_num != 0 && depth + 1 <= MAX_DEPTH) {
+        struct {
+            pos = FTell();
+            FSeek(startof(header.obj_offsets) + annotationsOffset);
+            local uint i;
+            for (i = 0; i < annotation_num; i++) {
+                depth += 1;
+                VARIABLE annotation<read=Str("Name: %s, Annotations: %d", this.name, this.annotation_num)>;
+                depth -= 1;
+            }
+            FSeek(pos);
+        } annotations;
+    }
+    
+    uint initValuesOffset;
+    
+    {
+        pos = FTell();
+        FSeek(initValuesOffset);
+        uint initvalues[8];
+        FSeek(pos);
+    }
+};
+
+struct OBJECT {
+    local int64 pos;
+    uint nameOffset;
+    {
+        pos = FTell();
+        FSeek(header.string_pool + nameOffset);
+        string name;
+        FSeek(pos);
+    }
+    
+    uint snameOffset;
+    {
+        pos = FTell();
+        FSeek(header.string_pool + snameOffset);
+        string sname;
+        FSeek(pos);
+    }
+    
+    uint type : 6;
+    uint attr : 16;
+    uint annotation_num : 10;
+    uint sindex : 16;
+    uint index : 16;
+    uint hash;
+
+    uint annotationsOffset;
+    if (annotation_num == 0) return;
+    
+    struct {
+        pos = FTell();
+        FSeek(annotationsOffset);
+        local uint i;
+        for (i = 0; i < annotation_num; i++) {
+            depth += 1;
+            VARIABLE annotation<read=Str("Name: %s, Annotations: %d", this.name, this.annotation_num)>;
+            depth -= 1;
+        }
+        FSeek(pos);
+    } annotations;
+};
+
+HEADER header;
+
+local uint j;
+for (j = 0; j < header.object_num; j++) {
+    if (header.obj_offsets[j] != 0) {
+        FSeek(header.obj_offsets[j]);
+        Printf("Object %d @ 0x%X\n", j, header.obj_offsets[j]);
+        OBJECT object<read=Str("Name: %s, SName: %s, Annotations: %d", this.name, this.sname, this.annotation_num)>;
+    }
+}

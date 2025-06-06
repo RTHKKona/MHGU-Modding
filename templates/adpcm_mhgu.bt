@@ -1,0 +1,36 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: 
+//   Authors: Fexty
+//   Version: 1
+//   Purpose: 
+//  Category: 
+// File Mask: *.mca
+//  ID Bytes: 02 00 00 00
+//   History: 
+//------------------------------------------------
+
+typedef struct {
+    uint32 version<bgcolor=0xFF8888>;
+    ushort channels<bgcolor=0x88FF88>;
+    ushort unk1;
+    uint32 waveSize<bgcolor=0xFFFF88>;
+    float duration<bgcolor=0xFF88FF>;
+    ushort unk2[2];
+    ushort unk3[2];
+} ADPCMHeader;
+
+typedef struct {
+    int16 coefs[16]<bgcolor=0x777777>;
+    FSkip(40);
+    uint32 samples<bgcolor=0xE54322>;
+    uint32 sampleRate<bgcolor=0xE54399>;
+    ubyte hasLoop<bgcolor=0x8888FF>;
+    FSkip(3);
+    uint32 loopStart<bgcolor=0x77E321>;
+    uint32 loopEnd<bgcolor=0x88F251>;
+} ChannelHeader;
+
+ADPCMHeader header;
+ChannelHeader channels[header.channels]<optimize=false>;

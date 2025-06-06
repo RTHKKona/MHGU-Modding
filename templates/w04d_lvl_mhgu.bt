@@ -1,0 +1,92 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: 
+//   Authors: Fexty
+//   Version: 1
+//   Purpose: 
+//  Category: 
+// File Mask: *.w04d
+//  ID Bytes: 9A 99 99 3F
+//   History: 
+//------------------------------------------------
+
+typedef enum<ubyte> {
+    Normal1 = 0,
+    Normal2 = 1,
+    Normal3 = 2,
+    Pierce1 = 3,
+    Pierce2 = 4,
+    Pierce3 = 5,
+    Pellet1 = 6,
+    Pellet2 = 7,
+    Pellet3 = 8,
+    Crag1 = 9,
+    Crag2 = 10,
+    Crag3 = 11,
+    Clust1 = 12,
+    Clust2 = 13,
+    Clust3 = 14,
+    FlamingS = 15,
+    WaterS = 16,
+    ThunderS = 17,
+    FreezeS = 18,
+    DragonS = 19,
+    Poison1 = 20,
+    Poison2 = 21,
+    Para1 = 22,
+    Para2 = 23,
+    Sleep1 = 24,
+    Sleep2 = 25,
+    Exhaust1 = 26,
+    Exhaust2 = 27,
+    Recov1 = 28,
+    Recov2 = 29,
+    TranqS = 30,
+    PaintS = 31,
+    Unknown = 32,
+    
+    // Internal Only
+    Int_SlicingS = 35,
+    Int_HeavyS1 = 40,
+    Int_HeavyS2 = 41,
+    Int_ShrapnelS = 62,
+    Int_DemonArmorS = 73,
+    
+    Int_None = 74,
+} AmmoType;
+
+typedef struct {
+    AmmoType mType;
+    ubyte mAmount;
+    ubyte mClipSize;
+} InternalAmmo;
+
+typedef struct(int n) {
+    ubyte mClipSize;
+    ubyte mCanUse;
+    local AmmoType T = (AmmoType)n;
+} Ammo<read=Str("%s - Clip Size: %d, Usable: %s", EnumToString(this.T), this.mClipSize, this.mCanUse ? "Yes" : "No")>;
+
+local int i;
+typedef struct {
+    uint mIndex;
+    ubyte mNo;
+    ubyte mLevel;
+    int16 mAttack;
+    ubyte mDefense;
+    byte mAffinity;
+    ubyte mSlotCount;
+    ubyte mBure;
+    ubyte mReloadSpeed;
+    ubyte mRecoil;
+    AmmoType mCrouchingFire[5];
+    InternalAmmo mInternalAmmo[5];
+    struct {
+        for (i = 0; i < 33; i++) Ammo mAmmo(i);
+    } mAmmoTypes;
+} cWeapon04LevelData<read=Str("No: %u, Lvl: %u", this.mNo, this.mLevel)>;
+
+float version;
+int count;
+cWeapon04LevelData data[count]<optimize=false>;

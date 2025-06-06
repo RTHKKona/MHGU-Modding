@@ -1,0 +1,39 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: 
+//   Authors: Fexty
+//   Version: 1
+//   Purpose: 
+//  Category: 
+// File Mask: *.w04d
+//  ID Bytes: 66 66 06 40
+//   History: 
+//------------------------------------------------
+
+typedef struct {
+    ubyte Level;
+    ubyte Id;
+} BranchingUpgrade<read=Str("Level: %u, Id: %u", this.Level, this.Id)>;
+
+
+typedef struct {
+    uint mIndex;
+    uint16 mModelId;
+    uint16 mSrqrNo;
+    ubyte mSndMaterial;
+    ubyte mMaxLv;
+    ubyte mMaxLvForLimit;
+    ubyte mRare;
+    uint mSellPrice;
+    ubyte mPriceChangeLv;
+    ubyte mColorIndex;
+    uint16 mSortId;
+    ubyte mNamed;
+    ubyte mSpecialSkill;
+    BranchingUpgrade mUpgrades[5];
+} cWeapon04BaseData<read=Str("%u, Model: %u, MaxLv: %u, Sell: %u", this.mIndex, this.mModelId, this.mMaxLv, this.mSellPrice)>;
+
+float version;
+int count;
+cWeapon04BaseData data[count];

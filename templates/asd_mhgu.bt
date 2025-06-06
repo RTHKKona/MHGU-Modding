@@ -69,3 +69,45 @@ typedef struct {
 float version;
 int count;
 Armor armor[count];
+
+#define a armor[i]
+
+local int i;
+local int j;
+Printf("[\n");
+for (i = 0; i < count; i++) {
+    Printf("{\"Id\":%d,\"Pieces\":[%d,%d,%d,%d,%d],\"HeadSkills\":[", a.mIndex, a.mEnableParts[0], a.mEnableParts[1], a.mEnableParts[2], a.mEnableParts[3], a.mEnableParts[4]);
+    for (j = 0; j < 5; j++) {
+        if (a.mHeadSkills[j].mSkillId == 0) break;
+        if (j != 0) Printf(",");
+        Printf("{\"Id\":%d,\"Points\":%d}", a.mHeadSkills[j].mSkillId, a.mHeadSkills[j].mPoints);
+    }
+    Printf("],\"TorsoSkills\":[");
+    for (j = 0; j < 5; j++) {
+        if (a.mTorsoSkills[j].mSkillId == 0) break;
+        if (j != 0) Printf(",");
+        Printf("{\"Id\":%d,\"Points\":%d}", a.mTorsoSkills[j].mSkillId, a.mTorsoSkills[j].mPoints);
+    }
+    Printf("],\"ArmSkills\":[");
+    for (j = 0; j < 5; j++) {
+        if (a.mArmSkills[j].mSkillId == 0) break;
+        if (j != 0) Printf(",");
+        Printf("{\"Id\":%d,\"Points\":%d}", a.mArmSkills[j].mSkillId, a.mArmSkills[j].mPoints);
+    }
+    Printf("],\"WaistSkills\":[");
+    for (j = 0; j < 5; j++) {
+        if (a.mWaistSkills[j].mSkillId == 0) break;
+        if (j != 0) Printf(",");
+        Printf("{\"Id\":%d,\"Points\":%d}", a.mWaistSkills[j].mSkillId, a.mWaistSkills[j].mPoints);
+    }
+    Printf("],\"LegSkills\":[");
+    for (j = 0; j < 5; j++) {
+        if (a.mLegSkills[j].mSkillId == 0) break;
+        if (j != 0) Printf(",");
+        Printf("{\"Id\":%d,\"Points\":%d}", a.mLegSkills[j].mSkillId, a.mLegSkills[j].mPoints);
+    }
+    Printf("],\"MaxLevel\":%d,\"Slots\":[%d,%d,%d,%d,%d],\"Blademaster\":%d,\"Gunner\":%d},\n",
+        a.mMaxLv + a.mMaxLvForLimit, a.mHeadSlotNum, a.mTorsoSlotNum, a.mArmSlotNum, a.mWaistSlotNum, a.mLegSlotNum,
+        a.mBladeWearable, a.mGunnerWearable);
+}
+Printf("]\n");

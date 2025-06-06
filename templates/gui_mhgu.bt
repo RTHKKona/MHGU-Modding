@@ -1,0 +1,1995 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.1 Binary Template
+//
+//      File: GUI
+//   Authors: MHW Template by NSA Cloud and Silvris, adjusted for MHGU by Fexty
+//   Version: 1.0
+//   Purpose: MHGU GUI
+//  Category: 
+// File Mask: *.gui
+//  ID Bytes: 47 55 49 00 15 27 02 00
+//   History: 
+//------------------------------------------------
+
+local ubyte DEBUG_MODE = TRUE;
+
+//CONSTANTS
+local uint ANIMATION_SIZE = 32;
+local uint SEQUENCE_SIZE = 12;
+local uint SUB_OBJECT_SIZE = 36;
+local uint OBJSEQUENCE_SIZE = 24;
+local uint INITPARAM_SIZE = 20;
+local uint PARAM_SIZE = 0x18;
+local uint INSTANCE_SIZE = 0x24;
+local uint FLOWPROCESS_SIZE = 48;
+local uint KEY_SIZE = 8;
+local uint VERTEX_SIZE = 16;
+
+//FLOW ENUM
+typedef enum <uint>
+{
+    FLOW_TYPE_START = 0x0,
+    FLOW_TYPE_END_0 = 0x1,
+    FLOW_TYPE_PROCESS = 0x2,
+    FLOW_TYPE_INPUT = 0x3,
+    FLOW_TYPE_SWITCH = 0x4,
+    FLOW_TYPE_FUNCTION = 0x5,
+    FLOW_TYPE_NUM = 0x6,
+}FlowTypeEnum;
+// BLEND STATE ENUM
+typedef enum <ubyte>
+{
+    BLEND_DEFAULT = 0x0,
+    BLEND_BlendAlpha = 0x1,
+    BLEND_BlendInvAlpha = 0x2,
+    BLEND_Add = 0x3,
+    BLEND_Mul = 0x4,
+    BLEND_AddAlpha = 0x5,
+    BLEND_AddInvAlpha = 0x6,
+    BLEND_BlendFactor = 0x7,
+    BLEND_BlendFactorAlpha = 0x8,
+    BLEND_Max = 0x9,
+    BLEND_AddColor = 0xA,
+    BLEND_BlendColor = 0xB,
+    BLEND_RevSubAlpha = 0xC,
+    BLEND_RevSubInvAlpha = 0xD,
+    BLEND_RevSubBlendAlpha = 0xE,
+    BLEND_RevSubColor = 0xF,
+    BLEND_RevSubBlendColor = 0x10,
+    BLEND_RevSub = 0x11,
+    BLEND_ColorBlendAlphaAdd = 0x12,
+    BLEND_AddRGB = 0x13,
+    BLEND_AddInvColor = 0x14,
+    BLEND_MODE_NUM = 0x15,
+}BlendStateEnum;
+
+// SAMPLER STATE ENUM
+typedef enum <ubyte>
+{
+    SAMPLER_WrapLinear = 0x0,
+    SAMPLER_ClampLinear = 0x1,
+    SAMPLER_WrapPoint = 0x2,
+    SAMPLER_ClampPoint = 0x3,
+    SAMPLER_MODE_NUM = 0x4,
+}SamplerStateEnum;
+// ALIGNMENT ENUM
+typedef enum <ubyte>
+{
+    ALIGNMENT_LT = 0x1,
+    ALIGNMENT_CT = 0x2,
+    ALIGNMENT_RT = 0x3,
+    ALIGNMENT_LC = 0x4,
+    ALIGNMENT_CC = 0x5,
+    ALIGNMENT_RC = 0x6,
+    ALIGNMENT_LB = 0x7,
+    ALIGNMENT_CB = 0x8,
+    ALIGNMENT_RB = 0x9,
+    ALIGNMENT_NUM = 0xA,
+}AlignmentEnum;
+// RESOLUTION ADJUST ENUM
+typedef enum <ubyte>
+{
+    RESOLUTION_ADJUST_FOLLOW = 0x0,
+    RESOLUTION_ADJUST_NONE = 0x1,
+    RESOLUTION_ADJUST_VARIABLE = 0x2,
+    RESOLUTION_ADJUST_VARIABLE_STRETCH = 0x3,
+    RESOLUTION_ADJUST_VARIABLE_SHRINK = 0x4,
+    RESOLUTION_ADJUST_SMALLPROP = 0x5,
+    RESOLUTION_ADJUST_SMALLPROP_STRETCH = 0x6,
+    RESOLUTION_ADJUST_SMALLPROP_SHRINK = 0x7,
+    RESOLUTION_ADJUST_BIGPROP = 0x8,
+    RESOLUTION_ADJUST_BIGPROP_STRETCH = 0x9,
+    RESOLUTION_ADJUST_BIGPROP_SHRINK = 0xA,
+    RESOLUTION_ADJUST_NUM = 0xB,
+}ResolutionAdjustEnum;
+// AUTOWRAP ENUM
+typedef enum <ubyte>
+{
+    AUTOWRAP_NONE = 0x0,
+    AUTOWRAP_WIDTH = 0x1,
+    AUTOWRAP_POINT = 0x2,
+    AUTOWRAP_NUM = 0x3,
+}AutoWrapEnum;
+//COLOR CONTROL ENUM
+typedef enum <ubyte>
+{
+    COLOR_CONTROL_SCALING = 0x0,
+    COLOR_CONTROL_ATTRIBUTE = 0x1,
+    COLOR_CONTROL_NONE = 0x2,
+    COLOR_CONTROL_NUM = 0x3,
+}ColorControlEnum;
+//END CONDITION ENUM
+typedef enum <uint>
+{
+    EC_FLOW_ANIMATION_END = 0x0,
+    EC_FRAME_COUNT = 0x1,
+    EC_INFINITE = 0x2,
+    EC_CHANGE_VARIABLE = 0x3,
+    EC_ANIMATION_END = 0x4,
+    END_CONDITION_TYPE_NUM = 0x5,
+}EndConditionEnum;
+//LETTER HALIGN ENUM
+typedef enum <ubyte>
+{
+    LETTER_HALIGN_LEFT = 0x0,
+    LETTER_HALIGN_CENTER = 0x1,
+    LETTER_HALIGN_RIGHT = 0x2,
+    LETTER_HALIGN_NUM = 0x3,
+}LetterHAlignEnum;
+//LETTER VALIGN ENUM
+typedef enum <ubyte>
+{
+    LETTER_VALIGN_TOP = 0x0,
+    LETTER_VALIGN_CENTER = 0x1,
+    LETTER_VALIGN_BOTTOM = 0x2,
+    LETTER_VALIGN_BASELINE = 0x3,
+    LETTER_VALIGN_NUM = 0x4,
+}LetterVAlignEnum;
+//DEPTH STATE ENUM
+typedef enum <ubyte>
+{
+    DEPTH_FOLLOW = 0x0,
+    DEPTH_DISABLE = 0x1,
+    DEPTH_TEST = 0x2,
+    DEPTH_WRITE = 0x3,
+    DEPTH_TEST_WRITE = 0x4,
+    DEPTH_STATE_NUM = 0x5,
+}DepthStateEnum;
+//BILLBOARD ENUM
+typedef enum <ubyte>
+{
+    BILLBOARD_NONE = 0x0,
+    BILLBOARD_XYZ = 0x1,
+    BILLBOARD_Y = 0x2,
+    BILLBOARD_NUM = 0x3,
+}BillboardEnum;
+
+//DRAW PASS ENUM
+typedef enum <ubyte>
+{
+    DRAW_PASS_FOLLOW = 0x0,
+    DRAW_PASS_SOLID = 0x1,
+    DRAW_PASS_SCREEN = 0x2,
+    DRAW_PASS_TRANSPARENT = 0x3,
+    DRAW_PASS_NUM = 0x4,
+    DRAW_PASS_USER_OFFSET = 0x10,
+}DrawPassEnum;
+
+//MASK TYPE ENUM
+typedef enum <ubyte>
+{
+    MASK_TYPE_NONE = 0x0,
+    MASK_TYPE_ON = 0x1,
+    MASK_TYPE_REVERSE = 0x2,
+    MASK_TYPE_ALPHA = 0x3,
+    MASK_TYPE_ON_ADD = 0x4,
+    MASK_TYPE_REVERSE_ADD = 0x5,
+    MASK_TYPE_ALPHA_ADD = 0x6,
+    MASK_TYPE_NUM = 0x7,
+}MaskTypeEnum;
+//TILING ENUM
+typedef enum <ubyte>
+{
+    TILING_NONE = 0x0,
+    TILING_SCALE = 0x1,
+    TILING_NO_SCALE = 0x2,
+    TILING_NUM = 0x3,
+}TilingEnum;
+//KEY MODE ENUM
+typedef enum <ubyte>
+{
+    MODE_CONSTANT_0 = 0x0,
+    MODE_OFFSET_0 = 0x1,
+    MODE_TRIGGER_0 = 0x2,
+    MODE_LINEAR_0 = 0x3,
+    MODE_OFFSET_F_0 = 0x4,
+    MODE_HERMITE_0 = 0x5,
+    MODE_EASEIN = 0x6,
+    MODE_EASEOUT = 0x7,
+    MODE_HERMITE2 = 0x8,
+    MODE_NUM_8 = 0x9,
+    MODE_SUMMARY = 0xA,
+    MODE_DEFAULT_10 = 0xB,
+}KeyModeEnum;
+//FONT STYLE ENUM
+typedef enum <uint>
+{
+    MOJI_WHITE_DEFAULT = 1,
+    MOJI_WHITE_SELECTED = 2,
+    MOJI_WHITE_SELECTED2 = 4,
+    MOJI_WHITE_DISABLE = 5,
+    MOJI_WHITE_DEFAULT2 = 6,
+    MOJI_BLACK_DEFAULT = 7,
+    MOJI_RED_DEFAULT = 8,
+    MOJI_RED_SELECTED = 9,
+    MOJI_RED_SELECTED2 = 10,
+    MOJI_RED_DISABLE = 11,
+    MOJI_YELLOW_DEFAULT = 12,
+    MOJI_YELLOW_SELECTED = 13,
+    MOJI_YELLOW_SELECTED2 = 14,
+    MOJI_YELLOW_DISABLE = 15,
+    MOJI_ORANGE_DEFAULT = 16,
+    MOJI_ORANGE_SELECTED = 18,
+    MOJI_ORANGE_SELECTED2 = 17,
+    MOJI_ORANGE_DISABLE = 19,
+    MOJI_GREEN_DEFAULT = 21,
+    MOJI_GREEN_SELECTED = 20,
+    MOJI_GREEN_SELECTED2 = 22,
+    MOJI_GREEN_DISABLE = 23,
+    MOJI_SLGREEN_DEFAULT = 53,
+    MOJI_SLGREEN_SELECTED = 54,
+    MOJI_SLGREEN_SELECTED2 = 55,
+    MOJI_SLGREEN_DISABLE = 56,
+    MOJI_SLGREEN2_DEFAULT = 58,
+    MOJI_SLGREEN2_SELECTED = 59,
+    MOJI_SLGREEN2_SELECTED2 = 60,
+    MOJI_SLGREEN2_DISABLE = 61,
+    MOJI_LIGHTBLUE_DEFAULT = 25,
+    MOJI_LIGHTBLUE_SELECTED2 = 26,
+    MOJI_LIGHTBLUE_SELECTED = 27,
+    MOJI_LIGHTBLUE_DISABLE = 43,
+    MOJI_LIGHTBLUE2_DEFAULT = 28,
+    MOJI_LIGHTBLUE2_SELECTED2 = 29,
+    MOJI_LIGHTBLUE2_SELECTED = 30,
+    MOJI_LIGHTBLUE2_DISABLE = 44,
+    MOJI_LIGHTGREEN_DEFAULT = 31,
+    MOJI_LIGHTGREEN_SELECTED = 32,
+    MOJI_LIGHTGREEN_SELECTED2 = 57,
+    MOJI_LIGHTGREEN_DISABLE = 33,
+    MOJI_LIGHTYELLOW_DEFAULT = 49,
+    MOJI_LIGHTYELLOW_SELECTED = 50,
+    MOJI_LIGHTYELLOW_SELECTED2 = 51,
+    MOJI_LIGHTYELLOW_DISABLE = 52,
+    MOJI_LIGHTYELLOW2_DEFAULT = 62,
+    MOJI_LIGHTYELLOW2_SELECTED = 63,
+    MOJI_LIGHTYELLOW2_SELECTED2 = 64,
+    MOJI_LIGHTYELLOW2_DISABLE = 65,
+    MOJI_BROWN_DEFAULT = 34,
+    MOJI_BROWN_SELECTED2 = 35,
+    MOJI_BROWN_SELECTED = 36,
+    MOJI_BROWN_DISABLE = 46,
+    MOJI_YELLOW2_DEFAULT = 37,
+    MOJI_YELLOW2_SELECTED = 47,
+    MOJI_YELLOW2_SELECTED2 = 38,
+    MOJI_YELLOW2_DISABLE = 48,
+    MOJI_ORENGE2_DEFAULT = 39,
+    MOJI_ORENGE2_SELECTED = 42,
+    MOJI_ORENGE2_SELECTED2 = 40,
+    MOJI_ORENGE2_DISABLE = 41,
+    MOJI_PURPLE_DEFAULT = 67,
+    MOJI_PURPLE_SELECTED = 69,
+    MOJI_PURPLE_SELECTED2 = 70,
+    MOJI_PURPLE_DISABLE = 68,
+    MOJI_RED2_DEFAULT = 71,
+    MOJI_RED2_SELECTED = 72,
+    MOJI_RED2_SELECTED2 = 73,
+    MOJI_RED2_DISABLE = 74,
+    MOJI_BLUE_DEFAULT = 78,
+    MOJI_BLUE_SELECTED = 77,
+    MOJI_BLUE_SELECTED2 = 76,
+    MOJI_BLUE_DISABLE = 75,
+    MOJI_PALEBLUE_DEFAULT = 79,
+    MOJI_PALEBLUE_SELECTED = 80,
+    MOJI_PALEBLUE_SELECTED2 = 81,
+    MOJI_PALEBLUE_DISABLE = 82,
+
+}FontStyleIDEnum;
+typedef enum <uint>
+{
+    cGUIObjRoot = 473969240,
+    cGUIObjColorAdjust = 122938906,
+    cGUIObj2D =  351760238,
+    cGUIObjScissorMask = 229195642,
+    cGUIObjNull = 796866380,
+    cGUIObjChildAnimationRoot = 663214884,
+    cGUIObjPolygon = 1587625923,
+    cGUIObjTexture = 459477923,
+    cGUIObjTextureSet = 1332881660,
+    cGUIObjMaterial = 1601273156,
+    cGUIObjMessage = 800599726,
+    cGUIObjText = 826240196,
+    cGUIObjEffect = 1344422210,
+    cGUIObjBaseModel = 2129076721,
+    cGUIObjHitRect = 691640339,
+    cGUIObjModel = 471103525,
+    cGUIObjSizeAdjustMessage = 304564904,  
+
+    //inst hashes
+    cGUIInstAnimVariable = 1916600852,
+    cGUIInstAnimControl = 2084773514,
+    cGUIInstRoot = 1923362099,
+    cGUIInstNull = 1100687399,
+    cGUIInstScissorMask = 1882551812,
+    cGUIInstAnimation = 497711579,
+    cGUIInstGauge = 981162009,
+    cGUIInstAutoAnimation = 1252007991,
+    cGUIInstInput = 1235707108,
+    cGUIInstButtonList = 1786326969,
+    cGUIInstScrollBar = 2133789891,
+    cGUIInstSlider = 579080650,
+    cGUIInstText = 1608217519,
+    cGUIInstButtonGrid = 9506454,
+    cGUIInstButtonGridLink = 546128602,
+    cGUIInstButtonTree = 428837245,
+    cGUIInstChangeNumInput = 1108543649,
+    cGUIInstColorPallet = 1352762334,
+    cGUIInstCursor = 675048259,
+    cGUIInstFreeCursor = 524580423,
+    cGUIInstItemGrid = 1827074792,
+    cGUIInstMessage = 17244926,
+    cGUIInstMouseOverFilter = 47863894,
+
+    //font hashes
+    cGUIFontFilterShadow = 1601192516,
+    cGUIFontFilterBorder = 1844685598,
+    cGUIFontFilterShading = 1026938010,
+    cGUIFontFilterGradationOverlay = 1998668322,
+    cGUIFontFilterTextureBlend = 1482942597,
+    cGUIFontFilterDistanceField = 1670580032,
+
+    //misc hashes
+    rEffectAsset = 795748986,
+    
+    // MHGU
+    cGUIObjBlendTextureSample = 0x27A477BF,
+    cGUIObjTexWithParam = 0x413023E9,
+            
+}GUIHashEnum;
+//FUNCTIONS
+
+void ReadDataType(uint type,int setPropertiesOffset, uint valueCount,string text)
+{
+    if (setPropertiesOffset != -1)
+    {
+        local int pos = FTell();
+        
+        switch (type)
+        {
+            case 3://bool data types
+            case 17:
+            {
+                FSeek(header.keyValue8Offset + setPropertiesOffset);
+                struct
+                {
+                    ubyte VALUE<bgcolor=0x4400FF>;
+                }values[valueCount]; 
+            }break;
+            case 18:
+            {
+                FSeek(header.keyValue8Offset + setPropertiesOffset);
+                
+                struct
+                {
+                    switch(text)
+                    {
+                        case "BlendState":
+                        {
+                            BlendStateEnum VALUE<bgcolor=0x4400FF>;
+                        }break;
+                        case "SamplerState":
+                        {
+                            SamplerStateEnum VALUE<bgcolor=0x4400FF>;
+                        }break;
+                        case "Alignment":
+                        {
+                            AlignmentEnum VALUE<bgcolor=0x4400FF>;
+                        }break;
+                        //case "ResolutionAdjust":
+                        //{
+                            //ResolutionAdjustEnum VALUE<bgcolor=0x4400FF>;
+                        //}break;
+                        case "AutoWrap":
+                        {
+                            AutoWrapEnum VALUE<bgcolor=0x4400FF>;
+                        }break;
+                        case "ColorControl":
+                        {
+                            ColorControlEnum VALUE<bgcolor=0x4400FF>;
+                        }break;
+                        case "LetterHAlign":
+                        {
+                            LetterHAlignEnum VALUE<bgcolor=0x4400FF>;
+                        }break;
+                        case "LetterVAlign":
+                        {
+                            LetterVAlignEnum VALUE<bgcolor=0x4400FF>;
+                        }break;    
+                        case "DepthState":
+                        {
+                            DepthStateEnum VALUE<bgcolor=0x4400FF>;
+                        }break;    
+                        case "Billboard":
+                        {
+                            BillboardEnum VALUE<bgcolor=0x4400FF>;
+                        }break;
+                        case "DrawPass":
+                        {
+                            DrawPassEnum VALUE<bgcolor=0x4400FF>;
+                        }break;    
+                        case "Mask":
+                        {
+                            MaskTypeEnum VALUE<bgcolor=0x4400FF>;
+                        }break;    
+
+                        default:
+                        {
+                            ubyte VALUE<bgcolor=0x4400FF>;
+                        }
+                    }
+                    
+                    
+                }values[valueCount]<optimize = false>; 
+            }break;
+    
+            case 1://uint data types
+            case 7:
+            case 8:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 16:
+            
+            case 19:
+            {
+                
+                FSeek(header.keyValue32Offset + setPropertiesOffset);
+                struct
+                {
+                    int VALUE<bgcolor=0xDD0011>;
+                }values[valueCount]; 
+            }break;
+            case 20:
+            {
+                
+                FSeek(header.keyValue32Offset + setPropertiesOffset);
+                struct
+                {
+                    FontStyleIDEnum VALUE<bgcolor=0xDD0011>;
+                }values[valueCount]; 
+            }break;
+    
+            case 2://float data types
+            case 15:
+            {
+                FSeek(header.keyValue32Offset + setPropertiesOffset);
+                struct
+                {
+                    float VALUE<bgcolor=0xDD00FF>;
+                }values[valueCount]; 
+            }break;
+            case 4://vec4 data types
+            {
+                FSeek(header.keyValue128Offset + setPropertiesOffset);
+                struct
+                {
+                    float VALUE_X1<bgcolor=0x0000CC>;
+                    float VALUE_Y1<bgcolor=0x00CC00>;
+                    float VALUE_X2<bgcolor=0x0000CC>;
+                    float VALUE_Y2<bgcolor=0x00CC00>;
+                }values[valueCount];   
+            }break;
+            default: 
+            {
+                
+                pos = FTell();
+                Printf("Data Type not found: %i at %i\n", type, pos);
+                FSeek(header.keyValue32Offset + setPropertiesOffset); 
+                struct
+                {
+                    uint UNKVALUE <bgcolor=0x000000>;
+                }values[valueCount];
+            }
+        }
+        FSeek(pos);
+    }
+}
+
+void ReadHashData(enum objHash,int hashDataOffset)
+{
+    if (hashDataOffset != -1)
+    {
+        local int pos = FTell();
+        FSeek(header.extendDataOffset+hashDataOffset);
+        switch (objHash)
+        {   
+            //vec4 list
+            case 1332881660://cGUIObjTextureSet
+            {
+
+                
+                struct
+                {
+                    uint vec4Count<bgcolor=0x00b5dd>;
+                    uint textureSetOffset;
+                    local int pos2 = FTell();
+                    FSeek(header.vertexOffset+textureSetOffset*VERTEX_SIZE);
+                    struct
+                    {//This is wrong
+                        float x;
+                        float y;
+                        float z;
+                        float w;
+                    } Vertices[vec4Count * 6 - 2];
+                    FSeek(pos2);
+                    if (vec4Count != 0)
+                    {
+                        struct
+                        {
+                            float VALUE_X1;
+                            float VALUE_Y1;
+                            float VALUE_X2;
+                            float VALUE_Y2;
+                        } rects[vec4Count]<bgcolor=0x0092aa>;
+                    }  
+                }textureSetData<bgcolor=0x00d7ff, optimize=false>;
+            }break;
+    
+            case 663214884://cGUIObjChildAnimationRoot
+            {
+                struct
+                {
+                    int guiResourceId<bgcolor=0x00b5dd>;
+                    int animationId;
+                    uint64 padding;// Used to store a pointer to the GUI resource when loaded into memory
+                }childAnimationRootData<bgcolor=0x00d7ff, optimize=false>;
+            }break;
+    
+            default: 
+            {
+                Printf("Hash Data Entry not found: %s at %i\n", EnumToString(objHash), pos-4);
+                struct
+                {
+                    int unknHashData0<bgcolor=0x00b599>;
+                    int unknHashData1;
+                    int unknHashData2;
+                    int unknHashData3;
+                }unknHashData<bgcolor=0x000000, optimize=false>;
+            }
+        }
+        FSeek(pos);
+    }
+}
+string getObjectName(uint index)
+{
+    local string s;
+    if (index == -1)
+    {
+        s = "-1 (None)";
+    }
+    else
+    
+    {
+        local uint offset = file.header.objectOffset + (index*SUB_OBJECT_SIZE)+16;//+16 to get text offset from object
+        if (offset > file.header.objectOffset + file.header.objectNum * SUB_OBJECT_SIZE)
+        {
+            SPrintf(s, "%i (OUT OF BOUNDS)", index);
+        }
+        else
+        {
+            local uint stringPos = ReadUInt(offset);
+            SPrintf(s, "%i (%s)", index,ReadLine(file.header.stringOffset + stringPos));   
+        }
+            
+    }
+    return s;
+
+}   
+string getInstanceName(uint index)
+{
+    local string s;
+    if (index == -1)
+    {
+        s = "-1 (None)";
+    }
+    else
+    
+    {
+        local uint offset = file.header.instanceOffset + (index*INSTANCE_SIZE)+24;//+24 to get text offset from object
+        if (offset > file.header.instanceOffset + file.header.instanceNum * INSTANCE_SIZE)
+        {
+            SPrintf(s, "%i (OUT OF BOUNDS)", index);
+        }
+        else
+        {
+            local uint stringPos = ReadUInt(offset);
+            SPrintf(s, "%i (%s)", index,ReadLine(file.header.stringOffset + stringPos));   
+        }
+            
+    }
+    return s;
+
+}   
+//STRUCTS
+typedef struct
+{
+    char fileType[4];
+    uint guiVersion;
+    uint fileSize;
+    uint attr;
+    time64_t revisionDate;
+    uint instanceID;
+    uint flowID;
+    uint variableID;
+    uint startInstanceIndex;
+    uint animationNum<bgcolor=0xEE0044>;
+    uint sequenceNum;
+    uint objectNum<bgcolor=0x0000FF>;
+    uint objSequenceNum<bgcolor=0xFFFF00>;
+    uint initParamNum<bgcolor=0x00FF00>;
+    uint paramNum<bgcolor=0x336600>;
+    uint keyNum<bgcolor=0x3366ff>;
+    uint instanceNum<bgcolor=0x663300>;
+    uint flowNum<bgcolor=0xAAAAAA>;
+    uint flowProcessNum<bgcolor=0xcb6bc9>;
+    uint flowInputNum;//Always 0
+    uint flowSwitchNum;//Always 0
+    uint flowFunctionNum;//Always 0
+    uint actionNum;//Always 0
+    uint inputConditionNum;//Always 0
+    uint switchConditionNum;//Always 0
+    uint switchOperatorNum;//Always 0
+    uint variableNum;//Always 0
+    uint textureNum<bgcolor=0xff6633>;
+    uint fontNum;//Always 0
+    uint fontFilterNum<bgcolor=0x77ad30>;
+    uint messageNum<bgcolor=0xDD00DD>;//Always 0
+    uint guiResourceNum<bgcolor=0x7e1a9a>;
+    uint generalResourceNum<bgcolor=0x4499cc>;
+    uint cameraSettingNum;//Always 0
+    uint instExeParamNum;
+    uint vertexBufferSize<bgcolor=0x0092aa>;
+    struct {
+        uint baseZ : 2;
+        uint framerateMode : 1;
+        uint languageSettingNo : 2;
+        uint padding : 27;
+    } optionBitFlag;
+    //uint optionBitFlag;// baseZ :2,framerateMode:1,languageSettingNo:2,padding:27
+    uint viewSize_Width;
+    uint viewSize_Height;
+    uint32 startFlowIndex;
+    uint32 animationOffset<bgcolor=0xEE0044>;
+    uint32 sequenceOffset;
+    uint32 objectOffset<bgcolor=0x0000FF>;
+    uint32 objSequenceOffset<bgcolor=0xFFFF00>;
+    uint32 initParamOffset<bgcolor=0x00FF00>;
+    uint32 paramOffset<bgcolor=0x336600>;
+    uint32 instanceOffset<bgcolor=0x663300>;
+    uint32 flowOffset<bgcolor=0xAAAAAA>;
+    uint32 flowProcessOffset<bgcolor=0xcb6bc9>;
+    uint32 flowInputOffset;
+    uint32 flowSwitchOffset;
+    uint32 flowFunctionOffset;
+    uint32 actionOffset;
+    uint32 inputConditionOffset;
+    uint32 switchOperatorOffset;
+    uint32 switchConditionOffset;
+    uint32 variableOffset;
+    uint32 textureOffset<bgcolor=0xff6633>;
+    uint32 fontOffset;
+    uint32 fontFilterOffset<bgcolor=0x77ad30>;
+    uint32 messageOffset<bgcolor=0xDD00DD>;
+    uint32 guiResourceOffset<bgcolor=0x7e1a9a>;
+    uint32 generalResourceOffset<bgcolor=0x4499cc>;
+    uint32 cameraSettingOffset;
+    uint32 stringOffset;
+    uint32 keyOffset<bgcolor=0x3366ff>;
+    uint32 keyValue8Offset<bgcolor=0x4400FF>;
+    uint32 keyValue32Offset<bgcolor=0xDD0011>;
+    uint32 keyValue128Offset<bgcolor=0x0000CC>;
+    uint32 extendDataOffset<bgcolor=0x0092aa>;
+    uint32 instanceParamEntryStartIndex;//instExeParamOffset
+    uint32 vertexOffset<bgcolor=0x0092aa>;
+    uint32 padding;
+    
+}Header;
+
+typedef struct
+{
+    uint resourceid;
+    GUIHashEnum hash<format = hex>;
+    uint pResource;//Always 0, in memory only
+    uint textOffset;
+    local int currentPos = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos);
+}GeneralResource<read=generalResourceRead>;
+
+typedef struct
+{   
+    GeneralResource generalResource[header.generalResourceNum]<optimize=false>;
+}GeneralResourceList<bgcolor=0x4499cc>;
+
+typedef struct
+{
+    uint null2;//Always 0
+    uint id;
+    uint textOffset;
+    local int currentPos = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos);
+}GUIResource<read=guiResourceRead>;
+
+typedef struct
+{   
+    GUIResource guiResource[header.guiResourceNum]<optimize=false>;
+}GUIResourceList<bgcolor=0x7e1a9a>;
+
+typedef struct
+{
+    uint id;
+    uint null0;//Always 0
+    uint null1;//Always 0
+    uint null2;//Always 0
+    uint textOffset;
+    local int currentPos = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos);
+    uint null3;//Always 0
+}Message<read=messageRead>;//Experimental, should call gmd, unused in world
+
+typedef struct
+{   
+    Message message[header.messageNum]<optimize=false>;
+}MessageList<bgcolor=0xDD00DD>;
+
+typedef struct
+{
+    GUIHashEnum hash<format = hex>;
+    uint id;
+    
+    
+    
+    if (hash == 1670580032){//cGUIFontFilterDistanceField
+        uint paramNum;
+        ubyte color0Red<bgcolor=0x0000CC,fgcolor=0x0000CC>;
+        ubyte color0Green<bgcolor=0x00CC00,fgcolor=0x00CC00>;
+        ubyte color0Blue<bgcolor=0xFF9999,fgcolor=0xFF9999>;
+        ubyte color0Alpha<bgcolor=0x99FFFF,fgcolor=0x99FFFF>;
+        int size0;
+        uint softness0;
+        uint range0;
+        uint strength0;
+        ubyte color1Red<bgcolor=0x0000CC,fgcolor=0x0000CC>;
+        ubyte color1Green<bgcolor=0x00CC00,fgcolor=0x00CC00>;
+        ubyte color1Blue<bgcolor=0xFF9999,fgcolor=0xFF9999>;
+        ubyte color1Alpha<bgcolor=0x99FFFF,fgcolor=0x99FFFF>;
+        uint size1;
+        uint softness1;
+        uint range1;
+        uint strength1;
+        uint offset;
+        uint offsetAngle;
+        enum BlendStateEnum blendState;//This is supposed to be an int, but the enum is a ubyte, so the rest is padded
+        ubyte padding0;
+        ubyte padding1;
+        ubyte padding2;
+    };
+    if (hash == 1998668322){//cGUIFontFilterGradationOverlay
+        uint unkn2;
+        uint textOffset;
+        local int pos = FTell();
+        FSeek(textOffset + header.stringOffset); 
+        string texturePath;
+        FSeek(pos); 
+    };
+    if (hash == 1844685598){//cGUIFontFilterBorder
+        uint type;
+        int distance;//Might not be distance
+        ubyte colorRed<bgcolor=0x0000CC,fgcolor=0x0000CC>;
+        ubyte colorGreen<bgcolor=0x00CC00,fgcolor=0x00CC00>;
+        ubyte colorBlue<bgcolor=0xFF9999,fgcolor=0xFF9999>;
+        ubyte alpha<bgcolor=0x99FFFF,fgcolor=0x99FFFF>;
+    };
+    if (hash == 1601192516){//cGUIFontFilterShadow
+        uint distance;
+        int rotation;
+        ubyte colorRed<bgcolor=0x0000CC,fgcolor=0x0000CC>;
+        ubyte colorGreen<bgcolor=0x00CC00,fgcolor=0x00CC00>;
+        ubyte colorBlue<bgcolor=0xFF9999,fgcolor=0xFF9999>;
+        ubyte alpha<bgcolor=0x99FFFF,fgcolor=0x99FFFF>;
+    };
+    
+}FontFilter<read=fontFilterRead>;
+
+typedef struct
+{   
+    FontFilter fontFilter[header.fontFilterNum]<optimize=false>;
+}FontFilterList<bgcolor=0x77ad30>;
+
+typedef struct 
+{
+    uint id;
+    short isRenderTarget;
+    short null0;//Always 0
+    uint null1;//Always 0
+    short texResX;
+    short texResY;
+    float clamp0;//Always 0
+    float clamp1;//Always 0
+    float clamp2;//Used values (Mostly 1.0) [0.5, 1.0, 2.0, 64.0, 0.0, 128.0, 4.0]
+    float clamp3;//Used values (Mostly 1.0) [0.5, 1.0, 0.125, 0.0, 4.0, 64.0, 2.0]
+    float invSizeX;// 1/texResX
+    float invSizeY;// 1/texResY
+    uint null2;//Always 0
+    uint textOffset;
+    local int currentPos0 = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char path[];
+    FSeek(currentPos0);
+    uint textOffset2;
+    local int currentPos1 = FTell();
+    FSeek(header.stringOffset+textOffset2);
+    char text[];
+    FSeek(currentPos1);
+    char null3[12];
+}Texture;
+
+typedef struct
+{
+    Texture texture[header.textureNum]<read=textureRead,optimize=false>;
+}TextureList<bgcolor=0xff6633>;
+
+
+
+
+typedef struct 
+{
+    uint id;
+    FlowTypeEnum type;
+    uint attr;
+    uint textOffset;
+    int flowProcessIndex;    
+    local int currentPos = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos);
+}Flow<read = flowRead>;
+
+typedef struct
+{
+    Flow flow[header.flowNum]<optimize=false>;
+}FlowList<bgcolor=0xAAAAAA>;
+
+
+typedef struct
+{
+    local uint index = (startof(this)-header.initParamOffset)/INITPARAM_SIZE;
+    uint func;//Always 0
+    ubyte type<bgcolor=0x00CC00>;
+    ubyte useParam;//bool, might indicate both data5 and animproperty usage
+    ushort null0;//Always 0
+    uint null1;//Always 0
+    uint textOffset;
+    local uint currentPos = FTell();
+    FSeek(header.stringOffset+textOffset);
+    string text;
+    FSeek(currentPos);
+    int setPropertiesOffset;
+    ReadDataType(type,setPropertiesOffset,1,text);
+    
+}InitParam<read=initParamRead>;
+
+typedef struct
+{
+    local uint index = (startof(this)-header.initParamOffset)/INITPARAM_SIZE;
+    ubyte type<bgcolor=0x00CC00>;
+    ubyte useParam;//bool, might indicate both data5 and animproperty usage
+    ushort null0;//Always 0
+    uint textOffset;
+    local uint currentPos = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos);
+    int setPropertiesOffset;
+    
+}InitParam2;//DEBUG
+
+typedef struct
+{   
+    InitParam initParam[header.initParamNum]<optimize=false>;
+}InitParamList<bgcolor=0x000000>;
+
+typedef struct{
+    ushort frame;
+    ubyte null0;//frame is 3 bytes
+    KeyModeEnum mode;
+    uint curveOffset;//unused in world
+}Key<read=keyRead>;
+
+typedef struct
+{   
+    Key key[header.keyNum]<optimize=false>;
+}KeyList<bgcolor=0x0000FF>;
+
+typedef struct
+{
+    local uint index = (startof(this)-header.paramOffset)/PARAM_SIZE;
+    uint func;//Always 0
+    ubyte type;
+    ubyte valueCount;
+    ushort null0;
+    uint parentID;//ID of parent object or instance
+    uint textOffset;
+    local int currentPos0<format=hex> = FTell();
+    FSeek(header.stringOffset+textOffset);
+    string text;
+    FSeek(currentPos0);
+    uint keyIndex;
+    
+    uint setPropertiesOffset;            
+    ReadDataType(type,setPropertiesOffset,valueCount,text);
+    local int currentPos1 = FTell();
+    FSeek(header.keyOffset+(keyIndex*KEY_SIZE));
+    struct
+    {
+        
+        Key key[valueCount]<bgcolor=0x3366ff>;
+    }keyframes;
+    FSeek(currentPos1);
+    
+    
+    
+}Param<read=paramRead>;
+
+typedef struct
+{
+    local uint index = (startof(this)-header.paramOffset)/PARAM_SIZE;
+    ubyte type;
+    ubyte valueCount;
+    ushort null0;
+    uint null1;
+    uint null2;
+    uint null3;
+    uint parentID;//ID of parent object or instance
+    uint null4;
+    uint textOffset;
+    local int currentPos0<format=hex> = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos0);
+    uint null5;
+    uint keyIndex;
+    uint null6;
+    
+    uint setPropertiesOffset;
+    uint null7;
+    
+    
+}Param2;//DEBUG 
+
+typedef struct
+{   
+    Param param[header.paramNum]<optimize=false>;
+}ParamList<bgcolor=0x336600>;//DEBUG 
+
+typedef struct
+{
+    int isLoop;//Only used once - online.gui
+    int totalFrame;
+    int ParamNum;
+    int paramStartIndex;
+    int actionNum;//Always 0
+    EndConditionEnum endConditionType;// [0, 2, 4]
+    int endConditionParam;// [0, 3, -1]
+    int flowIndex;// [2, 3, 4, 6, 7, -1] This might not be flow index
+    int actionIndex;//Always 0
+    local uint currentPos1 = FTell();
+    
+    FSeek(header.paramOffset+(paramStartIndex*PARAM_SIZE));
+    
+    if (ParamNum != 0)
+    
+    {
+        struct
+        {
+            SetForeColor(0xffffff);
+            Param param[ParamNum]<optimize=false,read=paramRead>;
+        }Params<bgcolor=0x336600>;
+    }
+    FSeek(currentPos1);
+}FlowProcess;
+
+typedef struct
+{
+    int isLoop;//Only used once - online.gui
+    int totalFrame;
+    int ParamNum;
+    int paramStartIndex;
+    int actionNum;//Always 0
+    EndConditionEnum endConditionType;// [0, 2, 4]
+    int endConditionParam;// [0, 3, -1]
+    int flowIndex;// [2, 3, 4, 6, 7, -1] This might not be flow index
+    int actionIndex;//Always 0
+}FlowProcess2;//DEBUG 
+
+typedef struct
+{
+       
+    FlowProcess flowProcess[header.flowProcessNum]<optimize=false>;
+}FlowProcessList<bgcolor=0xcb6bc9>;
+
+typedef struct
+{
+       
+    FlowProcess2 flowProcess[header.flowProcessNum]<optimize=false>;
+}FlowProcessList2<bgcolor=0xcb6bc9>;//DEBUG 
+
+typedef struct//Every animObject gets a blank anim property entry
+{
+    local uint index = (startof(this)-header.instanceOffset)/INSTANCE_SIZE;
+    uint id<bgcolor=0x330000>;
+    int attr;//Always 0
+    int passParentIndex<read=getInstanceName>;
+    int childIndex<read=getInstanceName>;
+    uint initParamNum;
+    uint textOffset;
+    local int currentPos0 = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos0);
+    GUIHashEnum hash<format=hex>;
+    int initParamStartIndex;
+    int extendDataOffset;//Theoretical, always -1, it should be an offset but MHW never uses hash data section with anim objects
+    if (extendDataOffset != -1)
+    {
+        //(hash,extendDataOffset);
+    }
+    local uint currentPos1 = FTell();
+    
+    FSeek(header.initParamOffset+(initParamStartIndex*INITPARAM_SIZE));
+    
+    if (initParamNum != 0)
+    
+    {
+        struct
+        {
+            InitParam initParam[initParamNum]<optimize=false,read=initParamRead>;
+        }initParameterList<bgcolor=0x00FF00>;
+    }
+    FSeek(header.paramOffset+(header.instanceParamEntryStartIndex * PARAM_SIZE)+(index*PARAM_SIZE));
+    Param instanceExeParam;
+    FSeek(currentPos1);
+    
+}Instance<read = instanceRead>;
+
+typedef struct//Every animObject gets a blank anim property entry
+{
+    local uint index = (startof(this)-header.instanceOffset)/INSTANCE_SIZE;
+    uint id<bgcolor=0x330000>;
+    int attr;//Always 0
+    int passParentIndex<read=getInstanceName>;
+    int childIndex<read=getInstanceName>;
+    uint initParamNum;
+    uint textOffset;
+    local int currentPos0 = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos0);
+    GUIHashEnum hash<format=hex>;
+    uint initParamStartIndex;
+    int extendDataOffset;//Theoretical, always -1, it should be an offset but MHW never uses hash data section with anim objects
+    local uint currentPos1 = FTell();
+    
+}Instance2;//DEBUG 
+typedef struct
+{   
+    Instance instance[header.instanceNum]<optimize=false>;
+}InstanceList<bgcolor=0x663300>;
+
+string readInstance2Debug(Instance2& i) {
+    string buf;
+    SPrintf(buf, "%s", i.text);
+    return buf;
+}
+
+typedef struct
+{   
+    Instance2 instance[header.instanceNum]<optimize=false,read=readInstance2Debug>;
+    
+}InstanceList2<bgcolor=0x663300>;//DEBUG 
+
+
+typedef struct
+{//Related to keyframe transitions
+    local uint index = (startof(this)-header.objSequenceOffset)/OBJSEQUENCE_SIZE;
+    short attr<bgcolor=0xDDDD00>;//flag 0 or 1
+    ubyte useInitParamNum;
+    ubyte useParamNum;    
+    short loopStart;
+    short frameCount;
+    uint initParamIndex;
+    uint paramIndex;
+    if (useInitParamNum >= 1)
+    {
+        local int currentPos = FTell();
+        FSeek(header.initParamOffset + initParamIndex * INITPARAM_SIZE);
+        SetForeColor(0xAAAAAA);
+        InitParam initParam[useInitParamNum]<optimize=false>;
+        FSeek(currentPos);
+    }
+    if (useParamNum >= 1)
+    {
+        local int currentPos2 = FTell();
+        FSeek(header.paramOffset + paramIndex * PARAM_SIZE);
+        SetForeColor(0xBBBBBB);
+        Param param[useParamNum]<optimize=false>;
+        FSeek(currentPos2);
+    }
+}ObjSequence<read=objSequenceRead,bgcolor=0xFFFF00>;
+
+typedef struct
+{//Related to keyframe transitions
+    local uint index = (startof(this)-header.objSequenceOffset)/OBJSEQUENCE_SIZE;
+    short attr<bgcolor=0xDDDD00>;//flag 0 or 1
+    ubyte useInitParamNum;
+    ubyte useParamNum;    
+    short loopStart;
+    short frameCount;
+    uint initParamIndex;
+    uint paramIndex;
+    Printf("%i I:%i\tP:%i\tL:%i\tF:%i\n",index,useInitParamNum,useParamNum,loopStart,frameCount);
+}ObjSequence2<bgcolor=0xFFFF00>;//DEBUG
+
+typedef struct
+{
+      
+    ObjSequence2 objSequence[header.objSequenceNum]<optimize=false>;
+}ObjSequenceList;
+
+typedef struct
+{
+    local uint index = (startof(this)-header.objectOffset)/SUB_OBJECT_SIZE;
+    uint id<bgcolor=0x0000CC>;    
+    ubyte initParamNum;
+    ubyte animateParamNum;
+    ushort null0;//Always 0        
+    int passParentIndex<read=getObjectName>;//Passes the parent of the current object to the object at index
+    int childIndex<read=getObjectName>;
+    uint textOffset;
+    local int currentPos0 = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos0);
+    GUIHashEnum objHash <format=hex>;
+    uint initParamStartIndex;
+    uint objSequenceIndex;
+    int extendDataOffset;
+    if (extendDataOffset != -1)
+    {
+        ReadHashData(objHash,extendDataOffset);
+    }
+
+    local uint currentPos1 = FTell();
+    FSeek(header.initParamOffset+(initParamStartIndex*INITPARAM_SIZE));
+    if (initParamNum != 0)
+    {
+        struct
+        {
+            InitParam initParam[initParamNum]<optimize=false>;
+        }initParameterList<bgcolor=0x00FF00>;
+    }
+    FSeek(header.objSequenceOffset+(objSequenceIndex*OBJSEQUENCE_SIZE));
+    struct
+    {
+        ObjSequence objSequence[parentof(parentof(parentof(this))).sequenceNum]<optimize=false>;
+    }objSequenceList;
+    FSeek(currentPos1);
+    //Printf("%i CI:%i\tNI:%i\t%s\n",index,childIndex,passParentIndex,text);
+}Object<read=objectRead>;
+
+typedef struct
+{
+    local uint index = (startof(this)-header.objectOffset)/SUB_OBJECT_SIZE;
+    uint id<bgcolor=0x0000CC>;    
+    ubyte initParamNum;
+    ubyte animateParamNum;
+    ushort null0;//Always 0        
+    int passParentIndex;//Passes the parent of the current object to the object at index
+    int childIndex;
+    uint textOffset;
+    local int currentPos0 = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos0);
+    GUIHashEnum objHash <format=hex>;
+    uint initParamStartIndex;
+    uint objSequenceIndex;
+    int extendDataOffset;
+    if (extendDataOffset != -1) {
+        ReadHashData(objHash, extendDataOffset);
+    }
+
+    //Printf("%i CI:%i\tNI:%i\t%s\n",index,childIndex,passParentIndex,text);
+}Object2;//DEBUG
+
+
+typedef struct
+{
+    uint id<bgcolor=0xDD0000>;
+    uint frameCount;  
+    uint textOffset;
+    local int currentPos = FTell();
+    FSeek(header.stringOffset+textOffset);
+    char text[];
+    FSeek(currentPos);
+}Sequence<read = sequenceRead>;
+
+typedef struct
+{
+    uint animationID<bgcolor=0xAA0011>;
+    short objectNum;  
+    short sequenceNum;
+    short drawableObjectNum;  
+    short animateParamNum;   
+    uint rootObjectIndex;
+    uint textOffset;
+    local int currentPos0 = FTell();
+    FSeek(header.stringOffset + textOffset);
+    char text[];
+    FSeek(currentPos0);
+    uint sequenceStartIndex;
+    local int currentPos1 = FTell();
+    FSeek(header.sequenceOffset + (sequenceStartIndex*SEQUENCE_SIZE));
+    struct
+    {
+        Sequence sequence[sequenceNum]<bgcolor=0xFF0000,optimize=false>;
+    }sequenceList;    
+    FSeek(header.objectOffset + (rootObjectIndex*SUB_OBJECT_SIZE));
+    struct
+    {
+        Object object[objectNum]<optimize=false>;
+    }objectList<bgcolor=0x0000FF>;
+    FSeek(currentPos1);
+    
+}Animation<read=animationRead>;
+
+typedef struct
+{
+    uint animationID<bgcolor=0xAA0011>;
+    short objectNum;  
+    short sequenceNum;
+    short drawableObjectNum;  
+    short animateParamNum;   
+    uint rootObjectIndex;
+    uint textOffset;
+    local int currentPos0 = FTell();
+    FSeek(header.stringOffset + textOffset);
+    char text[];
+    FSeek(currentPos0);
+    uint sequenceStartIndex; 
+    
+}Animation2;//DEBUG
+
+typedef struct
+{   
+    Animation animation[header.animationNum]<optimize=false>;
+}AnimationList<bgcolor=0xEE0044>;
+
+typedef struct//DEBUG
+{   
+    Animation2 animation[header.animationNum]<optimize=false>;
+}AnimationList2<bgcolor=0xEE0044>;
+
+typedef struct
+{   
+    Sequence sequence[header.sequenceNum]<optimize=false>;
+}SequenceList<bgcolor=0xEE0044>;
+
+string readObject2Debug(Object2& obj) {
+    string buf;
+    SPrintf(buf, "%s %s", EnumToString(obj.objHash), obj.text);
+    return buf;
+}
+
+typedef struct
+{   
+    Object2 object[header.objectNum]<optimize=false,read=readObject2Debug>;
+}ObjectList<bgcolor=0x0000FF>;//DEBUG
+typedef struct
+{//These are wrong
+    float x;
+    float y;
+    float z;
+    uint color;
+    float u;
+    float v;
+
+}Vertex;
+/*
+typedef struct
+{
+    Vertex vertex[header.vertexBufferSize/VERTEX_SIZE];
+}VertexBuffer<bgcolor=0xcc00cc>;
+*/
+//READ FUNCTIONS
+string animationRead(Animation& input)
+{
+    string s;
+    SPrintf(s, "%s - O: %i | B:%i | ID: %i ", input.text,input.objectNum,input.sequenceNum,input.animationID);
+    return s;
+};
+string sequenceRead(Sequence& input)
+{
+    string s;
+    SPrintf(s, "%s | ID: %i",input.text, input.id);
+    return s;
+};
+string objectRead(Object& input){
+    string s;
+    SPrintf(s, "IDX: %i  |    %s - %s - P: %i | CI: %s, PPI: %s",input.index, input.text,EnumToString(input.objHash),input.initParamNum,getObjectName(input.childIndex),getObjectName(input.passParentIndex));
+    return s;
+};
+string objSequenceRead(ObjSequence& input)
+{
+    string s;
+    local int startIndex = parentof(parentof(input)).objSequenceIndex;
+    local string sequenceName = parentof(parentof(parentof(parentof(input)))).sequenceList.sequence[input.index-startIndex].text;
+    local uint frameCount = parentof(parentof(parentof(parentof(input)))).sequenceList.sequence[input.index-startIndex].frameCount;
+    local string propList;
+    local int i;
+    if (input.useInitParamNum >= 1)
+    {
+        propList += "| Prop: ";
+        propList += input.initParam[0].text;
+        for(i=1;i<input.useInitParamNum;i++){   
+        propList += ", ";
+        propList  += input.initParam[i].text;
+        
+        }
+    }
+    if (input.useParamNum >= 1)
+    {
+        propList += "| Anim: ";
+        propList += input.param[0].text;
+        for(i=1;i<input.useParamNum;i++){   
+        propList += ", ";
+        propList  += input.param[i].text;
+        
+        }
+    }
+    SPrintf(s, "IDX: %i | %s | F: %i | %i, P: %i, AP: %i  %s",input.index, sequenceName,frameCount, input.initParamIndex,input.useInitParamNum,input.useParamNum,propList);
+   
+    return s;
+};
+string instanceRead(Instance& input){
+    string s;
+    SPrintf(s, "IDX: %i  |    %s - %s - P: %i | CI: %s, PPI: %s",input.index, input.text,EnumToString(input.hash),input.initParamNum,getInstanceName(input.childIndex),getInstanceName(input.passParentIndex));
+    return s;
+};
+string flowRead(Flow& input){
+    string s;
+    SPrintf(s, "%s - %i", input.text,input.id);
+    return s;
+};
+string fontFilterRead(FontFilter& input){
+    string s;
+    SPrintf(s, "ID: %i - %s",input.id, EnumToString(input.hash));
+    return s;
+};
+string generalResourceRead(GeneralResource& input){
+    string s;
+    SPrintf(s, "ID: %i - %s - %s",input.resourceid, EnumToString(input.hash),input.text);
+    return s;
+};
+string textureRead(Texture& input){
+    string s;
+    SPrintf(s, "ID: %i - %s - %s",input.id,input.text, input.path);
+    return s;
+};
+string guiResourceRead(GUIResource& input){
+    string s;
+    SPrintf(s, "ID: %i - %s",input.id, input.text);
+    return s;
+};
+string messageRead(Message& input){
+    string s;
+    SPrintf(s, "ID: %i - %s",input.id, input.text);
+    return s;
+};
+string getGUIResourceName (uint id)
+{
+    local int i;
+    if (id == -1)
+        return "SELF";
+    for(i=0;i<file.header.guiResourceNum;i++){   
+        if (file.guiResourceList.guiResource[i].id == id)
+            {
+                return file.guiResourceList.guiResource[i].text;
+            }
+    }
+return "ERROR: Resource not found from ID";
+};
+string getGeneralResourceName (uint id)
+{
+    local int i;
+    if (id == -1)
+        return "NULL";
+    for(i=0;i<file.header.generalResourceNum;i++){   
+    if (file.generalResourceList.generalResource[i].resourceid == id)
+        {
+            return file.generalResourceList.generalResource[i].text;
+        }
+    }
+    return "ERROR: EFX not found from ID";
+}
+string getTextureName (uint id)
+{
+    local int i;
+    if (id == -1)
+        return "NULL";
+    for(i=0;i<file.header.textureNum;i++){   
+    if (file.textureList.texture[i].id == id)
+        {
+            return file.textureList.texture[i].path;
+        }
+    }
+return "ERROR: Texture not found from ID";
+}
+string getAnimationName(uint id)
+{
+    local int i;
+    for(i=0;i<file.header.animationNum;i++){   
+    if (file.animationList.animation[i].animationID == id)
+        {
+            return file.animationList.animation[i].text;
+        }
+    }
+return "EXTERNAL";
+}
+
+string initParamRead(InitParam &v){
+ if (v.setPropertiesOffset == -1) {
+    string s;
+    SPrintf(s, "IDX: %i  |    %s    (No Value)", v.index, v.text);
+    return s;
+ }
+
+ switch (v.type)
+        {
+            case 1:{};//uint, bool
+            case 3:{};
+            case 8:{};            
+            case 14:{};
+            case 16:{};
+            case 17:{};
+            case 18:{
+                string s;
+                switch(v.text)
+                    {
+                        case "BlendState":
+                        case "SamplerState":
+                        case "Alignment":
+                        //case "ResolutionAdjust":
+                        case "AutoWrap":
+                        case "ColorControl":
+                        case "LetterHAlign":
+                        case "LetterVAlign":
+                        case "DepthState":  
+                        case "Billboard":
+                        case "DrawPass":
+                        case "Mask":
+                        {
+                            SPrintf(s, "IDX: %i  |    %s    VALUE: %s",v.index,v.text,EnumToString(v.values[0].VALUE));
+                        }break;    
+
+                        default:
+                        {
+                            SPrintf(s, "IDX: %i  |    %s    VALUE: %i",v.index,v.text,v.values[0].VALUE);
+                        }
+                    }
+                    
+                    
+                    return s;
+        };break;
+            case 20:{
+                    string s;
+                    SPrintf(s, "IDX: %i  |    %s    VALUE: %s",v.index,v.text,EnumToString(v.values[0].VALUE));
+                    return s;
+        };break;
+        
+        case 2:{//float
+                    string s;
+                    SPrintf(s, "IDX: %i  |    %s    VALUE: %.2f",v.index,v.text,v.values[0].VALUE);
+                    return s;
+        };break;
+        case 7:
+        {
+            if (exists(v.values[0].VALUE)){
+                string s;
+                SPrintf(s, "IDX: %i  |    %s %i %s",v.index,v.text,v.values[0].VALUE, getTextureName(v.values[0].VALUE));
+                return s;
+            }else{
+                return "Unknown Texture Value";
+            }
+        }; break;
+            
+        case 4:
+        {
+            if (exists(v.values[0].VALUE_X1)){
+                string s;
+                SPrintf(s, "IDX: %i  |    %s    VALUE X1: %.2f, Y1: %.2f, X2: %.2f, Y2: %.2f",v.index, v.text,v.values[0].VALUE_X1,v.values[0].VALUE_Y1,v.values[0].VALUE_X2,v.values[0].VALUE_Y2);
+                return s;
+            }
+        } break;
+        case 11:{
+                    string s;
+                    SPrintf(s, "IDX: %i  |    %s: %i %s",v.index,v.text, v.values[0].VALUE,getAnimationName(v.values[0].VALUE));
+                    return s;
+        };break;
+        case 13:{
+                    string s;
+                    SPrintf(s, "IDX: %i  |    %s: %i %s",v.index,v.text,v.values[0].VALUE,getGUIResourceName(v.values[0].VALUE));
+                    return s;
+        };break;
+        case 19:{
+                    string s;
+                    SPrintf(s, "IDX: %i  |    %s: %i %s",v.index,v.text,v.values[0].VALUE,getGeneralResourceName(v.values[0].VALUE));
+                    return s;
+        };break;
+        default: 
+            {
+                //string s;
+                //SPrintf(s, "%s    VALUE: %.2f",v.text,v.UNKVALUE);
+                return v.text;
+            }
+        
+    }
+}
+
+string paramRead(Param &v){
+
+     local int i;
+    local string propList;
+    local int j;
+    local string s;
+
+
+    propList = "";
+    switch (v.type) {
+    case 1: {}; //uint, bool
+    case 3: {};
+    case 8: {};
+    case 14: {};
+    case 16: {};
+    case 17: {};
+    case 18: {
+        
+        for (j = 0; j < v.valueCount; j++) {
+            SPrintf(s, "%i, ", v.values[j].VALUE);
+            propList += s;
+        }
+
+
+    };
+    break;
+    case 20: {
+        for (j = 0; j < v.valueCount; j++) {
+            s = EnumToString(v.values[j].value);
+            propList += s;
+        }
+
+
+
+    };
+    break;
+
+    case 2: { //float
+        for (j = 0; j < v.valueCount; j++) {
+            SPrintf(s, "%.2f, ", v.values[j].VALUE);
+            propList += s;
+        }
+
+
+    };
+    break;
+    case 7: {
+        if (exists(v.values[0].VALUE)) {
+            for (j = 0; j < v.valueCount; j++) {
+                s = getTextureName(v.values[j].VALUE);
+                propList += s;
+            }
+
+
+        } else {
+
+        }
+    };
+    break;
+
+    case 4: {
+        if (exists(v.values[0].VALUE_X1)) {
+            for (j = 0; j < v.valueCount; j++) {
+                SPrintf(s, "(%.2f,%.2f,%.2f,%.2f), ", v.values[j].VALUE_X1, v.values[j].VALUE_Y1, v.values[j].VALUE_X2, v.values[j].VALUE_Y2);
+                propList += s;
+            }
+
+
+
+        }
+    }
+    break;
+    case 11: {
+        for (j = 0; j < v.valueCount; j++) {
+            s = getAnimationName(v.values[j].VALUE);
+            propList += s;
+        }
+
+
+
+    };
+    break;
+    case 13: {
+        for (j = 0; j < v.valueCount; j++) {
+            s = getGUIResourceName(v.values[j].VALUE);
+            propList += s;
+        }
+
+
+    };
+    break;
+    case 19: {
+        for (j = 0; j < v.valueCount; j++) {
+            s = getGeneralResourceName(v.values[j].VALUE);
+            propList += s;
+        }
+
+
+    };
+    break;
+    default: {
+        //string s;
+        //SPrintf(s, "%s    VALUE: %.2f",v.text,v.UNKVALUE);
+
+    }
+
+    }
+    SPrintf(s,"IDX: %i  |    %s    |  C:%i  |  VALUE: %s", v.index, v.text,v.valueCount, propList);
+    return s;
+}
+
+string keyRead(Key& input){
+    string s;
+    SPrintf(s, "F: %i | %s",input.frame, EnumToString(input.mode));
+    return s;
+}
+
+////////////
+void printInitParamList(){//DEBUG
+local int i;
+        for(i=0;i<header.initParamNum;i++){
+            Printf("\n");
+     switch (file.initParamList.initParam[i].type)
+            {
+                case 1:{};//uint, bool
+                case 3:{};
+                case 8:{};            
+                case 14:{};
+                case 16:{};
+                case 17:{};
+                case 18:{
+             
+                        Printf("IDX: %i  |    %s    VALUE: %i",file.initParamList.initParam[i].index,file.initParamList.initParam[i].text,file.initParamList.initParam[i].values[0].VALUE);
+                      
+            };break;
+                case 20:{
+                       
+                        Printf("IDX: %i  |    %s    VALUE: %s",file.initParamList.initParam[i].index,file.initParamList.initParam[i].text,EnumToString(file.initParamList.initParam[i].values[0].VALUE));
+                       
+            };break;
+            
+            case 2:{//float
+                      
+                        Printf("IDX: %i  |    %s    VALUE: %.2f",file.initParamList.initParam[i].index,file.initParamList.initParam[i].text,file.initParamList.initParam[i].values[0].VALUE);
+                      
+            };break;
+            case 7:
+            {
+                if (exists(file.initParamList.initParam[i].values[0].VALUE)){
+                
+                    Printf("IDX: %i  |    %s %i %s",file.initParamList.initParam[i].index,file.initParamList.initParam[i].text,file.initParamList.initParam[i].values[0].VALUE, getTextureName(file.initParamList.initParam[i].values[0].VALUE));
+                
+                }else{
+                    
+                }
+            }; break;
+                
+            case 4:
+            {
+                if (exists(file.initParamList.initParam[i].values[0].VALUE_X1)){
+                    
+                    Printf("IDX: %i  |    %s    VALUE X1: %.2f, Y1: %.2f, X2: %.2f, Y2: %.2f",file.initParamList.initParam[i].index, file.initParamList.initParam[i].text,file.initParamList.initParam[i].values[0].VALUE_X1,file.initParamList.initParam[i].values[0].VALUE_Y1,file.initParamList.initParam[i].values[0].VALUE_X2,file.initParamList.initParam[i].values[0].VALUE_Y2);
+                   
+                }
+            } break;
+            case 11:{
+                       
+                        Printf("IDX: %i  |    %s: %i %s",file.initParamList.initParam[i].index,file.initParamList.initParam[i].text, file.initParamList.initParam[i].values[0].VALUE,getAnimationName(file.initParamList.initParam[i].values[0].VALUE));
+                        
+            };break;
+            case 13:{
+                        
+                        Printf("IDX: %i  |    %s: %i %s",file.initParamList.initParam[i].index,file.initParamList.initParam[i].text,file.initParamList.initParam[i].values[0].VALUE,getGUIResourceName(file.initParamList.initParam[i].values[0].VALUE));
+                       
+            };break;
+            case 19:{
+                 
+                        Printf("IDX: %i  |    %s: %i %s",file.initParamList.initParam[i].index,file.initParamList.initParam[i].text,file.initParamList.initParam[i].values[0].VALUE,getGeneralResourceName(file.initParamList.initParam[i].values[0].VALUE));
+                    
+            };break;
+            default: 
+                {
+                    //string s;
+                    //SPrintf(s, "%s    VALUE: %.2f",v.text,v.UNKVALUE);
+                    
+                }
+            
+        }
+    }
+}
+
+void printParamList() {//DEBUG
+    local int i;
+    local string propList;
+    local int j;
+    local string s;
+
+
+    for (i = 0; i < header.paramNum; i++) {
+        propList = "";
+        Printf("\n");
+        switch (file.paramList.param[i].type) {
+        case 1: {}; //uint, bool
+        case 3: {};
+        case 8: {};
+        case 14: {};
+        case 16: {};
+        case 17: {};
+        case 18: {
+            for (j = 0; j < file.paramList.param[i].valueCount; j++) {
+                SPrintf(s, "%i, ", file.paramList.param[i].values[j].VALUE);
+                propList += s;
+            }
+
+
+        };
+        break;
+        case 20: {
+            for (j = 0; j < file.paramList.param[i].valueCount; j++) {
+                s = EnumToString(file.paramList.param[i].values[j].value);
+                propList += s;
+            }
+
+
+
+        };
+        break;
+
+        case 2: { //float
+            for (j = 0; j < file.paramList.param[i].valueCount; j++) {
+                SPrintf(s, "%.2f, ", file.paramList.param[i].values[j].VALUE);
+                propList += s;
+            }
+
+
+        };
+        break;
+        case 7: {
+            if (exists(file.paramList.param[i].values[0].VALUE)) {
+                for (j = 0; j < file.paramList.param[i].valueCount; j++) {
+                    s = getTextureName(file.paramList.param[i].values[j].VALUE);
+                    propList += s;
+                }
+
+
+            } else {
+
+            }
+        };
+        break;
+
+        case 4: {
+            if (exists(file.paramList.param[i].values[0].VALUE_X1)) {
+                for (j = 0; j < file.paramList.param[i].valueCount; j++) {
+                    SPrintf(s, "(%.2f,%.2f,%.2f,%.2f), ", file.paramList.param[i].values[j].VALUE_X1, file.paramList.param[i].values[j].VALUE_Y1, file.paramList.param[i].values[j].VALUE_X2, file.paramList.param[i].values[j].VALUE_Y2);
+                    propList += s;
+                }
+
+
+
+            }
+        }
+        break;
+        case 11: {
+            for (j = 0; j < file.paramList.param[i].valueCount; j++) {
+                s = getAnimationName(file.paramList.param[i].values[j].VALUE);
+                propList += s;
+            }
+
+
+
+        };
+        break;
+        case 13: {
+            for (j = 0; j < file.paramList.param[i].valueCount; j++) {
+                s = getGUIResourceName(file.paramList.param[i].values[j].VALUE);
+                propList += s;
+            }
+
+
+        };
+        break;
+        case 19: {
+            for (j = 0; j < file.paramList.param[i].valueCount; j++) {
+                s = getGeneralResourceName(file.paramList.param[i].values[j].VALUE);
+                propList += s;
+            }
+
+
+        };
+        break;
+        default: {
+            //string s;
+            //SPrintf(s, "%s    VALUE: %.2f",v.text,v.UNKVALUE);
+
+        }
+
+        }
+        Printf("IDX: %i  |    %s    |  C:%i  |  VALUE: %s", file.paramList.param[i].index, file.paramList.param[i].text,file.paramList.param[i].valueCount, propList);
+    }
+
+}
+
+
+////////////
+typedef struct
+{
+    Header header;
+
+    if (!DEBUG_MODE)
+    {
+    
+        /*
+        if (header.initParamNum != 0)
+        {
+            FSeek(header.initParamOffset);
+            InitParamList initParamList;
+        }
+        // */
+        if (header.animationNum != 0)
+        {
+            FSeek(header.animationOffset);
+            AnimationList animationList;
+        }
+        /*
+        if (header.objSequenceNum != 0)
+        {
+            FSeek(header.objSequenceOffset);
+            ObjSequenceList objSequenceList;
+        }
+        /*
+        /*  
+        if (header.paramNum != 0)
+        {
+            FSeek(header.paramOffset);
+            ParamList paramList;
+        }
+        */
+        
+        if (header.instanceNum != 0)
+        {
+            FSeek(header.instanceOffset);
+            InstanceList instanceList;
+        }  
+        if (header.flowNum != 0)
+        {
+            FSeek(header.flowOffset);
+            FlowList flowList;
+        }   
+        if (header.flowProcessNum != 0)
+        {
+            FSeek(header.flowProcessOffset);
+            FlowProcessList flowProcessList;
+        }
+        if (header.textureNum != 0)
+        {
+            FSeek(header.textureOffset);
+            TextureList textureList;
+        }    
+        if (header.fontFilterNum != 0)
+        {
+            FSeek(header.fontFilterOffset);
+            FontFilterList fontFilterList;
+        }
+        if (header.messageNum != 0)//Experimental, unused in world
+        {
+            FSeek(header.messageOffset);
+            MessageList messageList;
+        }    
+        if (header.guiResourceNum != 0)
+        {
+            FSeek(header.guiResourceOffset);
+            GUIResourceList guiResourceList;
+        }
+        if (header.generalResourceNum != 0)
+        {
+            FSeek(header.generalResourceOffset);
+            GeneralResourceList generalResourceList;
+        }
+    /*
+        if (header.vertexBufferSize != 0)
+        {
+            FSeek(header.vertexOffset);
+            VertexBuffer vertexBuffer;
+        }
+    */
+    }
+    else
+    {
+        FSeek(header.animationOffset);
+        AnimationList2 animationList;
+        FSeek(header.sequenceOffset);
+        SequenceList sequenceList;
+        FSeek(header.objectOffset);
+        ObjectList objectList;
+        FSeek(header.objSequenceOffset);
+        ObjSequenceList objSequenceList;
+        FSeek(header.initParamOffset);
+        InitParamList initParamList;
+
+
+        FSeek(header.paramOffset);
+        ParamList paramList;
+        FSeek(header.instanceOffset);
+        InstanceList2 instanceList;
+        FSeek(header.flowOffset);
+        FlowList flowList;
+        FSeek(header.flowProcessOffset);
+        FlowProcessList2 flowProcessList;
+        FSeek(header.textureOffset);
+        TextureList textureList;
+        FSeek(header.fontFilterOffset);
+        FontFilterList fontFilterList;
+        FSeek(header.messageOffset);
+        MessageList messageList;
+        FSeek(header.guiResourceOffset);
+        GUIResourceList guiResourceList;
+        FSeek(header.generalResourceOffset);
+        GeneralResourceList generalResourceList;
+        FSeek(header.keyOffset);
+        KeyList keyList;
+        OutputPaneClear();
+        //printInitParamList();
+        //printParamList();
+        
+    }
+
+}rGUI;
+
+rGUI file;
+
+Printf("\nTemplate finished executing.\n");
