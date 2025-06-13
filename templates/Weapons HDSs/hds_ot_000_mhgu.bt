@@ -1,0 +1,99 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: hitdata
+//   Authors: Fexty, Poto, Handburger
+//   Version: 1.1
+//   Purpose: 
+//  Entry Size: 56
+// File Mask: .4EB68CEE / .hds
+//  ID Bytes: 48 44 53 00
+//   History: 2025-05-31 made a copy of the hdt file to use as a base for this one.
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    uint version<format=hex>;
+    int count;
+    FSkip(4);
+} HDSHeader;
+
+typedef struct {
+    int16 FramesBeforeHitbox<bgcolor=0xffffff>;   
+    int16 FramesHitboxActive<bgcolor=0xd45f5f>;                
+    int16 MotionValue<bgcolor=0xd62b2b>;              
+    byte Knockback<bgcolor=0xd65e2b>;
+    byte Unused1;                           
+    byte Unk1<bgcolor=0xd6942b>;     
+    byte Unused2[2];                           
+    byte Unk2<bgcolor=0xd6cb2b>;
+    byte Unk3<bgcolor=0xabdb25>;
+    byte Unk4<bgcolor=0x65db25>;            
+    byte HunterArtFlag<bgcolor=0x25db92>;                          
+    byte Unk5<bgcolor=0x25dbcc>;                                   
+    int32 AilmentType<bgcolor=0x25b1db>;
+    byte Unused3[4];
+    byte AilmentDamage<bgcolor=0x1d7ad1>;                             
+    byte Unk6<bgcolor=0x0837a3>;              
+    byte Unk7<bgcolor=0x573fab>;
+    byte Unused4;
+    byte Unk8<bgcolor=0x8f0ced>;
+    byte KO<bgcolor=0xb004d6>;
+    byte Unk9<bgcolor=0x9e089c>;
+    byte Unused5[2];
+    byte WeaponGaugeGen<bgcolor=0xd408a1>;
+    byte Unused6;
+    byte Exhaust<bgcolor=0xa30557>;
+    byte Unused7[2];
+    int16 HunterArtGen<bgcolor=0xbd0820>;                             
+    float StaggerMod<bgcolor=0x964206>;                              
+    byte Unk10<bgcolor=0x917c0f>;
+    byte Unused8;
+    int16 AlchemyGauge<bgcolor=0x8cad05>;
+    int16 ValorGauge<bgcolor=0x79c20c>;
+    byte Unused9[6];
+} HitData<read=Str("MV:%d, Stagger Mod: %.1f KO/Exh: %d/%d Gauge Gen: %d/%d/%d/%d", 
+    this.MotionValue, 
+    this.StaggerMod,
+    this.KO, this.Exhaust,
+    this.HunterArtGen, this.AlchemyGauge, this.ValorGauge, this.WeaponGaugeGen)>;
+
+HDSHeader header;
+HitData Attack<name="Slash Boomerang 1 ">;
+HitData Attack<name="Slash Boomerang 2  ">; 
+HitData Attack<name="Slash Boomerang 3  ">; 
+HitData Attack<name="Blunt Boomerang 1 ">; 
+HitData Attack<name="Blunt Boomerang 2  ">; 
+HitData Attack<name="Blunt Boomerang 3  ">; 
+HitData Attack<name="Slash Big Boomerang 1  ">; 
+HitData Attack<name="Slash Big Boomerang 2 ">; 
+HitData Attack<name="Slash Big Boomerang 3  ">; 
+HitData Attack<name="Blunt Big Boomerang 1  ">; 
+HitData Attack<name="Blunt Big Boomerang 2 ">; 
+HitData Attack<name="Blunt Big Boomerang 3  ">; 
+HitData Attack<name="Slash Piercing Boomerang 1  ">; 
+HitData Attack<name="Slash Piercing Boomerang 2  ">; 
+HitData Attack<name="Slash Piercing Boomerang 3  ">; 
+HitData Attack<name="Blunt Piercing Boomerang 1  ">; 
+HitData Attack<name="Blunt Piercing Boomerang 2  ">; 
+HitData Attack<name="Blunt Piercing Boomerang 3  ">; 
+HitData Attack<name="Slash Big Piercing Boomerang 1  ">; 
+HitData Attack<name="Slash Big Piercing Boomerang 2 ">; 
+HitData Attack<name="Slash Big Piercing Boomerang 3  ">; 
+HitData Attack<name="Blunt Big Piercing Boomerang 1  ">; 
+HitData Attack<name="Blunt Big Piercing Boomerang 2 ">; 
+HitData Attack<name="Blunt Big Piercing Boomerang 3  ">; 
+HitData Attack<name="Slash Piercing Boomerang 1 (Multi Hit) ">; 
+HitData Attack<name="Slash Piercing Boomerang 2 (Multi Hit) ">; 
+HitData Attack<name="Slash Piercing Boomerang 3 (Multi Hit) ">; 
+HitData Attack<name="Blunt Piercing Boomerang 1 (Multi Hit) ">; 
+HitData Attack<name="Blunt Piercing Boomerang 2 (Multi Hit) ">; 
+HitData Attack<name="Blunt Piercing Boomerang 3 (Multi Hit) ">; 
+HitData Attack<name="Slash Big Piercing Boomerang 1 (Multi Hit) ">; 
+HitData Attack<name="Slash Big Piercing Boomerang  2(Multi Hit) ">; 
+HitData Attack<name="Slash Big Piercing Boomerang 3 (Multi Hit) ">; 
+HitData Attack<name="Blunt Big Piercing Boomerang 1 (Multi Hit) ">; 
+HitData Attack<name="Blunt Big Piercing Boomerang 2( Multi Hit) ">; 
+HitData Attack<name="Blunt Big Piercing Boomerang 3 (Multi Hit) ">; 
+HitData Attack<name=" ">; 

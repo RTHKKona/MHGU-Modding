@@ -1,0 +1,181 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: hitdata
+//   Authors: Fexty, Poto, Handburger
+//   Version: 1.2
+//   Purpose: For editing player move data
+//  Category: 
+// File Mask: .4E2EF008 / .hdp
+//  ID Bytes: 48 44 50 00
+//   History: 2025-30-05 Handburger - I edited the HitData struct to be a little more detailed for hitbox,
+// and attempted to make sense of the unk values throughout with Poto's help.
+//            2025-31-05 Poto - Added bgcolors to each important byte for visibility
+//            2025-12-06 Poto - Added names for the attacks so you don't have to look at the spreadsheet
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    uint version<format=hex>;
+    int count;
+    FSkip(4);
+} HDPHeader;
+
+typedef struct {
+    // The number of the data point correlates to Poto's MV ID sheet
+    int16 FramesBeforeHitbox<bgcolor=0xffffff>;    // Number of frames before hitbox
+    int16 FramesHitboxActive<bgcolor=0xd45f5f>;    // Hitbox duration (was hitboxId)
+    int16 MotionValue<bgcolor=0xd62b2b>;           // MV
+    byte unused1;
+    byte unk1<bgcolor=0xd65e2b>;                           
+    byte Knockback<bgcolor=0xd6942b>;              // Knockback (1=low, 2=knockdown, 3=knockup (23/24 or any other high value seems to be for aerial attacks))
+    byte unk2<bgcolor=0xd6cb2b>;
+    byte unk3<bgcolor=0xabdb25>;
+    byte unused2;
+    byte DamageType<bgcolor=0x65db25>;             // 1=blunt,2=sever
+    byte unused3;
+    byte HunterArtFlag<bgcolor=0x25db92>;          // 0=regular,1=hunter art
+    byte unused4;
+    byte unk4<bgcolor=0x25dbcc>;                   // Lots of variation between all weapons (LS-46, DB-3, HH-mostly 2, Hamm-2,Lance-3;8;9, GL-3;8, CB-2;3)
+    byte unused5[15];
+    byte unk5<bgcolor=0x25b1db>;
+    byte unk6<bgcolor=0x1d7ad1>;                   // -> 0 for sever; 2 for blunt(with the exception of GS sideslap with 3)
+    byte KO<bgcolor=0x0837a3>;                     // changed from ubyte
+    byte unk7<bgcolor=0x573fab>;
+    byte unk8<bgcolor=0x8f0ced>;
+    byte unk9<bgcolor=0xb004d6>;
+    byte WeaponGaugeGen<bgcolor=0x9e089c>;
+    byte Exhaust<bgcolor=0xd408a1>;                // Exhaust
+    float AilmentMod<bgcolor=0xa30557>;            // Ailment Float
+    float StaggerMod<bgcolor=0xbd0820>;            // Part Stagger Float
+    int16 HunterArtGen<bgcolor=0x964206>;
+    int16 Mount<bgcolor=0x917c0f>;                 // Mount
+    int16 AlchemyGauge<bgcolor=0x8cad05>;
+    int16 ValorGauge<bgcolor=0x79c20c>;
+} HitData<read=Str("MV:%d, Modifiers: %.1f/%.1f KO/Exh: %d/%d Gauge Gen: %d/%d/%d/%d", 
+    this.MotionValue, 
+    this.AilmentMod, this.StaggerMod,
+    this.KO, this.Exhaust,
+    this.HunterArtGen, this.AlchemyGauge, this.ValorGauge, this.WeaponGaugeGen)>;
+
+HDPHeader header;
+HitData Attack<name="Dummy ">;
+HitData Attack<name="Axe: Overhead Slash ">; 
+HitData Attack<name="Axe: Side Slash ">; 
+HitData Attack<name="Axe: Upward Slash ">; 
+HitData Attack<name="Axe: Forward Thrust ">; 
+HitData Attack<name="Axe: Left Wild Swing (1st Hit) ">; 
+HitData Attack<name="Axe: Right Wild Swing (1st Hit) ">; 
+HitData Attack<name="Axe: Left Wild Swing (Repeated Hits) ">; 
+HitData Attack<name="Axe: Right Wild Swing (Repeated Hits) ">; 
+HitData Attack<name="Sword: Overhead Slash/Axe: Morph Slash ">; 
+HitData Attack<name="Sword: Upward Slash ">; 
+HitData Attack<name="Sword: Elemental Discharge Thrust ">; 
+HitData Attack<name="Sword: Adept Double Upswing (1st Hit) ">; 
+HitData Attack<name="Sword: Adept Double Upswing (2nd Hit) ">; 
+HitData Attack<name="Sword: Elemental Discharge Ticks ">; 
+HitData Attack<name="Sword: Side Slash ">; 
+HitData Attack<name="Sword: Double Slash (1st Hit) ">; 
+HitData Attack<name="Sword: Double Slash (2nd Hit) ">; 
+HitData Attack<name="Axe: Jumping Slash ">; 
+HitData Attack<name="Sword: Jumping Downward Slash ">; 
+HitData Attack<name="Axe: Wild Sweep (1st Hit) ">; 
+HitData Attack<name="Axe: Wild Sweep (2nd Hit) ">; 
+HitData Attack<name="Axe: Wild Sweep (3rd Hit) ">; 
+HitData Attack<name="Sword: Aerial Elemental Discharge Thrust ">; 
+HitData Attack<name="Trance Slash I (Finisher, Power) ">; 
+HitData Attack<name="Trance Slash II (Finisher, Power) ">; 
+HitData Attack<name="Trance Slash III (Finisher, Power) ">; 
+HitData Attack<name="Trance Slash I (Demon Riot Finisher 2nd Hit, Power) ">; 
+HitData Attack<name="Trance Slash II (Demon Riot Finisher 2nd Hit, Power) ">; 
+HitData Attack<name="Trance Slash III (Demon Riot Finisher 2nd Hit, Power) ">; 
+HitData Attack<name="Axe: Side Slash Variant ">; 
+HitData Attack<name="Sword: Elemental Discharge Finisher (Power) ">; 
+HitData Attack<name="Sword: Finishing Discharge (Power) ">; 
+HitData Attack<name="Sword: Aerial Upslash ">; 
+HitData Attack<name="Enegy Charge I ">; 
+HitData Attack<name="Enegy Charge II ">; 
+HitData Attack<name="Enegy Charge III ">; 
+HitData Attack<name="Axe: Heavy Slam (1st Hit) ">; 
+HitData Attack<name="Axe: Heavy Slam (2nd Hit) ">; 
+HitData Attack<name="Sword: Jumping Downward Slash Variant ">; 
+HitData Attack<name="Trance Slash I (1st Hit) ">; 
+HitData Attack<name="Trance Slash II (1st Hit) ">; 
+HitData Attack<name="Trance Slash III (1st Hit) ">; 
+HitData Attack<name="Trance Slash I (2nd Hit) ">; 
+HitData Attack<name="Trance Slash II (2nd Hit) ">; 
+HitData Attack<name="Trance Slash III (2nd Hit) ">; 
+HitData Attack<name="Trance Slash I (3rd Hit) ">; 
+HitData Attack<name="Trance Slash II (3rd Hit) ">; 
+HitData Attack<name="Trance Slash III (3rd Hit) ">; 
+HitData Attack<name="Trance Slash I (4th Hit) ">; 
+HitData Attack<name="Trance Slash II (4th Hit) ">; 
+HitData Attack<name="Trance Slash III (4th Hit) ">; 
+HitData Attack<name="Trance Slash I (5th Hit) ">; 
+HitData Attack<name="Trance Slash II (5th Hit) ">; 
+HitData Attack<name="Trance Slash III (5th Hit) ">; 
+HitData Attack<name="Trance Slash I (6th Hit) ">; 
+HitData Attack<name="Trance Slash II (6th Hit) ">; 
+HitData Attack<name="Trance Slash III (6th Hit) ">; 
+HitData Attack<name="Trance Slash I (ED Ticks) ">; 
+HitData Attack<name="Trance Slash II (ED Ticks) ">; 
+HitData Attack<name="Trance Slash III (ED Ticks) ">; 
+HitData Attack<name="Trance Slash I (Demon Riot Finisher 1st Hit) ">; 
+HitData Attack<name="Trance Slash II (Demon Riot Finisher 1st Hit) ">; 
+HitData Attack<name="Trance Slash III (Demon Riot Finisher 1st Hit) ">; 
+HitData Attack<name="Axe: Valor Morph Wild Swing (1st Hit) ">; 
+HitData Attack<name="Axe: Valor Morph Wild Swing (2nd Hit) ">; 
+HitData Attack<name="Axe: Valor Morph Wild Swing (3rd Hit) ">; 
+HitData Attack<name="Axe. Valor Sheath Morph Wild Swing (1st Hit) ">; 
+HitData Attack<name="Sword: Alchemy Reload? ">; 
+HitData Attack<name="Axe: Valor Sheath Wild Sweep (1st Hit) ">; 
+HitData Attack<name="Axe: Valor Sheath Wild Sweep (2nd Hit) ">; 
+HitData Attack<name="Axe: Valor Sheath Wild Sweep (3rd Hit) ">; 
+HitData Attack<name="Axe: Valor Sheath Morph Slash ">; 
+HitData Attack<name="Sword: Valor Sheath Upward Slash ">; 
+HitData Attack<name="Sword:Valor Sheath Double Slash (1st Hit) ">; 
+HitData Attack<name="Sword: Valor Sheath Double Slash (2nd Hit) ">; 
+HitData Attack<name="Sword: Valor Sheath Morph Slash  ">; 
+HitData Attack<name="Sword: Valor State Double Slash (1st Hit)? ">; 
+HitData Attack<name="Sword: Valor State Double Slash (2nd Hit)? ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Trance Slash I/II/II (Tempest Axe 1st Hit) ">; 
+HitData Attack<name="Trance Slash I/II/II (Tempest Axe 2nd Hit) ">; 
+HitData Attack<name="Trance Slash I/II/II (Tempest Axe 3rd Hit) ">; 
+HitData Attack<name="Trance Slash I/II/II (Tempest Axe 4th Hit) ">; 
+HitData Attack<name="Trance Slash I/II/II (Tempest Axe 5th Hit) ">; 
+HitData Attack<name="Sword: Valor Double Discharge (1st Hit, Power) ">; 
+HitData Attack<name="Sword: Valor Double Discharge (2nd Hit, Power) ">; 
+HitData Attack<name="Tempest Axe I/II/III (1st Hit) ">; 
+HitData Attack<name="Tempest Axe I/II/III (2nd Hit) ">; 
+HitData Attack<name="Axe: Valor State Overhead Slash ">; 
+HitData Attack<name="Axe: Valor State Upswing ">; 
+HitData Attack<name="Sword: Elemental Discharge Finisher (Ailment) ">; 
+HitData Attack<name="Sword: Elemental Discharge Finisher (Exhaust) ">; 
+HitData Attack<name="Sword: Finishing Discharge (Ailment) ">; 
+HitData Attack<name="Sword: Finishing Discharge (Exhaust) ">; 
+HitData Attack<name="Sword: Valor Double Discharge (1st Hit, Ailment) ">; 
+HitData Attack<name="Sword: Valor Double Discharge (1st Hit, Exhaust) ">; 
+HitData Attack<name="Sword: Valor Double Discharge (2nd Hit, Ailment) ">; 
+HitData Attack<name="Sword: Valor Double Discharge (2nd Hit, Exhaust) ">; 
+HitData Attack<name="Trance Slash I (Finisher, Ailment) ">; 
+HitData Attack<name="Trance Slash I (Finisher, Exhaust) ">; 
+HitData Attack<name="Trance Slash II (Finisher, Ailment) ">; 
+HitData Attack<name="Trance Slash II (Finisher, Exhaust) ">; 
+HitData Attack<name="Trance Slash III (Finisher, Ailment) ">; 
+HitData Attack<name="Trance Slash III (Finisher, Exhaust) ">; 
+HitData Attack<name="Trance Slash I (Demon Riot Finisher 2nd Hit, Ailment) ">; 
+HitData Attack<name="Trance Slash I (Demon Riot Finisher 2nd Hit, Exhaust) ">; 
+HitData Attack<name="Trance Slash II (Demon Riot Finisher 2nd Hit, Ailment) ">; 
+HitData Attack<name="Trance Slash II (Demon Riot Finisher 2nd Hit, Exhaust) ">; 
+HitData Attack<name="Trance Slash III (Demon Riot Finisher 2nd Hit, Ailment) ">; 
+HitData Attack<name="Trance Slash III (Demon Riot Finisher 2nd Hit, Exhaust) ">; 
+HitData Attack<name="Sword: Valor State Dodge Double Slash (1st Hit) ">; 
+HitData Attack<name="Sword: Valor State Dodge Double Slash (2nd Hit) ">; 
+HitData Attack<name="Axe: Upswing Variant ">; 
+
+float framesToSeconds(byte frames) {
+    return (float)frames / 30.0f;
+}

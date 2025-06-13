@@ -1,0 +1,102 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: hitdata
+//   Authors: Fexty, Poto, Handburger
+//   Version: 1.2
+//   Purpose: For editing player move data
+//  Category: 
+// File Mask: .4E2EF008 / .hdp
+//  ID Bytes: 48 44 50 00
+//   History: 2025-30-05 Handburger - I edited the HitData struct to be a little more detailed for hitbox,
+// and attempted to make sense of the unk values throughout with Poto's help.
+//            2025-31-05 Poto - Added bgcolors to each important byte for visibility
+//            2025-12-06 Poto - Added names for the attacks so you don't have to look at the spreadsheet
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    uint version<format=hex>;
+    int count;
+    FSkip(4);
+} HDPHeader;
+
+typedef struct {
+    // The number of the data point correlates to Poto's MV ID sheet
+    int16 FramesBeforeHitbox<bgcolor=0xffffff>;    // Number of frames before hitbox
+    int16 FramesHitboxActive<bgcolor=0xd45f5f>;    // Hitbox duration (was hitboxId)
+    int16 MotionValue<bgcolor=0xd62b2b>;           // MV
+    byte unused1;
+    byte unk1<bgcolor=0xd65e2b>;                           
+    byte Knockback<bgcolor=0xd6942b>;              // Knockback (1=low, 2=knockdown, 3=knockup (23/24 or any other high value seems to be for aerial attacks))
+    byte unk2<bgcolor=0xd6cb2b>;
+    byte unk3<bgcolor=0xabdb25>;
+    byte unused2;
+    byte DamageType<bgcolor=0x65db25>;             // 1=blunt,2=sever
+    byte unused3;
+    byte HunterArtFlag<bgcolor=0x25db92>;          // 0=regular,1=hunter art
+    byte unused4;
+    byte unk4<bgcolor=0x25dbcc>;                   // Lots of variation between all weapons (LS-46, DB-3, HH-mostly 2, Hamm-2,Lance-3;8;9, GL-3;8, CB-2;3)
+    byte unused5[15];
+    byte unk5<bgcolor=0x25b1db>;
+    byte unk6<bgcolor=0x1d7ad1>;                   // -> 0 for sever; 2 for blunt(with the exception of GS sideslap with 3)
+    byte KO<bgcolor=0x0837a3>;                     // changed from ubyte
+    byte unk7<bgcolor=0x573fab>;
+    byte unk8<bgcolor=0x8f0ced>;
+    byte unk9<bgcolor=0xb004d6>;
+    byte WeaponGaugeGen<bgcolor=0x9e089c>;
+    byte Exhaust<bgcolor=0xd408a1>;                // Exhaust
+    float AilmentMod<bgcolor=0xa30557>;            // Ailment Float
+    float StaggerMod<bgcolor=0xbd0820>;            // Part Stagger Float
+    int16 HunterArtGen<bgcolor=0x964206>;
+    int16 Mount<bgcolor=0x917c0f>;                 // Mount
+    int16 AlchemyGauge<bgcolor=0x8cad05>;
+    int16 ValorGauge<bgcolor=0x79c20c>;
+} HitData<read=Str("MV:%d, Modifiers: %.1f/%.1f KO/Exh: %d/%d Gauge Gen: %d/%d/%d/%d", 
+    this.MotionValue, 
+    this.AilmentMod, this.StaggerMod,
+    this.KO, this.Exhaust,
+    this.HunterArtGen, this.AlchemyGauge, this.ValorGauge, this.WeaponGaugeGen)>;
+
+HDPHeader header;
+HitData Attack<name="Dummy ">;
+HitData Attack<name="Mid Thrust I/II ">; 
+HitData Attack<name="Draw Thrust? ">; 
+HitData Attack<name="Mid Thrust III ">; 
+HitData Attack<name="High Thrust I/II ">; 
+HitData Attack<name="High Thrust III ">; 
+HitData Attack<name="Guard Thrust ">; 
+HitData Attack<name="Dash Attack ">; 
+HitData Attack<name="Finishing Thrust ">; 
+HitData Attack<name="Jumping Thrust ">; 
+HitData Attack<name="Jumping Dash Attack? ">; 
+HitData Attack<name="Jumpin Finishing Thrust ">; 
+HitData Attack<name="Charged Counter Thrust ">; 
+HitData Attack<name="Wide Sweep ">; 
+HitData Attack<name="Shield Bash ">; 
+HitData Attack<name="Dash Attack variant? ">; 
+HitData Attack<name="Reverse Finishing Sweep ">; 
+HitData Attack<name="Triple Mid Thrust ">; 
+HitData Attack<name="Triple High Thrust ">; 
+HitData Attack<name="Striker Finishing Thrust ">; 
+HitData Attack<name="Aerial Triple Thrust ">; 
+HitData Attack<name="Shield Assault (1st Shield Hit) ">; 
+HitData Attack<name="Adept Counter Swipes (1st Hit) ">; 
+HitData Attack<name="Adept Counter Swipes (2nd Hit) ">; 
+HitData Attack<name="Shield Assault (Lance Finisher Hit) ">; 
+HitData Attack<name="Shield Assault (Shield Finisher Hit) ">; 
+HitData Attack<name="Shield Assault (Shield Multi Hit) ">; 
+HitData Attack<name="Corkscrew Jab I ">; 
+HitData Attack<name="Corkscrew Jab II ">; 
+HitData Attack<name="Corkscrew Jab III ">; 
+HitData Attack<name="Valor Shield Bash ">; 
+HitData Attack<name="Valor Sheath Double Swipe (1st Hit) ">; 
+HitData Attack<name="Valor Sheath Double Swipe (2nd Hit) ">; 
+HitData Attack<name="Valor Sheath Finishing Thrust ">; 
+HitData Attack<name="Valor Sheath Reverse Sweep ">; 
+HitData Attack<name="Valor Sheath Jumping Finishing Thrust ">; 
+
+float framesToSeconds(byte frames) {
+    return (float)frames / 30.0f;
+}

@@ -1,0 +1,215 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: hitdata
+//   Authors: Fexty, Poto, Handburger
+//   Version: 1.1
+//   Purpose: 
+//  Entry Size: 56
+// File Mask: .4EB68CEE / .hds
+//  ID Bytes: 48 44 53 00
+//   History: 2025-05-31 made a copy of the hdt file to use as a base for this one.
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    uint version<format=hex>;
+    int count;
+    FSkip(4);
+} HDSHeader;
+
+string GetAilmentIDType(int id) {
+    switch (id) {
+case 0: return "None";
+case 1: return "Sleep";
+case 2: return "Poison";
+case 3: return "Sleep+Poison";
+case 4: return "Para";
+case 5: return "Para+Sleep";
+case 6: return "Para+Poison";
+case 7: return "Para+Poison+Sleep";
+case 8: return "Tranq";
+case 9: return "Sleep+Tranq";
+case 10: return "Poison+Tranq";
+case 11: return "Sleep+Poison+Tranq";
+case 12: return "Para+Tranq";
+case 13: return "Sleep+Para+Tranq";
+case 14: return "Para+Poison+Tranq";
+case 15: return "Sleep+Poison+Para+Tranq";
+case 16: return "Fire";
+case 32: return "Water";
+case 64: return "Thunder";
+case 128: return "Dragon";
+case 512: return "Ice";
+case 131072: return "Blast";
+default: return ""; 
+    }
+}
+
+typedef struct {
+    int16 FramesBeforeHitbox<bgcolor=0xffffff>;   
+    int16 FramesHitboxActive<bgcolor=0xd45f5f>;                
+    int16 FixedDamage<bgcolor=0xd62b2b>;              
+    byte Knockback<bgcolor=0xd65e2b>;
+    byte Unused1;                           
+    byte Unk1<bgcolor=0xd6942b>;     
+    byte Unused2[2];                           
+    byte Unk2<bgcolor=0xd6cb2b>;
+    byte Unk3<bgcolor=0xabdb25>;
+    byte Unk4<bgcolor=0x65db25>;            
+    byte HunterArtFlag<bgcolor=0x25db92>;                          
+    byte Unk5<bgcolor=0x25dbcc>;                                   
+    int32 AilmentType<bgcolor=0x25b1db>;
+    byte Unused3[4];
+    byte AilmentDamage<bgcolor=0x1d7ad1>;                             
+    byte Unk6<bgcolor=0x0837a3>;              
+    byte Unk7<bgcolor=0x573fab>;
+    byte Unused4;
+    byte Unk8<bgcolor=0x8f0ced>;
+    byte KO<bgcolor=0xb004d6>;
+    byte Unk9<bgcolor=0x9e089c>;
+    byte Unused5[2];
+    byte WeaponGaugeGen<bgcolor=0xd408a1>;
+    byte Unused6;
+    byte Exhaust<bgcolor=0xa30557>;
+    byte Unused7[2];
+    int16 HunterArtGen<bgcolor=0xbd0820>;                             
+    float StaggerMod<bgcolor=0x964206>;                              
+    byte Unk10<bgcolor=0x917c0f>;
+    byte Unused8;
+    int16 AlchemyGauge<bgcolor=0x8cad05>;
+    int16 ValorGauge<bgcolor=0x79c20c>;
+    byte Unused9[6];
+} HitData<read=Str("Fixed Damage: %d, Stagger Mod: %.1f Ailment/Value: %s/%d Gauge Gen: %d/%d/%d/%d", 
+    this.FixedDamage, 
+    this.StaggerMod,
+    GetAilmentIDType(this.AilmentType), this.AilmentDamage,
+    this.HunterArtGen, this.AlchemyGauge, this.ValorGauge, this.WeaponGaugeGen)>;
+
+HDSHeader header;
+HitData Attack<name="Normal Lv1 ">;
+HitData Attack<name="Normal Lv2 ">; 
+HitData Attack<name="Normal Lv3 ">; 
+HitData Attack<name="Normal Lv4 ">; 
+HitData Attack<name="Normal Lv5 ">; 
+HitData Attack<name="Wide Lv1 ">; 
+HitData Attack<name="Wide Lv2 ">; 
+HitData Attack<name="Wide Lv3 ">; 
+HitData Attack<name="Wide Lv4 ">; 
+HitData Attack<name="Wide Lv5 ">; 
+HitData Attack<name="Long Lv1 ">; 
+HitData Attack<name="Long Lv2 ">; 
+HitData Attack<name="Long Lv3 ">; 
+HitData Attack<name="Long Lv4 ">; 
+HitData Attack<name="Long Lv5 ">; 
+HitData Attack<name="Wyvernsfire Lv1 ">; 
+HitData Attack<name="Wyvernsfire Lv2 ">; 
+HitData Attack<name="Wyvernsfire Lv3 ">; 
+HitData Attack<name="Wyvernsfire Lv4 ">; 
+HitData Attack<name="Wyvernsfire Lv5 ">; 
+HitData Attack<name="Alchemy Wyvernsfire Lv1 ">; 
+HitData Attack<name="Alchemy Wyvernsfire Lv2 ">; 
+HitData Attack<name="Alchemy Wyvernsfire Lv3 ">; 
+HitData Attack<name="Alchemy Wyvernsfire Lv4 ">; 
+HitData Attack<name="Alchemy Wyvernsfire Lv5 ">; 
+HitData Attack<name="Valor Wyvernsfire Lv1 ">; 
+HitData Attack<name="Valor Wyvernsfire Lv2 ">; 
+HitData Attack<name="Valor Wyvernsfire Lv3 ">; 
+HitData Attack<name="Valor Wyvernsfire Lv4 ">; 
+HitData Attack<name="Valor Wyvernsfire Lv5 ">; 
+HitData Attack<name="Valor Rapid Fire Normal Lv1 ">; 
+HitData Attack<name="Valor Rapid Fire Normal Lv2 ">; 
+HitData Attack<name="Valor Rapid Fire Normal Lv3 ">; 
+HitData Attack<name="Valor Rapid Fire Normal Lv4 ">; 
+HitData Attack<name="Valor Rapid Fire Normal Lv5 ">; 
+HitData Attack<name="Valor Rapid Fire Wide Lv1 ">; 
+HitData Attack<name="Valor Rapid Fire Wide Lv2 ">; 
+HitData Attack<name="Valor Rapid Fire Wide Lv3 ">; 
+HitData Attack<name="Valor Rapid Fire Wide Lv4 ">; 
+HitData Attack<name="Valor Rapid Fire Wide Lv5 ">; 
+HitData Attack<name="Valor Rapid Fire Long Lv1 ">; 
+HitData Attack<name="Valor Rapid Fire Long Lv2 ">; 
+HitData Attack<name="Valor Rapid Fire Long Lv3 ">; 
+HitData Attack<name="Valor Rapid Fire Long Lv4 ">; 
+HitData Attack<name="Valor Rapid Fire Long Lv5 ">; 
+HitData Attack<name="Valor Sheath Normal Lv1 ">; 
+HitData Attack<name="Valor Sheath Normal Lv2 ">; 
+HitData Attack<name="Valor Sheath Normal Lv3 ">; 
+HitData Attack<name="Valor Sheath Normal Lv4 ">; 
+HitData Attack<name="Valor Sheath Normal Lv5 ">; 
+HitData Attack<name="Valor Sheath Wide Lv1 ">; 
+HitData Attack<name="Valor Sheath Wide Lv2 ">; 
+HitData Attack<name="Valor Sheath Wide Lv3 ">; 
+HitData Attack<name="Valor Sheath Wide Lv4 ">; 
+HitData Attack<name="Valor Sheath Wide Lv5 ">; 
+HitData Attack<name="Valor Sheath Long Lv1 ">; 
+HitData Attack<name="Valor Sheath Long Lv2 ">; 
+HitData Attack<name="Valor Sheath Long Lv3 ">; 
+HitData Attack<name="Valor Sheath Long Lv4 ">; 
+HitData Attack<name="Valor Sheath Long Lv5 ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="AA Flare Normal Lv1 ">; 
+HitData Attack<name="AA Flare Normal Lv2 ">; 
+HitData Attack<name="AA Flare Normal Lv3 ">; 
+HitData Attack<name="AA Flare Normal Lv4 ">; 
+HitData Attack<name="AA Flare Normal Lv5 ">; 
+HitData Attack<name="AA Flare Wide Lv1 ">; 
+HitData Attack<name="AA Flare Wide Lv2 ">; 
+HitData Attack<name="AA Flare Wide Lv3 ">; 
+HitData Attack<name="AA Flare Wide Lv4 ">; 
+HitData Attack<name="AA Flare Wide Lv5 ">; 
+HitData Attack<name="AA Flare Long Lv1 ">; 
+HitData Attack<name="AA Flare Long Lv2 ">; 
+HitData Attack<name="AA Flare Long Lv3 ">; 
+HitData Attack<name="AA Flare Long Lv4 ">; 
+HitData Attack<name="AA Flare Long Lv5 ">; 
+HitData Attack<name="AA Flare Wyvernsfire Lv1 ">; 
+HitData Attack<name="AA Flare Wyvernsfire Lv2 ">; 
+HitData Attack<name="AA Flare Wyvernsfire Lv3 ">; 
+HitData Attack<name="AA Flare Wyvernsfire Lv4 ">; 
+HitData Attack<name="AA Flare Wyvernsfire Lv5 ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Normal Lv1 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Normal Lv2 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Normal Lv3 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Normal Lv4 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Normal Lv5 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Wide Lv1 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Wide Lv2 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Wide Lv3 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Wide Lv4 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Wide Lv5 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Long Lv1 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Long Lv2 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Long Lv3 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Long Lv4 ">; 
+HitData Attack<name="Valor Upwards Rapid Fire Long Lv5 ">; 

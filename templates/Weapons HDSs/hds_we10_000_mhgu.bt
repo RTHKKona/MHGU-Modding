@@ -1,0 +1,102 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: hitdata
+//   Authors: Fexty, Poto, Handburger
+//   Version: 1.1
+//   Purpose: 
+//  Entry Size: 56
+// File Mask: .4EB68CEE / .hds
+//  ID Bytes: 48 44 53 00
+//   History: 2025-05-31 made a copy of the hdt file to use as a base for this one.
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    uint version<format=hex>;
+    int count;
+    FSkip(4);
+} HDSHeader;
+
+typedef struct {
+    int16 FramesBeforeHitbox<bgcolor=0xffffff>;   
+    int16 FramesHitboxActive<bgcolor=0xd45f5f>;                
+    int16 MotionValue<bgcolor=0xd62b2b>;              
+    byte Knockback<bgcolor=0xd65e2b>;
+    byte Unused1;                           
+    byte Unk1<bgcolor=0xd6942b>;     
+    byte Unused2[2];                           
+    byte Unk2<bgcolor=0xd6cb2b>;
+    byte Unk3<bgcolor=0xabdb25>;
+    byte Unk4<bgcolor=0x65db25>;            
+    byte HunterArtFlag<bgcolor=0x25db92>;                          
+    byte Unk5<bgcolor=0x25dbcc>;                                   
+    int32 AilmentType<bgcolor=0x25b1db>;
+    byte Unused3[4];
+    byte AilmentDamage<bgcolor=0x1d7ad1>;                             
+    byte Unk6<bgcolor=0x0837a3>;              
+    byte Unk7<bgcolor=0x573fab>;
+    byte Unused4;
+    byte Unk8<bgcolor=0x8f0ced>;
+    byte KO<bgcolor=0xb004d6>;
+    byte Unk9<bgcolor=0x9e089c>;
+    byte Unused5[2];
+    byte WeaponGaugeGen<bgcolor=0xd408a1>;
+    byte Unused6;
+    byte Exhaust<bgcolor=0xa30557>;
+    byte Unused7[2];
+    int16 HunterArtGen<bgcolor=0xbd0820>;                             
+    float StaggerMod<bgcolor=0x964206>;                              
+    byte Unk10<bgcolor=0x917c0f>;
+    byte Unused8;
+    int16 AlchemyGauge<bgcolor=0x8cad05>;
+    int16 ValorGauge<bgcolor=0x79c20c>;
+    byte Unused9[6];
+} HitData<read=Str("MV:%d, Stagger Mod: %.1f KO/Exh: %d/%d Gauge Gen: %d/%d/%d/%d", 
+    this.MotionValue, 
+    this.StaggerMod,
+    this.KO, this.Exhaust,
+    this.HunterArtGen, this.AlchemyGauge, this.ValorGauge, this.WeaponGaugeGen)>;
+
+HDSHeader header; // for Rapid and Spread the x/o inside [] are a guide as to which arrows they affect for each shot Lv, with "x" meaning it affects that arrow 
+HitData Attack<name="Rapid Lv1/2/3/4/5 1st Arrow ">; // [x] [x-o] [x-o-o] [x-o-o-o] [x-o-o-o]
+HitData Attack<name="Rapid Lv2/3/4 2nd Arrow ">;     // [o] [o-x] [o-x-o] [o-x-o-o] [o-o-o-o]
+HitData Attack<name="Rapid Lv3/4 3rd Arrow ">;       // [o] [o-o] [o-o-x] [o-o-x-o] [o-o-o-o]
+HitData Attack<name="Rapid Lv4 4th Arrow ">;         // [o] [o-o] [o-o-o] [o-o-o-x] [o-o-o-o]
+HitData Attack<name="Rapid Lv5 2nd Arrow ">;         // [o] [o-o] [o-o-o] [o-o-o-o] [o-x-o-o]
+HitData Attack<name="Rapid Lv5 3rd Arrow ">;         // [o] [o-o] [o-o-o] [o-o-o-o] [o-o-x-o]
+HitData Attack<name="Rapid Lv5 4th Arrow ">;         // [o] [o-o] [o-o-o] [o-o-o-o] [o-o-o-x]
+HitData Attack<name="Spread Lv1/3/4 outer arrows ">;                          // [x-o-x] [o-o-o] [x-o-o-o-x] [x-o-o-o-x] [o-o-o-o-o]
+HitData Attack<name="Spread Lv1/3 center arrow, Lv2/3/4/5 side arrows ">;     // [o-x-o] [x-o-x] [o-x-x-x-o] [o-x-o-x-o] [x-x-o-x-x]
+HitData Attack<name="Spread Lv2/4/5 center arrow ">;                          // [o-o-o] [o-x-o] [o-o-o-o-o] [o-o-x-o-o] [o-o-x-o-o]
+HitData Attack<name="Pierce Lv1 Arrow ">; 
+HitData Attack<name="Pierce Lv2 Arrow ">; 
+HitData Attack<name="Pierce Lv3 Arrow ">; 
+HitData Attack<name="Pierce Lv4 Arrow ">; 
+HitData Attack<name="Pierce Lv5 Arrow ">; 
+HitData Attack<name="Arc Shot Arrow? ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Heavy Lv1 Arrow ">; 
+HitData Attack<name="Heavy Lv2 Arrow ">; 
+HitData Attack<name="Heavy Lv3 Arrow ">; 
+HitData Attack<name="Heavy Lv4 Arrow ">; 
+HitData Attack<name="Heavy Lv5 Arrow ">; 
+HitData Attack<name="Triple Volley I 1st Volley ">; 
+HitData Attack<name="Triple Volley I 2nd Volley ">; 
+HitData Attack<name="Triple Volley I 3rd Volley ">; 
+HitData Attack<name="Triple Volley II 1st Volley ">; 
+HitData Attack<name="Triple Volley II 2nd Volley ">; 
+HitData Attack<name="Triple Volley II 3rd Volley ">; 
+HitData Attack<name="Triple Volley III 1st Volley ">; 
+HitData Attack<name="Triple Volley III 2nd Volley ">; 
+HitData Attack<name="Triple Volley III 3rd Volley ">; 
+HitData Attack<name="Blade Wire Lv1 ">; 
+HitData Attack<name="Blade Wire Lv2 ">; 
+HitData Attack<name="Blade Wire Lv3 ">; 
+HitData Attack<name="Blade Wire Lv4 ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 

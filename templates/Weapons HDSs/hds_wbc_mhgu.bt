@@ -1,0 +1,201 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: hitdata
+//   Authors: Fexty, Poto, Handburger
+//   Version: 1.1
+//   Purpose: 
+//  Entry Size: 56
+// File Mask: .4EB68CEE / .hds
+//  ID Bytes: 48 44 53 00
+//   History: 2025-05-31 made a copy of the hdt file to use as a base for this one.
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    uint version<format=hex>;
+    int count;
+    FSkip(4);
+} HDSHeader;
+
+string GetAilmentIDType(int id) {
+    switch (id) {
+case 0: return "None";
+case 1: return "Sleep";
+case 2: return "Poison";
+case 3: return "Sleep+Poison";
+case 4: return "Para";
+case 5: return "Para+Sleep";
+case 6: return "Para+Poison";
+case 7: return "Para+Poison+Sleep";
+case 8: return "Tranq";
+case 9: return "Sleep+Tranq";
+case 10: return "Poison+Tranq";
+case 11: return "Sleep+Poison+Tranq";
+case 12: return "Para+Tranq";
+case 13: return "Sleep+Para+Tranq";
+case 14: return "Para+Poison+Tranq";
+case 15: return "Sleep+Poison+Para+Tranq";
+case 16: return "Fire";
+case 32: return "Water";
+case 64: return "Thunder";
+case 128: return "Dragon";
+case 512: return "Ice";
+case 131072: return "Blast";
+default: return ""; 
+    }
+}
+
+typedef struct {
+    int16 FramesBeforeHitbox<bgcolor=0xffffff>;   
+    int16 FramesHitboxActive<bgcolor=0xd45f5f>;                
+    int16 MotionValue<bgcolor=0xd62b2b>;              
+    byte Knockback<bgcolor=0xd65e2b>;
+    byte Unused1;                           
+    byte Unk1<bgcolor=0xd6942b>;     
+    byte Unused2[2];                           
+    byte Unk2<bgcolor=0xd6cb2b>;
+    byte Unk3<bgcolor=0xabdb25>;
+    byte Unk4<bgcolor=0x65db25>;            
+    byte HunterArtFlag<bgcolor=0x25db92>;                          
+    byte Unk5<bgcolor=0x25dbcc>;                                   
+    int32 AilmentType<bgcolor=0x25b1db>;
+    byte Unused3[4];
+    byte AilmentDamage<bgcolor=0x1d7ad1>;                             
+    byte Unk6<bgcolor=0x0837a3>;              
+    byte Unk7<bgcolor=0x573fab>;
+    byte Unused4;
+    byte Unk8<bgcolor=0x8f0ced>;
+    byte KO<bgcolor=0xb004d6>;
+    byte Unk9<bgcolor=0x9e089c>;
+    byte Unused5[2];
+    byte WeaponGaugeGen<bgcolor=0xd408a1>;
+    byte Unused6;
+    byte Exhaust<bgcolor=0xa30557>;
+    byte Unused7[2];
+    int16 HunterArtGen<bgcolor=0xbd0820>;                             
+    float StaggerMod<bgcolor=0x964206>;                              
+    byte Unk10<bgcolor=0x917c0f>;
+    byte Unused8;
+    int16 AlchemyGauge<bgcolor=0x8cad05>;
+    int16 ValorGauge<bgcolor=0x79c20c>;
+    byte Unused9[6];
+} HitData<read=Str("MV: %d, Stagger Mod: %.1f Ailment/Value: %s/%d, KO/Exh: %d/%d Gauge Gen: %d/%d/%d/%d", 
+    this.MotionValue, 
+    this.StaggerMod,
+    GetAilmentIDType(this.AilmentType), this.AilmentDamage,
+    this.KO, this.Exhaust,
+    this.HunterArtGen, this.AlchemyGauge, this.ValorGauge, this.WeaponGaugeGen)>;
+
+
+HDSHeader header;
+HitData Attack<name="Normal Lv1 ">;
+HitData Attack<name="Normal Lv2 ">; 
+HitData Attack<name="Normal Lv3 ">; 
+HitData Attack<name="Pierce Lv1 ">; 
+HitData Attack<name="Pierce Lv2 ">; 
+HitData Attack<name="Pierce Lv3 ">; 
+HitData Attack<name="Spread Lv1 ">; 
+HitData Attack<name="Spread Lv2  ">; 
+HitData Attack<name="Spread Lv3 ">; 
+HitData Attack<name="Crag Lv1 ">; 
+HitData Attack<name="Crag Lv2 ">; 
+HitData Attack<name="Crag Lv3 ">; 
+HitData Attack<name="Clust Lv1 ">; 
+HitData Attack<name="Clust Lv2 ">; 
+HitData Attack<name="Clust Lv3 ">; 
+HitData Attack<name="Fire Lv1 ">; 
+HitData Attack<name="Water Lv1 ">; 
+HitData Attack<name="Thunder Lv1 ">; 
+HitData Attack<name="Ice Lv1 ">; 
+HitData Attack<name="Dragon Lv1 ">; 
+HitData Attack<name="Recovery Lv1 ">; 
+HitData Attack<name="Recovery Lv2 ">; 
+HitData Attack<name="Poison Lv1 ">; 
+HitData Attack<name="Poison Lv2 ">; 
+HitData Attack<name="Paralysis Lv1 ">; 
+HitData Attack<name="Paralysis Lv2 ">; 
+HitData Attack<name="Sleep Lv1 ">; 
+HitData Attack<name="Sleep Lv2 ">; 
+HitData Attack<name="Tranq S ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Wyvern S ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Exhaust lv1 ">; 
+HitData Attack<name="Exhaust lv2 ">; 
+HitData Attack<name="Blast Lv1 ">; 
+HitData Attack<name="Clust Explosion Lv1 ">; 
+HitData Attack<name="Clust Explosion Lv2 ">; 
+HitData Attack<name="Shrapnel S ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Clust Explosion Lv3 ">; 
+HitData Attack<name="Crag Explosion Lv1 ">; 
+HitData Attack<name="Crag Explosion Lv2 ">; 
+HitData Attack<name="Crag Explosion Lv3 ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Blast Lv2 ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Heavy Lv1 ">; 
+HitData Attack<name="Heavy Lv2 ">; 
+HitData Attack<name="Sting S ">; 
+HitData Attack<name="Fire Lv2 ">; 
+HitData Attack<name="Water Lv2 ">; 
+HitData Attack<name="Thunder Lv2 ">; 
+HitData Attack<name="Ice Lv2 ">; 
+HitData Attack<name="Dragon Lv2 ">; 
+HitData Attack<name="Pierce Fire Lv1 ">; 
+HitData Attack<name="Pierce Fire Lv2 ">; 
+HitData Attack<name="Pierce Water Lv1 ">; 
+HitData Attack<name="Pierce Water Lv2 ">; 
+HitData Attack<name="Pierce Thunder Lv1 ">; 
+HitData Attack<name="Pierce Thunder Lv2 ">; 
+HitData Attack<name="Pierce Ice Lv1 ">; 
+HitData Attack<name="Pierce Ice LV2 ">; 
+HitData Attack<name="Cannon Lv1 ">; 
+HitData Attack<name="Cannon Lv2 ">; 
+HitData Attack<name="Force Lv1 ">; 
+HitData Attack<name="Force Lv2 ">; 
+HitData Attack<name="Stone S ">; 
+HitData Attack<name="Triblast S? ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Dazzling S ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Slicing Lv1 ">; 
+HitData Attack<name="Slicing Lv2 ">; 
+HitData Attack<name="Cannon Explosion Lv1 ">; 
+HitData Attack<name="Cannon Explosion Lv2 ">; 
+HitData Attack<name="Triblast Explosion  ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Super Nova I Bullet? ">; 
+HitData Attack<name="Super Nova II Bullet? ">; 
+HitData Attack<name="Super Nova III Bullet? ">; 
+HitData Attack<name="Super Nova I Center Hit ">; 
+HitData Attack<name="Super Nova II Center Hit ">; 
+HitData Attack<name="Super Nova III Center Hit ">; 
+HitData Attack<name="Super Nova I Grazing Hit ">; 
+HitData Attack<name="Super Nova II Grazing Hit ">; 
+HitData Attack<name="Super Nova III Grazing Hit ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Rapid Fire Rain /II/II Shots ">; 
+HitData Attack<name="Valor LBG S ">; 
+HitData Attack<name="Valor LBG Triple S ">; 
+HitData Attack<name="Charge Shot Lv1 ">; 
+HitData Attack<name="Charge Shot Lv2 ">; 
+HitData Attack<name="Charge Shot Lv3 ">; 
+HitData Attack<name="Alchemy S ">; 

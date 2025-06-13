@@ -1,0 +1,218 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: hitdata
+//   Authors: Fexty, Poto, Handburger
+//   Version: 1.2
+//   Purpose: For editing player move data
+//  Category: 
+// File Mask: .4E2EF008 / .hdp
+//  ID Bytes: 48 44 50 00
+//   History: 2025-30-05 Handburger - I edited the HitData struct to be a little more detailed for hitbox,
+// and attempted to make sense of the unk values throughout with Poto's help.
+//            2025-31-05 Poto - Added bgcolors to each important byte for visibility
+//            2025-12-06 Poto - Added names for the attacks so you don't have to look at the spreadsheet
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    uint version<format=hex>;
+    int count;
+    FSkip(4);
+} HDPHeader;
+
+typedef struct {
+    // The number of the data point correlates to Poto's MV ID sheet
+    int16 FramesBeforeHitbox<bgcolor=0xffffff>;    // Number of frames before hitbox
+    int16 FramesHitboxActive<bgcolor=0xd45f5f>;    // Hitbox duration (was hitboxId)
+    int16 MotionValue<bgcolor=0xd62b2b>;           // MV
+    byte unused1;
+    byte unk1<bgcolor=0xd65e2b>;                           
+    byte Knockback<bgcolor=0xd6942b>;              // Knockback (1=low, 2=knockdown, 3=knockup (23/24 or any other high value seems to be for aerial attacks))
+    byte unk2<bgcolor=0xd6cb2b>;
+    byte unk3<bgcolor=0xabdb25>;
+    byte unused2;
+    byte DamageType<bgcolor=0x65db25>;             // 1=blunt,2=sever
+    byte unused3;
+    byte HunterArtFlag<bgcolor=0x25db92>;          // 0=regular,1=hunter art
+    byte unused4;
+    byte unk4<bgcolor=0x25dbcc>;                   // Lots of variation between all weapons (LS-46, DB-3, HH-mostly 2, Hamm-2,Lance-3;8;9, GL-3;8, CB-2;3)
+    byte unused5[15];
+    byte unk5<bgcolor=0x25b1db>;
+    byte unk6<bgcolor=0x1d7ad1>;                   // -> 0 for sever; 2 for blunt(with the exception of GS sideslap with 3)
+    byte KO<bgcolor=0x0837a3>;                     // changed from ubyte
+    byte unk7<bgcolor=0x573fab>;
+    byte unk8<bgcolor=0x8f0ced>;
+    byte unk9<bgcolor=0xb004d6>;
+    byte WeaponGaugeGen<bgcolor=0x9e089c>;
+    byte Exhaust<bgcolor=0xd408a1>;                // Exhaust
+    float AilmentMod<bgcolor=0xa30557>;            // Ailment Float
+    float StaggerMod<bgcolor=0xbd0820>;            // Part Stagger Float
+    int16 HunterArtGen<bgcolor=0x964206>;
+    int16 Mount<bgcolor=0x917c0f>;                 // Mount
+    int16 AlchemyGauge<bgcolor=0x8cad05>;
+    int16 ValorGauge<bgcolor=0x79c20c>;
+} HitData<read=Str("MV:%d, Modifiers: %.1f/%.1f KO/Exh: %d/%d Gauge Gen: %d/%d/%d/%d", 
+    this.MotionValue, 
+    this.AilmentMod, this.StaggerMod,
+    this.KO, this.Exhaust,
+    this.HunterArtGen, this.AlchemyGauge, this.ValorGauge, this.WeaponGaugeGen)>;
+
+HDPHeader header;
+HitData Attack<name="Dummy ">;
+HitData Attack<name="Double Slash  I (1st Hit) ">; 
+HitData Attack<name="Double Slash II (1st Hit) ">; 
+HitData Attack<name="Double Slash II (2nd Hit) ">; 
+HitData Attack<name="Circle Slash (1st Hit) ">; 
+HitData Attack<name="Circle Slash (2nd Hit) ">; 
+HitData Attack<name="Circle Slash (3rd Hit) ">; 
+HitData Attack<name="Draw Attack (Unsheathed, 1st Hit) ">; 
+HitData Attack<name="Up Slash ">; 
+HitData Attack<name="Double Slash I (2nd Hit) ">; 
+HitData Attack<name="Draw Attack (Unsheathed, 2nd Hit) ">; 
+HitData Attack<name="Draw Attack (3rd Hit) ">; 
+HitData Attack<name="Draw Attack (4th Hit) ">; 
+HitData Attack<name="Demon Dance (Finisher 1st Hit) ">; 
+HitData Attack<name="Demon Dance (Finisher 2nd Hit) ">; 
+HitData Attack<name="Right Demon Spinning Slashes (1st Hit) ">; 
+HitData Attack<name="Right Demon Spinning Slashes (2nd Hit) ">; 
+HitData Attack<name="Right Demon Spinning Slashes (3rd Hit) ">; 
+HitData Attack<name="Left Demon Spinning Slashes (1st Hit) ">; 
+HitData Attack<name="Left Demon Spinning Slashes (2nd Hit) ">; 
+HitData Attack<name="Left Demon Spinning Slashes (3rd Hit) ">; 
+HitData Attack<name="Demon Dance (1st Hit) ">; 
+HitData Attack<name="Demon Dance (Multi Hit) ">; 
+HitData Attack<name="Demon Dance (Multi Hit) ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Draw Attack (Sheathed, 1st Hit) ">; 
+HitData Attack<name="Draw Attack (Sheathed, 2nd Hit) ">; 
+HitData Attack<name="Right Dual Side Slashes (1st Hit) ">; 
+HitData Attack<name="Right Dual Side Slashes (2nd Hit) ">; 
+HitData Attack<name="Left Dual Side Slashes (1st Hit) ">; 
+HitData Attack<name="Left Dual Side Slashes (2nd Hit) ">; 
+HitData Attack<name="Demon Six-Way Slash (1st Hit) ">; 
+HitData Attack<name="Demon Six-Way Slash (2nd Hit) ">; 
+HitData Attack<name="Demon Six-Way Slash (3rd Hit) ">; 
+HitData Attack<name="Demon Six-Way Slash (4th Hit) ">; 
+HitData Attack<name="Demon Six-Way Slash (5th Hit) ">; 
+HitData Attack<name="Demon Six-Way Slash (6th Hit) ">; 
+HitData Attack<name="Right Demon Double Roundslash ">; 
+HitData Attack<name="Right Demon Double Roundslash ">; 
+HitData Attack<name="Right Demon Double Roundslash ">; 
+HitData Attack<name="Left Demon Double Roundslash ">; 
+HitData Attack<name="Left Demon Double Roundslash ">; 
+HitData Attack<name="Left Demon Double Roundslash ">; 
+HitData Attack<name="Arch Hurricane Dance (3rd Hit) ">; 
+HitData Attack<name="Arch Hurricane Dance (4th Hit) ">; 
+HitData Attack<name="Arch Hurricane Dance (Finisher) ">; 
+HitData Attack<name="Arch Hurricane Dance (Finisher) ">; 
+HitData Attack<name="Right Arch Spinning Slashes (1st Hit) ">; 
+HitData Attack<name="Right Arch Spinning Slashes (2nd Hit) ">; 
+HitData Attack<name="Right Arch Spinning Slashes (3rd Hit) ">; 
+HitData Attack<name="Left Arch Spinning Slashes (1st Hit) ">; 
+HitData Attack<name="Left Arch Spinning Slashes (2nd Hit) ">; 
+HitData Attack<name="Left Arch Spinning Slashes (3rd Hit) ">; 
+HitData Attack<name="Right Arch Double Roundslash (1st Hit) ">; 
+HitData Attack<name="Right Arch Double Roundslash (2nd Hit) ">; 
+HitData Attack<name="Left Arch Double Roundslash (1st Hit) ">; 
+HitData Attack<name="Right Arch Double Roundslash (3rd Hit) ">; 
+HitData Attack<name="Left Arch Double Roundslash (2nd Hit) ">; 
+HitData Attack<name="Left Arch Double Roundslash (3rd Hit) ">; 
+HitData Attack<name="Arch Hurricane Dance (1st Hit) ">; 
+HitData Attack<name="Arch Hurricane Dance (2nd Hit) ">; 
+HitData Attack<name="Jumping Double Slash (1st Hit) ">; 
+HitData Attack<name="Jumping Double Slash (2nd Hit) ">; 
+HitData Attack<name="Jumping Spinning Slashes (1st Hit) ">; 
+HitData Attack<name="Jumping Spinning Slashes (2nd Hit) ">; 
+HitData Attack<name="Jumping Spinning Slashes (3rd Hit) ">; 
+HitData Attack<name="Jumping Spinning Slashes (4th Hit) ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Blood Wind I/II/II (Spin 1st Hit) ">; 
+HitData Attack<name="Blood Wind I/II/II (Spin 2nd Hit) ">; 
+HitData Attack<name="Blood Wind I/II/II (Spin 3rd Hit) ">; 
+HitData Attack<name="Blood Wind I/II/II (Spin 4th Hit) ">; 
+HitData Attack<name="Blood Wind I/II/II (Finisher) ">; 
+HitData Attack<name="Blood Wind I/II/II (Finisher) ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Aerial Rising Slashes (1st Hit) ">; 
+HitData Attack<name="Aerial Rising Slashes (2nd Hit) ">; 
+HitData Attack<name="Aerial Rising Slashes (3rd Hit) ">; 
+HitData Attack<name="Aerial Rising Slashes (4th Hit) ">; 
+HitData Attack<name="Adept Dodge Slashes (2nd Hit) ">; 
+HitData Attack<name="Adept Dodge Slashes (1st Hit) ">; 
+HitData Attack<name="Adept Dodge Slashes (3rd Hit) ">; 
+HitData Attack<name="Adept Dodge Slashes (4th Hit) ">; 
+HitData Attack<name="Aerial Slam I/II/III (Aerial Hit) ">; 
+HitData Attack<name="Aerial Slam I/II/III (Aerial Hit) ">; 
+HitData Attack<name="Aerial Slam I/II/III (Aerial Hit) ">; 
+HitData Attack<name="Aerial Slam I/II/III (Aerial Hit) ">; 
+HitData Attack<name="Aerial Slam I/II/III (Aerial Hit) ">; 
+HitData Attack<name="Aerial Slam I/II/III (Aerial Hit) ">; 
+HitData Attack<name="Aerial Slam I/II/III (Aerial Hit) ">; 
+HitData Attack<name="Aerial Slam I/II/III (Aerial Hit) ">; 
+HitData Attack<name="Aerial Slam I/II/III (Aerial Hit) ">; 
+HitData Attack<name="Aerial Slam I/II/III (Aerial Hit) ">; 
+HitData Attack<name="Aerial Slam I (Finisher) ">; 
+HitData Attack<name="Aerial Slam II (Finisher) ">; 
+HitData Attack<name="Aerial Slam III (Finisher) ">; 
+HitData Attack<name="Jumping Finishing Slashes (3rd Hit) ">; 
+HitData Attack<name="Jumping Finishing Slashes (4th Hit) ">; 
+HitData Attack<name="Jumping Finishing Slashes (5th Hit) ">; 
+HitData Attack<name="Jumping Finishing Slashes (6th Hit) ">; 
+HitData Attack<name="Jumping Finishing Slashes (1st Hit) ">; 
+HitData Attack<name="Jumping Finishing Slashes (2nd Hit) ">; 
+HitData Attack<name="Arch/Demon Flurry Rush (1st Hit) ">; 
+HitData Attack<name="Arch/Demon Flurry Rush (2nd Hit) ">; 
+HitData Attack<name="Arch/Demon Flurry Rush (3rd Hit) ">; 
+HitData Attack<name="Arch/Demon Flurry Rush (4th Hit) ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Arch/Demon Flurry Rush (5th Hit) ">; 
+HitData Attack<name="Arch/Demon Flurry Rush (6th Hit) ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name=" ">; 
+HitData Attack<name="Valor Sheath Lunging Slashes (1st Hit) ">; 
+HitData Attack<name="Valor Sheath Lunging Slashes (2nd Hit) ">; 
+HitData Attack<name="Valor Sheath Lunging Slashes (3rd Hit) ">; 
+HitData Attack<name="Valor Sheath Lunging Slashes (4th Hit) ">; 
+HitData Attack<name="Adept/Valor Sheath Flurry Rush (1st Hit) ">; 
+HitData Attack<name="Adept/Valor Sheath Flurry Rush (2nd Hit) ">; 
+HitData Attack<name="Adept/Valor Sheath Flurry Rush (3rd Hit) ">; 
+HitData Attack<name="Adept/Valor Sheath Flurry Rush (4th Hit) ">; 
+HitData Attack<name="Adept/Valor Sheath Flurry Rush (5th Hit) ">; 
+HitData Attack<name="Adept/Valor Sheath Flurry Rush (6th Hit) ">; 
+HitData Attack<name="Valor Sheath Hurricane Dance (1st Hit) ">; 
+HitData Attack<name="Valor Sheath Hurricane Dance (2nd Hit) ">; 
+HitData Attack<name="Valor Sheath Hurricane Dance (3rd Hit) ">; 
+HitData Attack<name="Valor Sheath Hurricane Dance (4th Hit) ">; 
+HitData Attack<name="Valor Sheath Hurricane Dance (5th Hit) ">; 
+HitData Attack<name="Valor Sheath Hurricane Dance (Finisher) ">; 
+HitData Attack<name="Valor Sheath Hurricane Dance (Finisher) ">; 
+HitData Attack<name="Valor Demon Dance (1st Hit) ">; 
+HitData Attack<name="Valor Demon Dance (2nd Hit) ">; 
+HitData Attack<name="Valor Counter (1st Hit) ">; 
+HitData Attack<name="Valor Counter (2nd Hit) ">; 
+HitData Attack<name="Valor Counter (3rd Hit) ">; 
+HitData Attack<name="Valor Counter (4th Hit) ">; 
+HitData Attack<name="Spiral Slash I/II/III (1st Hit) ">; 
+HitData Attack<name="Spiral Slash II/III (Multi Hit 1st Hit) ">; 
+HitData Attack<name="Spiral Slash II/III (Multi Hit 2nd Hit) ">; 
+HitData Attack<name="Spiral Slash I (Finisher) ">; 
+HitData Attack<name="Spiral Slash I (Finisher) ">; 
+HitData Attack<name="Spiral Slash II (Finisher) ">; 
+HitData Attack<name="Spiral Slash II (Finisher) ">; 
+HitData Attack<name="Spiral Slash III (Finisher) ">; 
+HitData Attack<name="Spiral Slash III (Finisher) ">; 
+HitData Attack<name="Valor Flurry Rush (1st Hit) ">; 
+HitData Attack<name="Valor Flurry Rush (2nd Hit) ">; 
+HitData Attack<name="Valor Flurry Rush (3rd Hit) ">; 
+HitData Attack<name="Valor Flurry Rush (4th Hit) ">; 
+HitData Attack<name="Valor Flurry Rush (5th Hit) ">; 
+HitData Attack<name="Valor Flurry Rush (6th Hit) ">; 
+
+float framesToSeconds(byte frames) {
+    return (float)frames / 30.0f;
+}
