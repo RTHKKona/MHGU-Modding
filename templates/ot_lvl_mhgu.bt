@@ -1,0 +1,33 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: ot_lvl
+//   Authors: Poto
+//   Version: 1.0
+//   Credits: Fexty. Acorn Health IDing
+//  Entry Size: 8
+// File Mask: .4B51E836 / .olvl
+//  ID Bytes: 66 66 AA 41 
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} OLVLHeader;
+
+typedef struct {
+    int16 RawDamage<bgcolor=0xffffff>;   
+    int16 Defence<bgcolor=0xd45f5f>;                
+    int16 HP<bgcolor=0xd65e2b>;              
+    int NecessaryExperience<bgcolor=0xd6cb2b>;
+    byte MoveSlots<bgcolor=0x65db25>;                           
+    byte SkillSlots<bgcolor=0x25dbcc>;
+    byte MaxEnthusiasm<bgcolor=0x1d7ad1>;
+    byte MaxSupportGauge<bgcolor=0x573fab>; 
+    byte AcornHealthRecovery<bgcolor=0xb004d6>;                            
+} AirouLvl<read=Str("Raw: %d, Def: %d, HP: %d, Slots; %d/%d, MaxGauge: %d", 
+    this.RawDamage, this.Defence, this.HP, this.MoveSlots, this.SkillSlots, this.MaxSupportGauge)>;
+
+OLVLHeader header;
+AirouLvl data[header.count]<optimize=false>;

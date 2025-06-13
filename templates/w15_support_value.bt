@@ -1,0 +1,286 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: airou_resident_param
+//   Authors: Poto
+//   Version: 1.0
+//   Credits: Fexty, Handburger. Template making support
+//   Date: 2025-06-05
+//  Entry Size: 36
+// File Mask: .74A22486 / .spval
+//  ID Bytes: 00 00 C0 40
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} SPVALHeader;
+
+typedef struct MeleeGaugeModifier{   //both blunt and sever melee attacks, sever boomerant 1
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Melee<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct MeleeGaugeModifier2{    // applies to boomerush melee?
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Melee2<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct RangedGaugeModifier{   // blunt boomerang 1/2
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Ranged<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct RangedGaugeModifier2{   // sever boomerang 2
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Ranged2<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct BombGaugeModifier{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Bombs<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct BombGaugeModifier2{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>; 
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Bombs2<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct UnknownGaugeModifier{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Unk1<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct GuardGaugeModifier{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Guard<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct GuardGaugeModifier2{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Guard2<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct GuardGaugeModifier3{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Guard3<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct GatherGaugeModifier{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Gathers<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct UnknownGaugeModifier2{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Unk2<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct UnknownGaugeModifier3{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Unk3<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct PassiveGaugeModifier{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Passive<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct CombatGaugeModifier{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Combat<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct UnknownGaugeModifier4{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Unk4<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct UnknownGaugeModifier5{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Unk5<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct UnknownGaugeModifier6{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Unk6<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+typedef struct UnknownGaugeModifier7{
+    int GaugeGain<bgcolor=0xffffff>;
+    float Charisma<bgcolor=0xd45f5f>;   
+    float Fighting<bgcolor=0xd6942b>;                
+    float Protect<bgcolor=0xabdb25>; 
+    float Assist<bgcolor=0x25dbcc>;   
+    float Heal<bgcolor=0x1d7ad1>;                
+    float Bomb<bgcolor=0x573fab>;
+    float Gather<bgcolor=0xb004d6>;
+    float Beast<bgcolor=0xd408a1>; 
+} Unk7<read=Str("Mod: %.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f/%.2f Gain: %d",
+this.Charisma, this.Fighting, this.Protect, this.Assist, this.Heal, this.Bomb, this.Gather, this.Beast, this.GaugeGain)>;
+
+SPVALHeader header;
+Melee Melee_Gauge_Modifier;
+Melee2 Melee_Gauge_Modifier2;
+Ranged Ranged_Gauge_Modifier;
+Ranged2 Ranged_Gauge_Modifier2;
+Bombs Bomb_Gauge_Modifier;
+Bombs2 Bomb_Gauge_Modifier2;
+Unk1 Unknown_Gauge_Modifier;
+Guard Low_Knockback_Gauge_Modifier;
+Guard2 Medium_Knockback_Gauge_Modifier2;
+Guard3 High_Knockback_Gauge_Modifier3;
+Gathers Gather_Gauge_Modifier;
+Unk2 Unknown_Gauge_Modifier2;
+Unk3 Unknown_Gauge_Modifier3;
+Passive Passive_Gauge_Modifier;
+Combat Combat_Gauge_Modifier;
+Unk4 Unknown_Gauge_Modifier4;
+Unk5 Unknown_Gauge_Modifier5;
+Unk6 Unknown_Gauge_Modifier6;
+Unk7 Unknown_Gauge_Modifier7;

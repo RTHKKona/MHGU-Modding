@@ -1,0 +1,182 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: otskillIni1/2/3
+//   Authors: Poto
+//   Version: 1.0
+//   Credits:  GReinoso96 and Aradi, figure out the IDs for Icons and Colors
+//  Entry Size: 11
+// File Mask: .7A395CB7 / .sab
+//  ID Bytes: B8 1E 85 3F
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} OSKLHeader;
+
+string GetMoveIDLabel(uint32 id) {
+    switch (id) {
+case 1: return "Herb Horn";
+case 2: return "Health Horn";
+case 3: return "True Health Horn";
+case 4: return "Detox Horn";
+case 5: return "Cheer Horn";
+case 6: return "Demon Horn";
+case 7: return "Armor Horn";
+case 8: return "Ultrasonic Horn";
+case 9: return "Mini Barrel Bombay";
+case 10: return "Barrel Bombay";
+case 11: return "Big Barrel Bombay";
+case 12: return "Mega Barrel Bombay";
+case 13: return "Giga Barrel Bombay";
+case 14: return "Bounce Bombay";
+case 15: return "Flash Bombay";
+case 16: return "Anti-Monster Mine";
+case 17: return "Anti-Monster Mine+";
+case 18: return "Pitfall Purr-ison";
+case 19: return "Shock Purr-ison";
+case 20: return "Poison Purr-ison";
+case 21: return "Trampoliner";
+case 22: return "Vase of Vitality";
+case 23: return "Parting Gift";
+case 24: return "Emergency Retreat";
+case 25: return "Big Boomerangs";
+case 26: return "Piercing Boomerangs";
+case 27: return "Camouflage";
+case 28: return "Weapon Upgrade";
+case 29: return "Furr-ious";
+case 30: return "Taunt";
+case 31: return "Palico Rally";
+case 32: return "Dung Bombay";
+case 33: return "Go, Fight, Win";
+case 34: return "Soothing Roll";
+case 35: return "Explosive Roll";
+case 36: return "Pilfer";
+case 37: return "Plunderang";
+case 38: return "Felyne Comet";
+case 39: return "Claw Dance";
+case 40: return "Sumo Stomp";
+case 41: return "Chestnut Cannon";
+case 42: return "Shock Tripper";
+case 43: return "Excavator";
+case 44: return "Mega Boomerang";
+case 45: return "Rath-of-Meow";
+case 46: return "Release/Cage the Beast";
+case 47: return "Rousing Roar";
+case 48: return "Furlask of Healing";
+case 49: return "Far-cat-ster";
+case 50: return "Burrowing Blow";
+case 51: return "Stunt Cannon";
+case 52: return "Iron Transpurrter";
+case 53: return "Explosive Transpurrter";
+case 54: return "Widewhiskers Horn";
+case 55: return "SP Horn"; 
+case 56: return "Furbidden Acorn"; 
+        default: return "?"; // Unknown ID
+    }
+}
+
+string GetColorIDLabel(uint32 id) {
+    switch (id) {
+case 0: return "White";
+case 1: return "Red";
+case 2: return "Green";
+case 3: return "Blue";
+case 4: return "Yellow";
+case 5: return "Purple";
+case 6: return "Light Blue";
+case 7: return "Orange";
+case 8: return "Pink";
+case 9: return "Lime";
+case 10: return "Gray";
+case 11: return "Brown";
+case 12: return "Teal";
+case 13: return "Dark Green";
+case 14: return "Dark Red";
+case 15: return "Dark Blue";
+case 16: return "Dark Purple";
+default: return "?"; // Unknown ID
+    }
+}
+
+string GetIconIDLabel(uint32 id) {
+    switch (id) {
+case 1: return "Mushroom";
+case 2: return "Fish";
+case 3: return "Herb";
+case 4: return "Meat";
+case 5: return "Honey";
+case 6: return "Bug";
+case 7: return "Net";
+case 8: return "Berry";
+case 9: return "Ore";
+case 10: return "Claw";
+case 11: return "Hide";
+case 12: return "Scale";
+case 13: return "Monster Part";
+case 14: return "Bone";
+case 15: return "Egg";
+case 16: return "Dung";
+case 17: return "Plate";
+case 18: return "Bait";
+case 19: return "Bugnet";
+case 20: return "BBQ Spit";
+case 21: return "Pickaxe";
+case 22: return "Drink";
+case 23: return "Trap Tool";
+case 24: return "Trap";
+case 25: return "Barrel";
+case 26: return "Bomb";
+case 27: return "Smoke Bomb";
+case 28: return "Ball";
+case 29: return "Pill";
+case 30: return "Ammo";
+case 31: return "Husk";
+case 32: return "Coating";
+case 33: return "Empty Coating";
+case 34: return "Horn";
+case 35: return "Boomerang";
+case 36: return "Ticket";
+case 37: return "Knife";
+case 38: return "Map";
+case 39: return "Binoculars";
+case 40: return "Coin";
+case 41: return "Armor Sphere";
+case 42: return "Whetstone";
+case 43: return "Book";
+case 44: return "Jewel";
+case 45: return "Question Mark";
+case 46: return "White";
+case 47: return "Kinsect (Cut)";
+case 48: return "Kinsect (Impact)";
+case 49: return "Scraps";
+case 76: return "Palico Sword";
+case 80: return "Up Arrow";
+case 81: return "Down Arrow";
+case 85: return "Angry Palico";
+case 88: return "Happy Palico";
+default: return "?"; // Unknown ID
+    }
+}
+
+typedef struct {
+    uint32 Index<bgcolor=0xffffff>;   
+    uint16 SortId<bgcolor=0xd45f5f>;                
+    uint16 SupportGaugeCost<bgcolor=0xd65e2b>;             
+    ubyte unk1<bgcolor=0xd6942b>;
+    ubyte unk2<bgcolor=0xd6cb2b>;  // 0: 1: 2: Support Moves (Non Healing Horns, Traps, FarCatster, GFW, Dung Bombay, Palico Rally, Trampoliner) 3: Healing Moves 4: Bombay/Explosive moves
+    ubyte unk3<bgcolor=0xabdb25>;
+    uint16 unk4<bgcolor=0x65db25>;
+    uint16 unk5<bgcolor=0x25db92>;
+    uint16 unk6<bgcolor=0x25dbcc>;
+    ubyte unk7<bgcolor=0x25b1db>;
+    ubyte IconID<bgcolor=0x1d7ad1>;
+    ubyte IconColorID<bgcolor=0x0837a3>;
+    int32 UnlockMonsterID<bgcolor=0x573fab>;                                                      
+} SupportData<read=Str("%d, Move: %s, Cost: %d, Icon: %s %s", 
+    this.unk2, GetMoveIDLabel(this.Index), this.SupportGaugeCost, GetColorIDLabel(this.IconColorID), GetIconIDLabel(this.IconID))>;
+
+OSKLHeader header;
+SupportData data[header.count]<optimize=false>;

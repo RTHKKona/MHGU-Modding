@@ -1,0 +1,52 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: airou_resident_param
+//   Authors: Poto
+//   Version: 1.0
+//   Credits: Fexty, Handburger. Template making support
+//   Date: 2025-06-05
+//  Entry Size: 28
+// File Mask: .496F8F22 / .fup
+//  ID Bytes: 46 55 50 00
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    FSkip(8);
+    int count;
+    FSkip(20);
+} FUPHeader;
+
+typedef struct{
+    float CharismaMeleeModifier<bgcolor=0xd45f5f>;   
+    float FightingMeleeModifier<bgcolor=0xd6942b>;                
+    float ProtectMeleeModifier<bgcolor=0xabdb25>; 
+    float AssistMeleeModifier<bgcolor=0x25dbcc>;   
+    float HealMeleeModifier<bgcolor=0x1d7ad1>;                
+    float BombMeleeModifier<bgcolor=0x573fab>;
+    float GatherMeleeModifier<bgcolor=0xb004d6>;
+    float CharismaRangedModifier<bgcolor=0xd45f5f>;
+    float FightingRangedModifier<bgcolor=0xd6942b>;
+    float ProtectRangedModifier<bgcolor=0xabdb25>;
+    float AssistRangedModifier<bgcolor=0x25dbcc>;
+    float HealRangedModifier<bgcolor=0x1d7ad1>;
+    float BombRangedModifier<bgcolor=0x573fab>;
+    float GatherRangedModifier<bgcolor=0xb004d6>;
+    float CharismaDefenceModifier<bgcolor=0xd45f5f>;
+    float FightingDefenceModifier<bgcolor=0xd6942b>;
+    float ProtectDefenceModifier<bgcolor=0xabdb25>;
+    float AssistDefenceModifier<bgcolor=0x25dbcc>;
+    float HealDefenceModifier<bgcolor=0x1d7ad1>;
+    float BombDefenceModifier<bgcolor=0x573fab>;
+    float GatherDefenceModifier<bgcolor=0xb004d6>;
+    float unk1;
+    float unk2;
+    float BeastMeleeModifier<bgcolor=0xd408a1>;  
+    float BeastRangedModifier<bgcolor=0xd408a1>; 
+    float BeastDefenceModifier<bgcolor=0xd408a1>;                                                               
+} AirouData;
+
+FUPHeader header;
+AirouData data;

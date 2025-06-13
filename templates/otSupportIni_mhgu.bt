@@ -1,0 +1,92 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: otSupportIni1/2/3
+//   Authors: Poto
+//   Version: 1.0
+//   Credits:  Handburger
+//  Entry Size: 6
+// File Mask: .2BCFB893 / .otil
+//  ID Bytes: 00 00 80 3f
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} OTILHeader;
+
+// Helper function to get the color label from a note ID
+string GetSupportIDLabel(byte id) {
+    switch (id) {
+case 1: return "Herb Horn";
+case 2: return "Health Horn";
+case 3: return "True Health Horn";
+case 4: return "Detox Horn";
+case 5: return "Cheer Horn";
+case 6: return "Demon Horn";
+case 7: return "Armor Horn";
+case 8: return "Ultrasonic Horn";
+case 9: return "Mini Barrel Bombay";
+case 10: return "Barrel Bombay";
+case 11: return "Big Barrel Bombay";
+case 12: return "Mega Barrel Bombay";
+case 13: return "Giga Barrel Bombay";
+case 14: return "Bounce Bombay";
+case 15: return "Flash Bombay";
+case 16: return "Anti-Monster Mine";
+case 17: return "Anti-Monster Mine+";
+case 18: return "Pitfall Purr-ison";
+case 19: return "Shock Purr-ison";
+case 20: return "Poison Purr-ison";
+case 21: return "Trampoliner";
+case 22: return "Vase of Vitality";
+case 23: return "Parting Gift";
+case 24: return "Emergency Retreat";
+case 25: return "Big Boomerangs";
+case 26: return "Piercing Boomerangs";
+case 27: return "Camouflage";
+case 28: return "Weapon Upgrade";
+case 29: return "Furr-ious";
+case 30: return "Taunt";
+case 31: return "Palico Rally";
+case 32: return "Dung Bombay";
+case 33: return "Go, Fight, Win";
+case 34: return "Soothing Roll";
+case 35: return "Explosive Roll";
+case 36: return "Pilfer";
+case 37: return "Plunderang";
+case 38: return "Felyne Comet";
+case 39: return "Claw Dance";
+case 40: return "Sumo Stomp";
+case 41: return "Chestnut Cannon";
+case 42: return "Shock Tripper";
+case 43: return "Excavator";
+case 44: return "Mega Boomerang";
+case 45: return "Rath-of-Meow";
+case 46: return "Release/Cage the Beast";
+case 47: return "Rousing Roar";
+case 48: return "Furlask of Healing";
+case 49: return "Far-cat-ster";
+case 50: return "Burrowing Blow";
+case 51: return "Stunt Cannon";
+case 52: return "Iron Transpurrter";
+case 53: return "Explosive Transpurrter";
+case 54: return "Widewhiskers Horn";
+case 55: return "SP Horn";
+case 56: return "Furbidden Acorn";
+        default: return "?"; // Unknown ID
+    }
+}
+
+typedef struct {
+    int16 SupportID<bgcolor=0xffffff>;   
+    byte BhernaChance<bgcolor=0xd45f5f>;                
+    byte KokotoChance<bgcolor=0xabdb25>;             
+    byte PokkeChance<bgcolor=0x0837a3>;
+    byte YukumoChance<bgcolor=0xd408a1>;                                                      
+} SupportData<read=Str("Support Move: %s, Probability: %d/%d/%d/%d", 
+    GetSupportIDLabel(this.SupportID), this.BhernaChance, this.KokotoChance, this.PokkeChance, this.YukumoChance)>;
+
+OTILHeader header;
+SupportData data[header.count]<optimize=false>;

@@ -1,0 +1,131 @@
+//------------------------------------------------
+//--- 010 Editor v14.0 Binary Template
+//
+//      File: otskillIni1/2/3
+//   Authors: Poto
+//   Version: 1.0
+//   Credits:  Handburger
+//  Entry Size: 6
+// File Mask: .2BCFB893 / .otil
+//  ID Bytes: 00 00 80 3f
+//------------------------------------------------
+
+
+typedef struct {
+    char magic[4];
+    int count;
+} OTILHeader;
+
+// Helper function to get the color label from a note ID
+string GetSkillIDLabel(byte id) {
+    switch (id) {
+case 1: return "Health Up (S)";
+case 2: return "Health Up (L)";
+case 3: return "Attack Up (S)";
+case 4: return "Attack Up (L)";
+case 5: return "Defense Up (S)";
+case 6: return "Defense Up (L)";
+case 7: return "Omniresistance";
+case 8: return "Critical Up (S)";
+case 9: return "Critical Up (L)";
+case 10: return "Handicraft";
+case 11: return "Bombay Boost";
+case 12: return "Element Attack Up";
+case 13: return "Status Attack Up";
+case 14: return "Knockout King";
+case 15: return "Stamina Drain";
+case 16: return "Guard (S)";
+case 17: return "Guard (L)";
+case 18: return "Guard Boost";
+case 19: return "Support Priority";
+case 20: return "Support Boost";
+case 21: return "Support Move +1";
+case 22: return "Pilfer Boost";
+case 23: return "Revival Pro";
+case 24: return "Heat/Bomb Res";
+case 25: return "Negate Poison";
+case 26: return "Negate Wind";
+case 27: return "Negate Paralysis";
+case 28: return "Negate Stun";
+case 29: return "Negate Confusion";
+case 30: return "Tremor Res";
+case 31: return "Earplugs";
+case 32: return "Negate Sleep";
+case 33: return "Biology";
+case 34: return "Iron Hide";
+case 35: return "Non-Stick Fur";
+case 36: return "Nine Lives (Attack)";
+case 37: return "Nine Lives (Defense)";
+case 38: return "Last Stand";
+case 39: return "Anger Prone";
+case 40: return "Counter Boost";
+case 41: return "Monsterdar";
+case 42: return "Boomerang Pro";
+case 43: return "Pro Trapper";
+case 44: return "Gathering Pro";
+case 45: return "Slacker Slap";
+case 46: return "Horn Virtuoso";
+case 47: return "Goldenfish Catcher";
+case 48: return "Baddest Cat Ever";
+case 49: return "High Cadence";
+case 50: return "World's Strongest";
+case 51: return "Zombie";
+case 52: return "Desperation";
+case 53: return "Nagatobimaru (Thunder Boost)";
+case 54: return "Fanalis";
+case 55: return "Aera";
+case 56: return "Ranged Attack Up";
+case 57: return "Sonic Mini Bombay";
+case 58: return "Fashion Sense";
+case 59: return "Universal";
+case 60: return "DUMMY";
+case 61: return "DUMMY";
+case 62: return "DUMMY";
+case 63: return "Wind Waker";
+case 64: return "Landmaster";
+case 65: return "Super Mushroom";
+case 66: return "Shopkeeping";
+case 67: return "Triforce";
+case 68: return "Morph Ball Bomb";
+case 69: return "Megaflare (Fire Boost)";
+case 70: return "DEF-centric";
+case 71: return "STAM-centric";
+case 72: return "Fire Res Up";
+case 73: return "Water Res Up";
+case 74: return "Thunder Res Up";
+case 75: return "Ice Res Up";
+case 76: return "Dragon Res Up";
+case 77: return "Critical Boost";
+case 78: return "Recovery Speed Up";
+case 79: return "Extra Bomb Blasts";
+case 80: return "Extend Fury";
+case 81: return "Artful Dodger";
+case 82: return "Pro Experience";
+case 83: return "Water Boost";
+case 84: return "Ice Boost";
+case 85: return "Dragon Boost";
+case 86: return "Extend SP State";
+case 87: return "Weakness Exploit";
+case 88: return "Pro Burrower";
+case 89: return "Guts";
+case 90: return "Extend Beast";
+case 91: return "Pro Hatter";
+case 92: return "Felyne Protection";
+case 93: return "Pro Transporter";
+case 94: return "Extreme DEF-centric";
+case 95: return "Pro Roller";
+        default: return "?"; // Unknown ID
+    }
+}
+
+typedef struct {
+    int16 SkillID<bgcolor=0xffffff>;   
+    byte BhernaChance<bgcolor=0xd45f5f>;                
+    byte KokotoChance<bgcolor=0xabdb25>;             
+    byte PokkeChance<bgcolor=0x0837a3>;
+    byte YukumoChance<bgcolor=0xd408a1>;                                                      
+} SkillData<read=Str("Skill: %s, Probability: %d/%d/%d/%d", 
+    GetSkillIDLabel(this.SkillID), this.BhernaChance, this.KokotoChance, this.PokkeChance, this.YukumoChance)>;
+
+OTILHeader header;
+SkillData data[header.count]<optimize=false>;
