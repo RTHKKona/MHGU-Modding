@@ -63,7 +63,7 @@ HDPHeader header;
 HitData Attack<name="Melee Attack 1 ">; 
 HitData Attack<name="Melee Attack 2 ">; 
 HitData Attack<name="Jumping Arrow Attack ">; 
-HitData Attack<name=" ">; 
+HitData Attack<name="Tactical Retreat I/II/III Melee Attack ">; 
 
 float framesToSeconds(byte frames) {
     return (float)frames / 30.0f;
