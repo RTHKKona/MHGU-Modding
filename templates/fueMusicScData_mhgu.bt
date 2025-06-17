@@ -6,7 +6,7 @@
 //   Version: 1.0
 //   Credits: 
 //  Entry Size: 5
-// File Mask: .61C203A4 / .stm
+// File Mask: .61C203A4 / .fms
 //  ID Bytes: 9A 99 99 3F
 //------------------------------------------------
 
@@ -14,7 +14,7 @@
 typedef struct {
     char magic[4];
     int count;
-} STMHeader;
+} FMSHeader;
 
 // Helper function to get the color label from a note ID
 string GetNoteColorLabel(byte id) {
@@ -31,18 +31,73 @@ string GetNoteColorLabel(byte id) {
     }
 }
 
+string GetSongIDLabel(byte id) {
+    switch (id) {
+case 0: return "Self-Improvement";
+case 1: return "Attack Boost (S)";
+case 2: return "Attack Boost (L)";
+case 3: return "Defense Boost (S)";
+case 4: return "Defense Boost (L)";
+case 5: return "Health Boost (S)";
+case 7: return "Health Boost (L)";
+case 9: return "Wind Resistance";
+case 10: return "Wind Negation";
+case 11: return "Negate Stamina Use (S)";
+case 12: return "Negate Stamina Use (L)";
+case 13: return "Psychic";
+case 14: return "Health Recovery (S)";
+case 16: return "Health Recovery (L)";
+case 17: return "Health Rec. (M) + Deod.";
+case 18: return "Health Rec. (S) + Ant.";
+case 19: return "Health Rec. (M) + Ant.";
+case 20: return "Recovery Speed Up (S)";
+case 21: return "Recovery Speed Up (L)";
+case 22: return "Divine Protection";
+case 23: return "Negate Cold";
+case 24: return "Negate Heat";
+case 25: return "Hearing Protection (S)";
+case 26: return "Hearing Protection (L)";
+case 27: return "Negate Stun";
+case 28: return "Negate Paralysis";
+case 29: return "Tremor Res";
+case 30: return "Elem. Attack Boost";
+case 31: return "Fire Res Boost (S)";
+case 32: return "Fire Res Boost (L)";
+case 33: return "Water Res Boost (S)";
+case 34: return "Water Res Boost (L)";
+case 35: return "Thunder Res Boost (S)";
+case 36: return "Thunder Res Boost (L)";
+case 37: return "Ice Res Boost (S)";
+case 38: return "Ice Res Boost (L)";
+case 39: return "Dragon Res Boost (S)";
+case 40: return "Dragon Res Boost (L)";
+case 41: return "Sonic Waves";
+case 42: return "Finale";
+case 43: return "Negate Knockback";
+case 44: return "Att. & Def. Boost (S)";
+case 45: return "Aff. Up + Health Rec. (S)";
+case 46: return "Abnormal Boost";
+case 47: return "Negate Abnormal Stat.";
+case 48: return "Elemental Res Boost";
+case 49: return "Blightproof";
+case 50: return "Hearing (S) + Wind Res.";
+case 51: return "Bind Res";
+        default: return "?"; // Unknown ID
+    }
+}
+
 typedef struct {
-    byte FourthNoteID<bgcolor=0xffffff>;   
-    byte ThirdNoteID<bgcolor=0xd45f5f>;                
-    byte SecondNoteID<bgcolor=0xd62b2b>;             
-    byte FirstNoteID<bgcolor=0xd65e2b>;
-    byte SongID<bgcolor=0xd6942b>;                                                      
-} MusicData<read=Str("Song ID: %d, Notes: %s%s%s%s", 
-    this.SongID,
+    byte FourthNoteID<bgcolor=0xd45f5f>;   
+    byte ThirdNoteID<bgcolor=0xd62b2b>;                
+    byte SecondNoteID<bgcolor=0xd65e2b>;             
+    byte FirstNoteID<bgcolor=0xd6942b>;
+    byte SongID<bgcolor=0xffffff>;                                                      
+} MusicData<read=Str("Song: %s, Notes: %s%s%s%s", 
+    GetSongIDLabel(this.SongID),
     GetNoteColorLabel(this.FirstNoteID), 
     GetNoteColorLabel(this.SecondNoteID), 
     GetNoteColorLabel(this.ThirdNoteID),
     GetNoteColorLabel(this.FourthNoteID))>;
 
-STMHeader header;
+FMSHeader header;
 MusicData data[header.count]<optimize=false>;
