@@ -1,24 +1,25 @@
 //------------------------------------------------
-//--- 010 Editor v14.0 Binary Template
+//        010 Editor v14.0 Binary Template
 //
-//      File: 
-//   Authors: Fexty
-//   Version: 1
-//   Purpose: 
+//      File: rdb
+//   Authors: Fexty, Handburger
+//   Version: 1.1
+//   Purpose: To edit global monster data that are external, i.e corpse duration, rage duration, etc.
 //  Category: 
-// File Mask: *.rdb
+// File Mask: *.rdb or .583F70B0
 //  ID Bytes: 52 44 42 00
-//   History: 
+//   History: Added some probable labels for the variables (HB) ; 
+//           Remember that these are in frames so they need to be divided by 30.
 //------------------------------------------------
 
 
 typedef struct {
-    int DieEraseTime; // despawn time
-    short DefTime; // idk
-    short EscapeTime;
-    short FastTime;
-    short ExTime;
-    ubyte Genus;
+    int DieEraseTime<bgcolor=cLtGreen>; // Corpse Despawn Timer
+    short DefTime;                      // Exhausted State Duration (?)
+    short EscapeTime;                   // Zone Cooldown Timer (minimum time to stay in a given zone after fleeing) (?)
+    short FastTime<bgcolor=cYellow>;    // Rage Timer - small monsters 10s, medium monsters 40s, big monsters 60s
+    short ExTime<bgcolor=cRed>;         // Vulnerability Timer (?)
+    ubyte Genus;                        // Internal Monster Profile ID
     FSkip(3);
 } RDBEntry;
 
