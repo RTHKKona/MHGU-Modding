@@ -15,9 +15,9 @@
 
 typedef struct {
     int DieEraseTime<bgcolor=cLtGreen>; // Corpse Despawn Timer
-    short DefTime;                      // Exhausted State Duration (?)
+    short DefTime;                      // Exhausted State Duration (?) [Not Rage]
     short EscapeTime;                   // Zone Cooldown Timer (minimum time to stay in a given zone after fleeing) (?)
-    short FastTime<bgcolor=cYellow>;    // Rage Timer - small monsters 10s, medium monsters 40s, big monsters 60s
+    short FastTime<bgcolor=cYellow>;    // ??? Timer - small monsters 10s, medium monsters 40s, big monsters 60s [Not Rage]
     short ExTime<bgcolor=cRed>;         // Vulnerability Timer (?)
     ubyte Genus;                        // Internal Monster Profile ID
     FSkip(3);
