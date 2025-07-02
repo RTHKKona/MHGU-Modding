@@ -1,0 +1,56 @@
+//------------------------------------------------
+//--- 010 Editor v15.0.2 Binary Template
+//
+//      File: questcamera
+//   Authors: Poto, Fexty, Handburger
+//   Version: dog
+//   Purpose: Editing in-quest camera parameters for MHGU.
+//  Category: 
+// File Mask: .496F8F22 / .fup
+//  ID Bytes: 46 55 50 00
+//------------------------------------------------
+
+// Handles mixed endianness
+BigEndian();
+typedef struct {
+    char magic[4];
+    LittleEndian();
+    int version;
+    int intCount;
+    int floatCount;
+    int vectorCount;
+} QCheader; // Quest Camera
+
+typedef struct {
+    float hunter_HorizDist;
+    float hunter_VertDist;
+    float prowler_HorizDist;
+    float prowler_VertDist;
+
+    // --- New Search Area ---
+    float unk_BlockA[4];
+
+    float fake_reticle_Fast_MULTIPLIER <bgcolor=cYellow>; // Value: 2.0 doesn't work 
+
+    float unk_BlockB[7];
+
+    // --- Player CAMERA SPEED (Confirmed) ---
+    float cam_sens_Default <bgcolor=0x90EE90>;
+    float cam_sens_Slow    <bgcolor=0xADD8E6>;
+    float cam_sens_Fast    <bgcolor=0xFFB6C1>;
+    
+    
+    float unk_BlockC[41]; // nothing makes sense - editing 2.109,3.164,4.218 doesn't do shit
+// nor 22.5, 30, 45,
+    
+} CameraValues;
+
+// --- Run Template ---
+QCheader header;
+CameraValues floats;
+
+// Vectors
+typedef struct { float x,y,z; } Vec3;
+if ( !FEof() ) {
+    Vec3 vectors[header.vectorCount];
+}
