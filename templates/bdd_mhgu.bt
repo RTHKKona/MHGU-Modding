@@ -1,20 +1,27 @@
 //------------------------------------------------
 //--- 010 Editor v15.0.2 Binary Template
 //
-//      File: 
+//      File: bodydata
 //   Authors: Handburger
 //   Version: 1
-//   Purpose: 
+//   Purpose: editing bodydata?
 //  Category: 
 // File Mask: 1AC7B52D or .bdd
 //  ID Bytes: 42 44 44 00
 //   History: 
 //------------------------------------------------
 
-typedef struct{
-    char magic[4];
-    int unknown[2];
-    uint padding;
-} header;
+LittleEndian();
 
-header Header;
+typedef struct {
+    byte unknown1[16];
+    float value;
+    byte unknown2[24];
+} Entry;
+
+char magic[4];
+int unknown1;
+int entryCount;
+int unknown2;
+
+Entry entries[entryCount]<optimize=false>;

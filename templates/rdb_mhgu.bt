@@ -9,7 +9,7 @@
 // File Mask: *.rdb or .583F70B0
 //  ID Bytes: 52 44 42 00
 //   History: Added some probable labels for the variables (HB) ; 
-//           Remember that these are in frames so they need to be divided by 30.
+//           Remember that these are in frames so they need to be divided by 30 since the game runs at 30FPS.
 //------------------------------------------------
 
 
