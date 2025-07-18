@@ -9,6 +9,7 @@ The Monster Hunter Generations Ultimate Modding Wiki
 * Poto
 * Silvris
 * WeeScottishMan
+* zelmon64
 
 ##### Special Thanks
 *  Schguki, Aradi, GReinoso96, SilverJolteon, Pings, Awesomeosity, Kiranico
