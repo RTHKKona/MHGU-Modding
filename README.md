@@ -13,4 +13,4 @@ The Monster Hunter Generations Ultimate Modding Wiki
 * Emarcee
 
 ##### Special Thanks
-*  Schguki, Aradi, GReinoso96, SilverJolteon, Pings, Awesomeosity, Kiranico
+*  Schguki, Aradi, GReinoso96, SilverJolteon, Pings, Awesomeosity, Kiranico, schaero, Sonansune
