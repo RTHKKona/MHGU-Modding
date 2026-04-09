@@ -7,6 +7,7 @@ The Monster Hunter Generations Ultimate Modding Wiki
 * Handburger (RTHKKona)
 * Fexty
 * Poto
+* jeffi
 * Silvris
 * WeeScottishMan
 * zelmon64
