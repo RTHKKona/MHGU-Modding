@@ -1,0 +1,38 @@
+//------------------------------------------------
+//--- 010 Editor v16.0.4 Binary Template
+//
+//      File: gs_params
+//   Authors: Pheo
+//   Version: 
+//   Purpose: Template for modifying the different great sword parameters
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef struct {
+    char magic[4];
+    uint version<format=hex>;
+    int count;
+    int32 offset;
+} HDPHeader;
+
+FSeek(0);
+HDPHeader header;
+FSeek(76);  
+float LionsMawI<name="Lions Maw I Damage Mod", bgcolor=0xa30557>;
+float LionsMawII<name="Lions Maw II Damage Mod", bgcolor=0x1d7ad1>;
+float LionsMawIII<name="Lions Maw III Damage Mod", bgcolor=0xd62b2b>;
+FSeek(140);
+float BrimstoneFramesToCharge1<name="Brimstone Slash frames to charge level 1", bgcolor=0xa30557>;
+float BrimstoneFramesToCharge2<name="Brimstone Slash frames to charge level 2", bgcolor=0x1d7ad1>;
+float BrimstoneFramesToCharge3<name="Brimstone Slash frames to charge level 3", bgcolor=0xd62b2b>;
+
+float BrimstoneMaxChargeTime<name="Brimstone Max Charge Time", bgcolor=0xa30557>;
+float BrimstoneStrikerModifier<name="Brimstone Striker Charge Modifier", bgcolor=0x1d7ad1>; // Higher value means lower charge time
+
+
+float framesToSeconds(byte frames) {
+    return (float)frames / 30.0f;
+}
