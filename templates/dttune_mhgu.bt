@@ -9,9 +9,10 @@
 //            Based on offsets/structures used by Titanbreak_HPEditor.py & Titanbreak_EnrageEditor.py.
 //  Category: Monster Editing
 // File Mask: *.48E8AC29; *.dtt
-//  ID Bytes: 44 54 54 00 // "DTT" Magic
+//  ID Bytes: 44 54 54 00
 //
-//  Uses information from Kiranico, Apai, DBouken, and reverse engineering via Python scripts.
+//  This template is "functional" given that Titanbreak was made from it but the stagger parts aren't 100% accurate and there's a few unknown lines.
+//  Uses info from Kiranico, Apai, DBouken
 //------------------------------------------------
 
 // Use Little Endian
@@ -32,7 +33,6 @@ uint fileVersion;
 uint unknown_index[12]<bgcolor=0x383838, comment="Unknown purpose, possibly flags or identifiers. Occupies bytes 0x04 to 0x37.">;
 
 // ========== Base HP ==========
-// Confirmed offset by Titanbreak_HPEditor.py
 Assert(FTell() == HP_OFFSET, "HP field not at expected offset 0x38!");
 uint BaseHP<fgcolor=0x000000, bgcolor=0xFFFFFF, comment="Monster's base HP value (uint32). Located at offset 0x38.">;
 
@@ -70,8 +70,7 @@ struct {
 
 // Current position should be 0x3C (Start of Stagger) + 82 bytes = 0x8E
 
-// ========== Resistances (Preserved from original template) ==========
-// FIXED: Removed (string partName) parameter
+// ========== Resistances ==========
 typedef struct {
     uchar slash<bgcolor=0x2196F3, comment="Slash Resistance %">;
     uchar impact<bgcolor=0x1976D2, comment="Impact Resistance %">;
@@ -99,10 +98,7 @@ struct {
 // Current position should be 0x8E (Start of Resistances) + 70 bytes = 0xD4
 
 // ========== Padding / Unknown Data Before Enrage Block ==========
-// This section bridges the gap between the known Resistance data and the Enrage block found by the Python script.
-// The Enrage script starts scanning around 0xD0, reinforcing that the block is likely in this vicinity.
-// The original template had padding and 'probablySomething', 'suspiciousFloats'. We'll define a block
-// to represent the data between resistances and the identified enrage floats.
+// This section is kinda weird and needs more help to make the template more accurate.
 
 local const int enrageBlockStartOffset = 0x17A; // Calculated start offset from *original* template
 local int bytesBeforeEnrage = enrageBlockStartOffset - FTell();
@@ -152,11 +148,11 @@ uint unknownQuestScalingOrOther[56]<bgcolor=0x808080, hidden=true, comment="Furt
 // FIXED: Removed (string statusName) parameter
 typedef struct {
     ubyte initialThreshold<bgcolor=0x795548, comment="Initial Threshold">;
-    ubyte decayStartTime<comment="Time until threshold starts decaying (seconds?)">; // Renamed from timebetweenReduction
+    ubyte decayStartTime<comment="Time until threshold starts decaying (seconds?)">; //
     ubyte decayAmount<comment="Amount threshold decays by">; // Renamed from reductionAmount
     ubyte statusDuration<comment="Duration of the status effect (seconds?)">;
     ubyte unknown_abnormal1[4]<hidden=true>;
-    ushort increasePerProc<bgcolor=0x5D4037, comment="Threshold Increase per activation">; // Renamed from increasedStat
+    ushort increasePerProc<bgcolor=0x5D4037, comment="Threshold Increase per activation">; //
     ushort maxThreshold<bgcolor=0x4E342E, comment="Maximum Threshold">; // Renamed from maximumStat
     uchar damagePerTick<comment="Damage per tick (for Poison/Blast)">; // Renamed from damage
     uchar unknown_abnormal2[3]<hidden=true>;
