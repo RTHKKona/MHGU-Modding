@@ -1,0 +1,77 @@
+//------------------------------------------------
+//--- 010 Editor v14.0.1 Binary Template
+//
+//      File: snd_pl_vo_xxx.srqr
+//   Authors: Handburger
+//   Version: 1
+//   Purpose: Voice database and characteristics (NOT LOCATIONS), strongly tied with .skbr
+//  Category: Audio
+// File Mask: *.srqr
+//  ID Bytes: 53 52 51 52
+//   History: 2026/10/22 created
+//------------------------------------------------
+
+LittleEndian();
+
+typedef struct {
+    char   magic[4];        // "SRQR"
+    uint32 version;         // 5
+    uint32 recordCount;
+    uint32 reserved[4];
+    uint32 formatConst;     // 0x0291DF77, same in f01 and f02
+    uint32 footer;       // = 0x34 + recordCount * 0x84
+    uint32 fileSize[4];       // all = file size here
+} SRQR_HEADER;
+
+typedef struct {
+    uint16 id;              // 0-13, 14-20, 100+10k+v
+    ubyte  duplicates;             // slot (base), copy 0-2 (triples), FF = none
+    ubyte  maxVal;          // 0x7F
+    uint32 kind;            // 2
+    uint32 isActive;          // 1 = real audio (yay!), 0 = empty
+    uint32 randomZero_0;           // padding
+    uint16 randomOne_0;
+    uint16 randomOne_1;
+    uint16 paramA;          // 0x015F, or 0x0164 on ids 14-20
+    uint16 randomZero_1; // padding
+    uint32 randomOne_2;
+    uint16 ffffA;          // this section is cooked, idk
+    uint16 sbkrGroup;       // 0 base, 10-23 triples, 24 rev
+    uint16 ffffB;           // this section is cooked, idk
+    uint16 randomZero_2;
+    float  db_A;             // could be the place for volume? the only variable type that fit was float.
+    float  db_B;
+    ubyte  randomZero_3[12];          // padding
+    uint32 seventeenA;          // 17
+    uint32 seventeenB;          // 17
+    uint32 randomZero_4;             // padding
+    ubyte  randomOne_3;
+    ubyte  randomZero_5[2];       // padding
+    ubyte  whatA;            // 0x30 on id 20 only
+    ubyte  whatB;            // 0x23 on id 20 only
+    ubyte  randomZero_6[23];      // padding
+    float  floorDb;         // -96.0 minimum volume possible maybe
+    int32  randomMinus_1a;
+    int32  hundred;         // 100 (?)
+    int32  randomMinus_1b;
+    ubyte  randomZero_7[12];        // padding
+    int32  randomMinus_1c;
+    uint32 randomZero_8;
+} SRQR_REC <read=ReadRec>;
+
+string ReadRec(SRQR_REC &r) {
+    string s;
+    SPrintf(s, "id %d  dup %02X  grp %d  active %d", r.id, r.dup, r.sbkrGroup, r.isActive);
+    return s;
+}
+
+SRQR_HEADER Header;
+if (sizeof(SRQR_REC) != 132) Warning("record size %d", sizeof(SRQR_REC));
+SRQR_REC Database[Header.recordCount] <optimize=false>;
+
+if (FTell() != Header.footer) Warning("footer mismatch");
+uint32 soundBankUnk;             // = footer + 4
+if (soundBankUnk != FTell()) Warning("soundBankUnk does not point at the string");
+string soundBankName;
+if (FTell() < FileSize()) ubyte Padding[FileSize() - FTell()];
+if (FileSize() % 16 != 0) Warning("file is not 16-aligned");
