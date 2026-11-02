@@ -12,6 +12,7 @@ The Monster Hunter Generations Ultimate Modding Wiki
 * WeeScottishMan
 * zelmon64
 * Emarcee
+* Pax
 
 ##### Special Thanks
 *  Schguki, Aradi, GReinoso96, SilverJolteon, Pings, Awesomeosity, Kiranico, schaero, Sonansune
