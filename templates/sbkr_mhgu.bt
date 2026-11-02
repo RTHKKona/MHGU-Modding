@@ -1,0 +1,128 @@
+//------------------------------------------------
+//--- 010 Editor v16.0.4 Binary Template
+//
+//      File: snd_pl_vo_xxx.sbkr
+//   Authors: Pax, Handburger
+//   Purpose: sbkr (rSoundBank)
+//  Category: Audio
+// File Mask: *.sbkr
+//  ID Bytes: 53 42 4B 52 // "SBKR"
+//
+//------------------------------------------------
+LittleEndian();
+
+typedef enum <uint32> {
+	SOURCE_NONE = 0,
+	SOURCE_MADP = 0x79C47B59
+} SBKR_Source_Type;
+
+typedef enum <uint8> {
+	FILTER_OFF,
+	FILTER_LOW_PASS,
+	FILTER_PEAKING_EQ,
+	FILTER_LOW_SHELF,
+	FILTER_HIGH_PASS,
+	FILTER_HIGH_SHELF
+} SBKR_Filter_Type;
+
+typedef struct {
+	char magic[4];              // "SBKR" (0x524B4253)
+	uint32 version;             // Usually 4
+	uint32 group_count;         // Number of groups
+	uint32 entry_count;         // Number of wave entries
+	uint32 adjustment_count;    // Number of adjustments
+} SBKR_Header;
+
+typedef struct {
+	uint32 id : 16;             // Group ID (matches `group` field in SRQR)
+	uint32 exclusive : 1;
+	uint32 entry_count : 10;    // Number of waves in this group
+	uint32 avoid_repeat : 1;
+	uint32 unk_bits_28_31 : 4;  // unused
+	uint32 first_entry;         // Index into the entries array
+	uint32 random_limit : 24;   
+	uint32 adjustment_id : 8;
+} SBKR_Group;
+
+typedef struct {
+	string path;                
+	SBKR_Source_Type type;
+	uint8 source_mode : 4;      // if not 0 doesn't play the sound in GU
+	uint8 unk_04_bits_4_7 : 4;  // unused
+	uint8 fixed_key : 1;
+	uint8 random_volume : 1;
+	uint8 random_pitch : 1;
+	uint8 random_pan : 1;
+	uint8 volume_envelope : 1;
+	uint8 pitch_envelope : 1;
+	uint8 avoid_repeat : 1;
+	uint8 unk_05_bit_7 : 1;     // unused
+	uint8 linked_layer : 1;
+	uint8 filter : 1;
+	uint8 random_filter : 1;
+	uint8 unk_06_bit_3 : 1;     // unused
+	uint8 disabled : 1;
+	uint8 unk_06_bits_5_7 : 3;  // unused
+	uint8 exclusive_subgroup;
+	uint8 weight;
+	uint8 volume;               // 0-127
+	uint8 random_volume_min;
+	uint8 random_volume_max;
+	int8 pan;                   // -128 to 127
+	int8 random_pan_min;
+	int8 random_pan_max;
+	uint8 layer_id;
+	int16 pitch_cents;
+	int16 random_pitch_min;
+	int16 random_pitch_max;
+	uint16 delay_ms;
+	uint8 velocity_min;
+	uint8 velocity_max;
+	uint8 velocity_min_volume;
+	uint8 velocity_max_volume;
+	float velocity_curve_0;
+	float velocity_curve_1;
+	uint16 volume_attack_ms;
+	uint16 volume_decay_ms;
+	int16 volume_sustain_slope;
+	uint16 volume_release_ms;
+	uint16 pitch_attack_ms;
+	uint16 pitch_decay_ms;
+	int16 pitch_sustain_slope;
+	uint16 pitch_release_ms;
+	uint8 volume_sustain_level;
+	uint8 volume_key_scale;
+	uint8 unk_36; // unused
+	int8 pitch_start_level;
+	int8 pitch_attack_level;
+	int8 pitch_sustain_level;
+	int8 pitch_release_level;
+	uint8 pitch_key_scale;
+	uint8 unk_3c; // unused
+	int8 pitch_depth_semitones;
+	uint16 random_interval_min;
+	uint16 random_interval_max;
+	SBKR_Filter_Type filter_type;
+	uint8 filter_q;
+	int16 filter_gain;
+	uint16 filter_frequency_hz;
+	uint16 filter_random_cents;
+	int8 filter_velocity_semitones;
+	uint8 key_root;
+	uint8 key_min;
+	uint8 key_max;
+	uint16 retrigger_interval_ms : 12;
+	uint16 unk_4e_bits_12_15 : 4; // unused
+} SBKR_Entry;
+
+typedef struct {
+	float volume;
+	uint8 id;
+	uint8 unk_05; // unused
+	int16 pitch_cents;
+} SBKR_Adjustment;
+
+SBKR_Header header;
+SBKR_Group groups[header.group_count];
+SBKR_Entry entries[header.entry_count] <optimize=false>;
+SBKR_Adjustment adjustments[header.adjustment_count];
