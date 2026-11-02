@@ -1,77 +1,226 @@
 //------------------------------------------------
-//--- 010 Editor v14.0.1 Binary Template
+//--- 010 Editor v16.0.4 Binary Template
 //
 //      File: snd_pl_vo_xxx.srqr
-//   Authors: Handburger
-//   Version: 1
-//   Purpose: Voice database and characteristics (NOT LOCATIONS), strongly tied with .skbr
+//   Authors: Pax, Handburger
+//   Purpose: Voice Database: srqr (rSoundRequest)
 //  Category: Audio
 // File Mask: *.srqr
-//  ID Bytes: 53 52 51 52
-//   History: 2026/10/22 created
+//  ID Bytes: 53 52 51 52 // "SRQR"
+//      Date: Nov 2 2026
 //------------------------------------------------
 
 LittleEndian();
 
-typedef struct {
-    char   magic[4];        // "SRQR"
-    uint32 version;         // 5
-    uint32 recordCount;
-    uint32 reserved[4];
-    uint32 formatConst;     // 0x0291DF77, same in f01 and f02
-    uint32 footer;       // = 0x34 + recordCount * 0x84
-    uint32 fileSize[4];       // all = file size here
-} SRQR_HEADER;
+typedef enum <uint32> {
+	BUS_SE,
+	BUS_ENV,
+	BUS_VOICE,
+	BUS_SYSTEM
+} SRQR_Bus;
+
+typedef enum <uint32> {
+	ACTION_DISABLED = 0,
+	ACTION_PLAY = 1,        // Triggers FUN_182982950 in Recomp 
+	ACTION_RELEASE = 2,     // Fades out the sound
+	ACTION_STOP = 3         // Instantly kills the sound
+} SRQR_Action;
+
+typedef enum <uint8> {
+	SCOPE_OWNER_AND_FILE,
+	SCOPE_ANYWHERE,
+	SCOPE_OWNER,
+	SCOPE_FILE
+} SRQR_Class_Scope;
+
+typedef enum <uint32> {
+	PLAYS_ALWAYS,
+	PLAYS_OUTSIDE_CUTSCENES,
+	PLAYS_OUTSIDE_MEOWNSTER_HUNTERS,
+	PLAYS_OUTSIDE_CUTSCENES_AND_MEOWNSTER_HUNTERS,
+	PLAYS_CUTSCENES_ONLY,
+	PLAYS_NEVER
+} SRQR_Plays_In;
+
+typedef enum <uint32> {
+	OWNER_EMITTER,
+	OWNER_ANY,
+	OWNER_UNIQUE_PER_PLAY
+} SRQR_Voice_Owner;
+
+typedef enum <uint32> {
+	STEALTH_OFF,
+	STEALTH_FULLY_STEALTHED,
+	STEALTH_STEALTHING_OR_STEALTHED
+} SRQR_Stealth_Mute;
+
+typedef enum <uint32> {
+	DUCK_NONE,
+	DUCK_SE,
+	DUCK_ENV,
+	DUCK_BGM,
+	DUCK_VOICE,
+	DUCK_SE_ENV,
+	DUCK_SE_BGM,
+	DUCK_SE_VOICE,
+	DUCK_ENV_BGM,
+	DUCK_ENV_VOICE,
+	DUCK_BGM_VOICE,
+	DUCK_SE_ENV_BGM,
+	DUCK_SE_ENV_VOICE,
+	DUCK_SE_BGM_VOICE,
+	DUCK_ENV_BGM_VOICE,
+	DUCK_ALL
+} SRQR_Duck_Buses;
+
+typedef enum <uint8> {
+	HEARD_SAME_AREA,
+	HEARD_CONNECTED_AREAS,
+	HEARD_ANY_AREA
+} SRQR_Heard_From;
+
+typedef enum <uint32> {
+	EMITTER_LISTENER_RELATIVE,
+	EMITTER_WORLD,
+	EMITTER_SOURCE_LOCAL,
+	EMITTER_LISTENER_FACING
+} SRQR_Emitter_Mode;
 
 typedef struct {
-    uint16 id;              // 0-13, 14-20, 100+10k+v
-    ubyte  duplicates;             // slot (base), copy 0-2 (triples), FF = none
-    ubyte  maxVal;          // 0x7F
-    uint32 kind;            // 2
-    uint32 isActive;          // 1 = real audio (yay!), 0 = empty
-    uint32 randomZero_0;           // padding
-    uint16 randomOne_0;
-    uint16 randomOne_1;
-    uint16 paramA;          // 0x015F, or 0x0164 on ids 14-20
-    uint16 randomZero_1; // padding
-    uint32 randomOne_2;
-    uint16 ffffA;          // this section is cooked, idk
-    uint16 sbkrGroup;       // 0 base, 10-23 triples, 24 rev
-    uint16 ffffB;           // this section is cooked, idk
-    uint16 randomZero_2;
-    float  db_A;             // could be the place for volume? the only variable type that fit was float.
-    float  db_B;
-    ubyte  randomZero_3[12];          // padding
-    uint32 seventeenA;          // 17
-    uint32 seventeenB;          // 17
-    uint32 randomZero_4;             // padding
-    ubyte  randomOne_3;
-    ubyte  randomZero_5[2];       // padding
-    ubyte  whatA;            // 0x30 on id 20 only
-    ubyte  whatB;            // 0x23 on id 20 only
-    ubyte  randomZero_6[23];      // padding
-    float  floorDb;         // -96.0 minimum volume possible maybe
-    int32  randomMinus_1a;
-    int32  hundred;         // 100 (?)
-    int32  randomMinus_1b;
-    ubyte  randomZero_7[12];        // padding
-    int32  randomMinus_1c;
-    uint32 randomZero_8;
-} SRQR_REC <read=ReadRec>;
+	char magic[4];              // "SRQR" (0x52515352)
+	uint32 version;             // 5
+	uint32 request_count;       
+	uint32 emitter_count;
+	uint32 transform_count;
+	uint32 curve_count;
+	uint32 point_count;
+	uint32 unk_1c;              // unused
+	uint32 bank_offset;
+	uint32 emitter_offset;
+	uint32 transform_offset;
+	uint32 curve_offset;
+	uint32 point_offset;
+} SRQR_Header;
 
-string ReadRec(SRQR_REC &r) {
-    string s;
-    SPrintf(s, "id %d  dup %02X  grp %d  active %d", r.id, r.dup, r.sbkrGroup, r.isActive);
-    return s;
+typedef struct {
+	uint16 id;                  // Voice ID requested by game logic
+	uint8 key;                  // Variation index (0, 1, 2). 
+	uint8 velocity;
+	SRQR_Bus bus;
+	SRQR_Action action;         // Set to 1 for it to play
+	SRQR_Class_Scope scope;
+	uint8 unk_0d;               // unused
+	int16 voice_class[3];       // Routing buses
+	uint8 priority;
+	uint8 replace_equal_priority;
+	uint16 unk_16;              // unused
+	uint8 voice_limit;          // Max concurrent instances
+	uint8 unk_19;               // unused
+	uint16 unk_1a;              // unused
+	uint16 next_request;        // Linked list for variations
+	uint16 group;               // Links to SBKR_Group ID
+	int16 pan;
+	uint16 unk_22;              // unused
+	float volume_db;
+	float effect_send_db;
+	int32 pitch_cents;
+	uint32 delay_ms;
+	uint16 interval_ms;         
+	uint16 unk_36;              // unused
+	int32 distance_curve;
+	int32 effect_distance_curve;
+	int32 pan_curve;
+	uint32 remote_hunter_cut : 4;
+	uint32 unk_44_bits_4_7 : 4; // unused
+	uint32 unk_44_bits_8_11 : 4;// unused
+	SRQR_Plays_In plays_in : 4;
+	SRQR_Voice_Owner voice_owner : 4;
+	uint32 special_state_offset : 4;
+	SRQR_Stealth_Mute stealth_mute : 4;
+	SRQR_Duck_Buses duck_buses : 4;
+	uint8 duck_depth;
+	SRQR_Heard_From heard_from;
+	uint8 priority_curve;
+	uint8 unk_4b; // unused
+	int16 unk_4c; // unused
+	int16 unk_4e; // unused
+	int16 keep_when_inaudible;
+	int16 rumble;
+	int32 bank_index;
+	uint32 bank_pointer;
+	uint32 runtime_word; // unused
+	float lfe_db;
+	int32 lfe_distance_curve;
+	uint32 surround_percent;
+	int16 eq_preset;
+	int16 effect_preset;
+	uint8 mixer_group : 3;
+	uint8 unk_70_bits_3_7 : 5; // unused
+	uint8 unk_71; // unused
+	uint16 unk_72; // unused
+	float near_field_pan_distance;
+	float doppler_scale;
+	int32 emitter_index;
+	uint32 emitter_pointer;
+} SRQR_Request; //132 bytes
+
+typedef struct {
+	string path;
+} SRQR_Bank;
+
+typedef struct {
+	SRQR_Emitter_Mode mode;
+	uint32 transform_count;
+	int32 first_transform;
+} SRQR_Emitter;
+
+typedef struct {
+	float position[3];
+	float rotation[3];
+	int32 curve;
+} SRQR_Transform;
+
+typedef struct {
+	uint32 point_count;
+	float front_db;
+	float back_db;
+	uint32 unk_0c; // unused
+	int32 first_point;
+} SRQR_Curve;
+
+typedef struct {
+	float angle;
+	float gain_db;
+} SRQR_Point;
+
+SRQR_Header header;
+SRQR_Request requests[header.request_count];
+
+local int i;
+local uint32 bank_count = 0;
+FSeek(header.bank_offset);
+if (FileSize() - header.bank_offset >= 4 && ReadUInt() != 0)
+	bank_count = (ReadUInt() - header.bank_offset) / 4;
+
+uint32 bank_path_offsets[bank_count];
+for (i = 0; i < bank_count; i++) {
+	FSeek(bank_path_offsets[i]);
+	SRQR_Bank banks;
 }
 
-SRQR_HEADER Header;
-if (sizeof(SRQR_REC) != 132) Warning("record size %d", sizeof(SRQR_REC));
-SRQR_REC Database[Header.recordCount] <optimize=false>;
-
-if (FTell() != Header.footer) Warning("footer mismatch");
-uint32 soundBankUnk;             // = footer + 4
-if (soundBankUnk != FTell()) Warning("soundBankUnk does not point at the string");
-string soundBankName;
-if (FTell() < FileSize()) ubyte Padding[FileSize() - FTell()];
-if (FileSize() % 16 != 0) Warning("file is not 16-aligned");
+if (header.emitter_count) {
+	FSeek(header.emitter_offset);
+	SRQR_Emitter emitters[header.emitter_count];
+}
+if (header.transform_count) {
+	FSeek(header.transform_offset);
+	SRQR_Transform transforms[header.transform_count];
+}
+if (header.curve_count) {
+	FSeek(header.curve_offset);
+	SRQR_Curve curves[header.curve_count];
+}
+if (header.point_count) {
+	FSeek(header.point_offset);
+	SRQR_Point points[header.point_count];
+}
